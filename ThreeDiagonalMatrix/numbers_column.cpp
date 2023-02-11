@@ -5,6 +5,10 @@ NumbersColumn::NumbersColumn(const int &number_elements){
     numbers_.resize(number_elements, 0);
 }
 
+NumbersColumn::NumbersColumn(const vector<double> &column){
+    numbers_ = column;
+}
+
 void NumbersColumn::Display() const {
     PrintNumbers();
 }

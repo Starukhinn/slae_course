@@ -14,6 +14,7 @@ using std::istream;
 class NumbersColumn {
 public:
     NumbersColumn(const int &number_elements);
+    NumbersColumn(const vector<double> &column);
     void Display() const;
     void ChangeElement(const int &number_element, const double &element);
     void operator=(const NumbersColumn& elements);

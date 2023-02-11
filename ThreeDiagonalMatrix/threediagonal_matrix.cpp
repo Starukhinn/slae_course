@@ -35,6 +35,16 @@ void DiagonalElementsLine::operator=(const DiagonalElementsLine& elements){
     third_element_ = elements.third_element_;
 }
 
+bool operator==(const DiagonalElementsLine &first_element, const DiagonalElementsLine &second_element){
+    if (first_element.GiveElement(0) == second_element.GiveElement(0) and
+            first_element.GiveElement(1) == second_element.GiveElement(1) and
+            first_element.GiveElement(2) == second_element.GiveElement(2)){
+        return true;
+    }
+    return false;
+}
+
+
 
 TriangleMatrix::TriangleMatrix() {
     diagonal_elements_ = {};

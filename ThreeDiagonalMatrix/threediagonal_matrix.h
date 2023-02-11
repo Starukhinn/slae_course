@@ -28,6 +28,8 @@ private:
     double GiveElementByNumber(const int &number_element) const;
 };
 
+bool operator==(const DiagonalElementsLine &first_element, const DiagonalElementsLine &second_element);
+
 class TriangleMatrix {
 public:
     TriangleMatrix();
