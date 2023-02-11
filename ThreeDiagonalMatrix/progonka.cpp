@@ -38,9 +38,9 @@ NumbersColumn Progonka(const TriangleMatrix &matrix, const NumbersColumn &free_m
                             (matrix.GiveElement(number_line, 0) *
                              array_of_auxiliary_coefficients[number_line - 1].p_coef +
                              matrix.GiveElement(number_line, 1));
-        }
-        else {
-            answer_member = array_of_auxiliary_coefficients[number_line].p_coef * unknown_members.GiveElement(number_line + 1) +
+        } else {
+            answer_member =
+                    array_of_auxiliary_coefficients[number_line].p_coef * unknown_members.GiveElement(number_line + 1) +
                     array_of_auxiliary_coefficients[number_line].q_coef;
         }
         unknown_members.ChangeElement(number_line, answer_member);

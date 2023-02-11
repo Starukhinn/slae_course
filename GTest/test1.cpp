@@ -2,14 +2,14 @@
 #include "/Users/dmitrystarukhin/slae_course/ThreeDiagonalMatrix/progonka.h"
 
 
-TEST(Matrix, Constructor){
+TEST(Matrix, Constructor) {
     TriangleMatrix nan_matrix;
     TriangleMatrix empty_matrix(5);
-    TriangleMatrix not_empty_matrix({{7,  1,  0},
-                                     {0,  5,  2},
-                                     {3,  16, 27},
-                                     {8,  1,  9},
-                                     {2,  7,  2},
+    TriangleMatrix not_empty_matrix({{7, 1,  0},
+                                     {0, 5,  2},
+                                     {3, 16, 27},
+                                     {8, 1,  9},
+                                     {2, 7,  2},
                                      {0, 6,  2}});
 
 
@@ -20,26 +20,25 @@ TEST(Matrix, Constructor){
 }
 
 
-
 TEST(Progonka, CheckAnswer) {
-    TriangleMatrix matrix_1({{1,  2,  0},
-                                     {1,  2,  2},
-                                     {0,  2, 2}});
+    TriangleMatrix matrix_1({{1, 2, 0},
+                             {1, 2, 2},
+                             {0, 2, 2}});
     NumbersColumn free_members_1({1, 5, 5});
     NumbersColumn answer_1({0, 0.5, 2});
-    TriangleMatrix matrix_2({{3,  3,  0},
-                                       {1,  5,  5},
-                                       {5,  8, 8},
-                                       {0, 7, 8}});
+    TriangleMatrix matrix_2({{3, 3, 0},
+                             {1, 5, 5},
+                             {5, 8, 8},
+                             {0, 7, 8}});
     NumbersColumn free_members_2({2, 8, 5, 9});
-    NumbersColumn answer_2({124/63, -82/63, -158/63, -77/72});
-    TriangleMatrix matrix_3({{1,  8,  0},
-                                       {2,  6,  3},
-                                       {8,  8, 9},
-                                       {2, 7, 1},
-                                       {0, 7, 5}});
+    NumbersColumn answer_2({124 / 63, -82 / 63, -158 / 63, -77 / 72});
+    TriangleMatrix matrix_3({{1, 8, 0},
+                             {2, 6, 3},
+                             {8, 8, 9},
+                             {2, 7, 1},
+                             {0, 7, 5}});
     NumbersColumn free_members_3({2, 8, 5, 9, 2});
-    NumbersColumn answer_3({3560/503, -1277/2012, -787/1006, 913/503, 1077/503});
+    NumbersColumn answer_3({3560 / 503, -1277 / 2012, -787 / 1006, 913 / 503, 1077 / 503});
 
     NumbersColumn answer_column_1 = Progonka(matrix_1, free_members_1);
     NumbersColumn answer_column_2 = Progonka(matrix_2, free_members_2);

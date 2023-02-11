@@ -1,12 +1,13 @@
 #include "threediagonal_matrix.h"
 
-DiagonalElementsLine::DiagonalElementsLine(){
+DiagonalElementsLine::DiagonalElementsLine() {
     first_element_ = 0.0;
     second_element_ = 0.0;
     third_element_ = 0.0;
 }
 
-DiagonalElementsLine::DiagonalElementsLine(const double &first_element, const double &second_element, const double &third_element) {
+DiagonalElementsLine::DiagonalElementsLine(const double &first_element, const double &second_element,
+                                           const double &third_element) {
     first_element_ = first_element;
     second_element_ = second_element;
     third_element_ = third_element;
@@ -29,21 +30,20 @@ double DiagonalElementsLine::GiveElementByNumber(const int &number_element) cons
     }
 }
 
-void DiagonalElementsLine::operator=(const DiagonalElementsLine& elements){
+void DiagonalElementsLine::operator=(const DiagonalElementsLine &elements) {
     first_element_ = elements.first_element_;
     second_element_ = elements.second_element_;
     third_element_ = elements.third_element_;
 }
 
-bool operator==(const DiagonalElementsLine &first_element, const DiagonalElementsLine &second_element){
+bool operator==(const DiagonalElementsLine &first_element, const DiagonalElementsLine &second_element) {
     if (first_element.GiveElement(0) == second_element.GiveElement(0) and
-            first_element.GiveElement(1) == second_element.GiveElement(1) and
-            first_element.GiveElement(2) == second_element.GiveElement(2)){
+        first_element.GiveElement(1) == second_element.GiveElement(1) and
+        first_element.GiveElement(2) == second_element.GiveElement(2)) {
         return true;
     }
     return false;
 }
-
 
 
 TriangleMatrix::TriangleMatrix() {
@@ -110,17 +110,17 @@ size_t TriangleMatrix::GetSize() const {
     return diagonal_elements_.size();
 }
 
-void TriangleMatrix::operator=(const TriangleMatrix& matrix) {
+void TriangleMatrix::operator=(const TriangleMatrix &matrix) {
     diagonal_elements_ = matrix.diagonal_elements_;
 }
 
-vector<DiagonalElementsLine> TriangleMatrix::GiveMatrix() const{
+vector<DiagonalElementsLine> TriangleMatrix::GiveMatrix() const {
     return diagonal_elements_;
 }
 
 
 bool operator==(const TriangleMatrix &first_matrix, const TriangleMatrix &second_matrix) {
-    if (first_matrix.GiveMatrix() == second_matrix.GiveMatrix()){
+    if (first_matrix.GiveMatrix() == second_matrix.GiveMatrix()) {
         return true;
     }
     return false;

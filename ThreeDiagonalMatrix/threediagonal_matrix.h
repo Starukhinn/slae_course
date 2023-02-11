@@ -1,4 +1,5 @@
 #pragma once
+
 #include <iostream>
 #include <vector>
 #include <string>
@@ -11,10 +12,12 @@ using std::cout;
 class DiagonalElementsLine {
 public:
     DiagonalElementsLine();
+
     DiagonalElementsLine(const double &first_element, const double &second_element, const double &third_element);
 
     double GiveElement(const int &number_element) const;
-    void operator=(const DiagonalElementsLine& elements);
+
+    void operator=(const DiagonalElementsLine &elements);
 
 private:
     double first_element_;
@@ -42,7 +45,7 @@ public:
 
     void ReplaceRow(const size_t &number_line, const DiagonalElementsLine &new_line);
 
-    void operator=(const TriangleMatrix& matrix);
+    void operator=(const TriangleMatrix &matrix);
 
     vector<DiagonalElementsLine> GiveMatrix() const;
 
