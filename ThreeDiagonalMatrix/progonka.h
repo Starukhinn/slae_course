@@ -1,8 +1,4 @@
-#ifndef SLAE_COURSE_PROGONKA_H
-#define SLAE_COURSE_PROGONKA_H
-
-#endif //SLAE_COURSE_PROGONKA_H
-
+#pragma once
 #include <iostream>
 #include "threediagonal_matrix.h"
 #include "numbers_column.h"

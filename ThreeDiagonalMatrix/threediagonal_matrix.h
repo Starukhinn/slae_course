@@ -1,12 +1,8 @@
-#ifndef SLAE_COURSE_THREEDIAGONAL_MATRIX_H
-#define SLAE_COURSE_THREEDIAGONAL_MATRIX_H
-
-#endif //SLAE_COURSE_THREEDIAGONAL_MATRIX_H
-
-
+#pragma once
 #include <iostream>
 #include <vector>
 #include <string>
+
 
 using std::vector;
 using std::cin;
@@ -59,3 +55,4 @@ private:
 bool operator==(const TriangleMatrix &first_matrix, const TriangleMatrix &second_matrix);
 
 TriangleMatrix MakeMatrix(const int &number_rows);
+

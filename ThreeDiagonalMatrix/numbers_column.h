@@ -1,8 +1,4 @@
-#ifndef SLAE_COURSE_NUMBERS_COLUMN_H
-#define SLAE_COURSE_NUMBERS_COLUMN_H
-
-#endif //SLAE_COURSE_NUMBERS_COLUMN_H
-
+#pragma once
 #include <vector>
 #include <iostream>
 
