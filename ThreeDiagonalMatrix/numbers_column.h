@@ -18,8 +18,6 @@ public:
 
     void ChangeElement(const int &number_element, const double &element);
 
-    void operator=(const NumbersColumn &elements);
-
     double GiveElement(const int number_element) const;
 
     vector<double> GiveColumn() const;

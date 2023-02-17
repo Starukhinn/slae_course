@@ -44,7 +44,7 @@ TEST(Progonka, CheckAnswer) {
     NumbersColumn answer_column_2 = Progonka(matrix_2, free_members_2);
     NumbersColumn answer_column_3 = Progonka(matrix_3, free_members_3);
 
-    ASSERT_EQ(answer_column_1.GiveColumn(), answer_1);
-    ASSERT_EQ(answer_column_2.GiveColumn(), answer_2);
-    ASSERT_EQ(answer_column_3.GiveColumn(), answer_3);
+    ASSERT_EQ(answer_column_1, answer_1);
+    ASSERT_EQ(answer_column_2, answer_2);
+    ASSERT_EQ(answer_column_3, answer_3);
 }

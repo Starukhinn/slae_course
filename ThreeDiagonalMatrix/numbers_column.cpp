@@ -24,15 +24,11 @@ void NumbersColumn::ChangeElement(const int &number_element, const double &eleme
 }
 
 void NumbersColumn::ReplaceElement(const int &number_element, const double &element) {
-    numbers_.at(number_element) = element;
-}
-
-void NumbersColumn::operator=(const NumbersColumn &elements) {
-    numbers_ = elements.numbers_;
+    numbers_[number_element] = element;
 }
 
 double NumbersColumn::GiveElement(const int number_element) const {
-    return numbers_.at(number_element);
+    return numbers_[number_element];
 }
 
 vector<double> NumbersColumn::GiveColumn() const {

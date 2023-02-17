@@ -30,11 +30,6 @@ double DiagonalElementsLine::GiveElementByNumber(const int &number_element) cons
     }
 }
 
-void DiagonalElementsLine::operator=(const DiagonalElementsLine &elements) {
-    first_element_ = elements.first_element_;
-    second_element_ = elements.second_element_;
-    third_element_ = elements.third_element_;
-}
 
 bool operator==(const DiagonalElementsLine &first_element, const DiagonalElementsLine &second_element) {
     if (first_element.GiveElement(0) == second_element.GiveElement(0) and
@@ -88,9 +83,9 @@ void TriangleMatrix::PrintMatrix() const {
              ++number_element_line) {
             cout << 0 << ' ';
         }
-        cout << diagonal_elements_.at(number_line).GiveElement(0) << ' '
-             << diagonal_elements_.at(number_line).GiveElement(1) << ' ' <<
-             diagonal_elements_.at(number_line).GiveElement(2) << ' ';
+        cout << diagonal_elements_[number_line].GiveElement(0) << ' '
+             << diagonal_elements_[number_line].GiveElement(1) << ' ' <<
+             diagonal_elements_[number_line].GiveElement(2) << ' ';
         for (size_t number_element_line = 0;
              number_element_line < number_nulls_after_diagonal_elements_line;
              ++number_element_line) {
@@ -102,7 +97,7 @@ void TriangleMatrix::PrintMatrix() const {
 
 
 double TriangleMatrix::GiveElement(const size_t &number_line, const size_t &number_element_amount_3) const {
-    return diagonal_elements_.at(number_line).GiveElement(number_element_amount_3);
+    return diagonal_elements_[number_line].GiveElement(number_element_amount_3);
 
 }
 
@@ -110,21 +105,18 @@ size_t TriangleMatrix::GetSize() const {
     return diagonal_elements_.size();
 }
 
-void TriangleMatrix::operator=(const TriangleMatrix &matrix) {
-    diagonal_elements_ = matrix.diagonal_elements_;
-}
 
 vector<DiagonalElementsLine> TriangleMatrix::GiveMatrix() const {
     return diagonal_elements_;
 }
 
 
-bool operator==(const TriangleMatrix &first_matrix, const TriangleMatrix &second_matrix) {
-    if (first_matrix.GiveMatrix() == second_matrix.GiveMatrix()) {
-        return true;
-    }
-    return false;
-}
+//bool operator==(const TriangleMatrix &first_matrix, const TriangleMatrix &second_matrix) {
+//    if (first_matrix.GiveMatrix() == second_matrix.GiveMatrix()) {
+//        return true;
+//    }
+//    return false;
+//}
 
 TriangleMatrix MakeMatrix(const int &number_rows) {
     TriangleMatrix matrix(number_rows);

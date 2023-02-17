@@ -1,4 +1,4 @@
-#include "progonka.h"
+#include "/Users/dmitrystarukhin/slae_course/ThreeDiagonalMatrix/progonka.h"
 #include <iostream>
 
 int main() {

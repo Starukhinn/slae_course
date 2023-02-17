@@ -17,8 +17,6 @@ public:
 
     double GiveElement(const int &number_element) const;
 
-    void operator=(const DiagonalElementsLine &elements);
-
 private:
     double first_element_;
     double second_element_;
@@ -45,7 +43,6 @@ public:
 
     void ReplaceRow(const size_t &number_line, const DiagonalElementsLine &new_line);
 
-    void operator=(const TriangleMatrix &matrix);
 
     vector<DiagonalElementsLine> GiveMatrix() const;
 
