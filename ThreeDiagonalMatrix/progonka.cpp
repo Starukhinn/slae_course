@@ -1,7 +1,7 @@
 #include "progonka.h"
 
 vector<AuxiliaryCoefficients>
-FindAuxiliaryCoefficients(const TriangleMatrix &matrix, const NumbersColumn &free_members) {
+FindAuxiliaryCoefficients(const ThreeDiagonalMatrix &matrix, const NumbersColumn &free_members) {
     vector<AuxiliaryCoefficients> array_of_auxiliary_coefficients = {};
     for (auto number_line = 0; number_line < matrix.GetSize() - 2; ++number_line) {
         double p_coef;
@@ -26,7 +26,7 @@ FindAuxiliaryCoefficients(const TriangleMatrix &matrix, const NumbersColumn &fre
     return array_of_auxiliary_coefficients;
 }
 
-NumbersColumn Progonka(const TriangleMatrix &matrix, const NumbersColumn &free_members) {
+NumbersColumn Progonka(const ThreeDiagonalMatrix &matrix, const NumbersColumn &free_members) {
     NumbersColumn unknown_members(matrix.GetSize());
     vector<AuxiliaryCoefficients> array_of_auxiliary_coefficients = FindAuxiliaryCoefficients(matrix, free_members);
     for (int number_line = matrix.GetSize() - 1; number_line >= 0; --number_line) {

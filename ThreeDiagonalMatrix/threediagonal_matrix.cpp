@@ -41,29 +41,29 @@ bool operator==(const DiagonalElementsLine &first_element, const DiagonalElement
 }
 
 
-TriangleMatrix::TriangleMatrix() {
+ThreeDiagonalMatrix::ThreeDiagonalMatrix() {
     diagonal_elements_ = {};
 }
 
-TriangleMatrix::TriangleMatrix(const size_t &number_rows) {
+ThreeDiagonalMatrix::ThreeDiagonalMatrix(const size_t &number_rows) {
     diagonal_elements_ = {};
     diagonal_elements_.resize(number_rows, {});
 }
 
-TriangleMatrix::TriangleMatrix(const vector<DiagonalElementsLine> &diagonal_elements) {
+ThreeDiagonalMatrix::ThreeDiagonalMatrix(const vector<DiagonalElementsLine> &diagonal_elements) {
     diagonal_elements_ = diagonal_elements;
 }
 
-void TriangleMatrix::Display() const {
+void ThreeDiagonalMatrix::Display() const {
     PrintMatrix();
 }
 
 
-void TriangleMatrix::ReplaceRow(const size_t &number_line, const DiagonalElementsLine &new_line) {
+void ThreeDiagonalMatrix::ReplaceRow(const size_t &number_line, const DiagonalElementsLine &new_line) {
     diagonal_elements_[number_line] = new_line;
 }
 
-void TriangleMatrix::PrintMatrix() const {
+void ThreeDiagonalMatrix::PrintMatrix() const {
     for (size_t number_line = 0; number_line < diagonal_elements_.size(); ++number_line) {
         size_t number_nulls_before_diagonal_elements_line;
         size_t number_nulls_after_diagonal_elements_line;
@@ -96,30 +96,30 @@ void TriangleMatrix::PrintMatrix() const {
 }
 
 
-double TriangleMatrix::GiveElement(const size_t &number_line, const size_t &number_element_amount_3) const {
+double ThreeDiagonalMatrix::GiveElement(const size_t &number_line, const size_t &number_element_amount_3) const {
     return diagonal_elements_[number_line].GiveElement(number_element_amount_3);
 
 }
 
-size_t TriangleMatrix::GetSize() const {
+size_t ThreeDiagonalMatrix::GetSize() const {
     return diagonal_elements_.size();
 }
 
 
-vector<DiagonalElementsLine> TriangleMatrix::GiveMatrix() const {
+vector<DiagonalElementsLine> ThreeDiagonalMatrix::GiveMatrix() const {
     return diagonal_elements_;
 }
 
 
-//bool operator==(const TriangleMatrix &first_matrix, const TriangleMatrix &second_matrix) {
+//bool operator==(const ThreeDiagonalMatrix &first_matrix, const ThreeDiagonalMatrix &second_matrix) {
 //    if (first_matrix.GiveMatrix() == second_matrix.GiveMatrix()) {
 //        return true;
 //    }
 //    return false;
 //}
 
-TriangleMatrix MakeMatrix(const int &number_rows) {
-    TriangleMatrix matrix(number_rows);
+ThreeDiagonalMatrix MakeMatrix(const int &number_rows) {
+    ThreeDiagonalMatrix matrix(number_rows);
     bool row_is_first_in_matrix = true;
     bool row_is_last_in_matrix = false;
     int number_row = 0;

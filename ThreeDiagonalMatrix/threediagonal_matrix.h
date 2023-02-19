@@ -27,13 +27,13 @@ private:
 
 bool operator==(const DiagonalElementsLine &first_element, const DiagonalElementsLine &second_element);
 
-class TriangleMatrix {
+class ThreeDiagonalMatrix {
 public:
-    TriangleMatrix();
+    ThreeDiagonalMatrix();
 
-    TriangleMatrix(const size_t &number_rows);
+    ThreeDiagonalMatrix(const size_t &number_rows);
 
-    TriangleMatrix(const vector<DiagonalElementsLine> &diagonal_elements);
+    ThreeDiagonalMatrix(const vector<DiagonalElementsLine> &diagonal_elements);
 
     void Display() const;
 
@@ -52,7 +52,7 @@ private:
     void PrintMatrix() const;
 };
 
-bool operator==(const TriangleMatrix &first_matrix, const TriangleMatrix &second_matrix);
+bool operator==(const ThreeDiagonalMatrix &first_matrix, const ThreeDiagonalMatrix &second_matrix);
 
-TriangleMatrix MakeMatrix(const int &number_rows);
+ThreeDiagonalMatrix MakeMatrix(const int &number_rows);
 

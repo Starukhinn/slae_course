@@ -5,7 +5,7 @@ int main() {
     try {
         int number_rows;
         cin >> number_rows;
-        TriangleMatrix matrix = MakeMatrix(number_rows);
+        ThreeDiagonalMatrix matrix = MakeMatrix(number_rows);
         matrix.Display();
         NumbersColumn free_members_column(number_rows);
         NumbersColumn unknown_column(number_rows);

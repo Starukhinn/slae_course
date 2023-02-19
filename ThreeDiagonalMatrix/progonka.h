@@ -9,7 +9,7 @@ struct AuxiliaryCoefficients {
     double q_coef;
 };
 
-NumbersColumn Progonka(const TriangleMatrix &matrix, const NumbersColumn &free_members);
+NumbersColumn Progonka(const ThreeDiagonalMatrix &matrix, const NumbersColumn &free_members);
 
 vector<AuxiliaryCoefficients>
-FindAuxiliaryCoefficients(const TriangleMatrix &matrix, const NumbersColumn &unknown_column);
+FindAuxiliaryCoefficients(const ThreeDiagonalMatrix &matrix, const NumbersColumn &unknown_column);
