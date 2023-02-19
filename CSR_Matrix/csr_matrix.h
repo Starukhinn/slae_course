@@ -20,6 +20,8 @@ struct CSRMatrixData{
 
 bool operator==(const CSRMatrixData &first_data, const CSRMatrixData &second_data);
 
+bool operator<(const Indexes &first_indexes, const Indexes &second_indexes);
+
 class CSRMatrix {
 public:
     CSRMatrix(const map<Indexes,double> &matrix);

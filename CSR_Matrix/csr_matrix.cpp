@@ -3,7 +3,7 @@
 
 CSRMatrix::CSRMatrix(const map<Indexes, double> &matrix) {
     for (auto const &element: matrix) {
-        if (element.second == 0){
+        if (element.second == 0) {
             continue;
         }
         values_.push_back(element.second);
@@ -23,6 +23,7 @@ vector<int> CSRMatrix::CountNonZeroRowElements(const map<Indexes, double> &matri
             ++number_non_0_elements;
         }
     }
+    return number_non_0_rows_elements;
 }
 
 float CSRMatrix::FindElement(const size_t &number_row, const size_t &number_column) const {
@@ -77,6 +78,18 @@ bool operator==(const CSRMatrixData &first_data, const CSRMatrixData &second_dat
 bool operator==(const CSRMatrix &first_matrix, const CSRMatrix &second_matrix) {
     if (first_matrix.GiveInformation() == second_matrix.GiveInformation()) {
         return true;
+    }
+    return false;
+}
+
+bool operator<(const Indexes &first_indexes, const Indexes &second_indexes) {
+    if (first_indexes.number_row < second_indexes.number_row) {
+        return true;
+    } else if (first_indexes.number_row == second_indexes.number_row) {
+        if (first_indexes.number_column < second_indexes.number_column) {
+            return true;
+        }
+        return false;
     }
     return false;
 }
