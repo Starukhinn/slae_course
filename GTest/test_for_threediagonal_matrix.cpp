@@ -1,5 +1,5 @@
 #include "gtest/gtest.h"
-#include "/Users/dmitrystarukhin/slae_course/ThreeDiagonalMatrix/progonka.h"
+#include "../ThreeDiagonalMatrix/progonka.h"
 
 
 TEST(Matrix, Constructor) {

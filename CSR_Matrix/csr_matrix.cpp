@@ -3,6 +3,9 @@
 
 CSRMatrix::CSRMatrix(const map<Indexes, double> &matrix) {
     for (auto const &element: matrix) {
+        if (element.second == 0){
+            continue;
+        }
         values_.push_back(element.second);
         columns_indexes_.push_back(element.first.number_column);
     }
@@ -27,7 +30,7 @@ float CSRMatrix::FindElement(const size_t &number_row, const size_t &number_colu
     int number_elements_after_row = number_rows_non_0_elements_[number_row + 1];
     for (int number_non_0_element = number_elements_before_row;
          number_non_0_element < number_elements_after_row; ++number_non_0_element) {
-        if(columns_indexes_[number_non_0_element] == number_column){
+        if (columns_indexes_[number_non_0_element] == number_column) {
             return values_[number_non_0_element];
         }
     }
@@ -38,15 +41,15 @@ float CSRMatrix::GiveElement(const size_t &number_row, const size_t &number_colu
     return FindElement(number_row, number_column);
 }
 
-vector<float> CSRMatrix::MultiplicationColumn(const vector<float> &column){
+vector<float> CSRMatrix::MultiplicationColumn(const vector<float> &column) {
     vector<float> result_column;
-    for(size_t number_row_in_matrix = 0; number_row_in_matrix < number_rows_non_0_elements_.size();
-                                                ++number_row_in_matrix){
+    for (size_t number_row_in_matrix = 0; number_row_in_matrix < number_rows_non_0_elements_.size();
+         ++number_row_in_matrix) {
         int number_elements_before_row = number_rows_non_0_elements_[number_row_in_matrix];
         int number_elements_after_row = number_rows_non_0_elements_[number_row_in_matrix + 1];
         float result_column_element = 0;
-        for(int number_non_0_element = number_elements_before_row; number_non_0_element < number_elements_after_row;
-                                            ++number_non_0_element){
+        for (int number_non_0_element = number_elements_before_row; number_non_0_element < number_elements_after_row;
+             ++number_non_0_element) {
             size_t column_index_of_element = columns_indexes_[number_non_0_element];
             result_column_element += values_[number_non_0_element] * column[column_index_of_element];
         }
@@ -58,6 +61,27 @@ vector<float> CSRMatrix::MultiplicationColumn(const vector<float> &column){
 vector<float> CSRMatrix::MultiplyByColumn(const vector<float> &column) {
     return MultiplicationColumn(column);
 }
+
+CSRMatrixData CSRMatrix::GiveInformation() const {
+    return {values_, columns_indexes_, number_rows_non_0_elements_};
+}
+
+bool operator==(const CSRMatrixData &first_data, const CSRMatrixData &second_data) {
+    if (first_data.values == second_data.values and first_data.columns_indexes == second_data.columns_indexes
+        and first_data.number_rows_non_0_elements == second_data.number_rows_non_0_elements) {
+        return true;
+    }
+    return false;
+}
+
+bool operator==(const CSRMatrix &first_matrix, const CSRMatrix &second_matrix) {
+    if (first_matrix.GiveInformation() == second_matrix.GiveInformation()) {
+        return true;
+    }
+    return false;
+}
+
+
 
 
 
