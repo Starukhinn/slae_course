@@ -7,4 +7,4 @@ file(GLOB_RECURSE TESTS "*.cpp")
 
 add_executable(Google_Tests_run ${TESTS})
 
-target_link_libraries(Google_Tests_run gtest gtest_main ThreeDiagonalMatrix)
+target_link_libraries(Google_Tests_run gtest gtest_main ThreeDiagonalMatrix CSR_Matrix)

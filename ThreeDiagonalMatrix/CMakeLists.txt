@@ -1,2 +1,2 @@
-file(GLOB_RECURSE Matrix_files "*.cpp" ".h")
-add_library(ThreeDiagonalMatrix ${Matrix_files})
+file(GLOB_RECURSE ThreeDiagonalMatrix_files "*.cpp" ".h")
+add_library(ThreeDiagonalMatrix ${ThreeDiagonalMatrix_files})

@@ -9,6 +9,7 @@ set(CMAKE_CXX_FLAGS_ASAN "-g -fsanitize=address,undefined -fno-sanitize-recover=
 
 add_subdirectory(GTest)
 add_subdirectory(ThreeDiagonalMatrix)
+add_subdirectory(CSR_Matrix)
 
 
 
