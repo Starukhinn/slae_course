@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="CMakeWorkspace" PROJECT_DIR="$PROJECT_DIR$" />
+<<<<<<< HEAD
   <component name="CidrRootsConfiguration">
     <sourceRoots>
       <file path="$PROJECT_DIR$" />
     </sourceRoots>
   </component>
+=======
+>>>>>>> 7c10966219c6e5d08a9c1c36d9b7ddb8c9623af9
 </project>
