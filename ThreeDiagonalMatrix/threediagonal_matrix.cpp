@@ -110,13 +110,17 @@ vector<DiagonalElementsLine> ThreeDiagonalMatrix::GiveMatrix() const {
     return diagonal_elements_;
 }
 
+/*bool operator==(const ThreeDiagonalMatrix &first_matrix, const ThreeDiagonalMatrix &second_matrix) {
+    return false;
+}*/
 
-//bool operator==(const ThreeDiagonalMatrix &first_matrix, const ThreeDiagonalMatrix &second_matrix) {
-//    if (first_matrix.GiveMatrix() == second_matrix.GiveMatrix()) {
-//        return true;
-//    }
-//    return false;
-//}
+
+bool operator==(const ThreeDiagonalMatrix &first_matrix, const ThreeDiagonalMatrix &second_matrix) {
+    if (first_matrix.GiveMatrix() == second_matrix.GiveMatrix()) {
+        return true;
+    }
+    return false;
+}
 
 ThreeDiagonalMatrix MakeMatrix(const int &number_rows) {
     ThreeDiagonalMatrix matrix(number_rows);

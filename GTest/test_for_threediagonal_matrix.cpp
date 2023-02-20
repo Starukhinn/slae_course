@@ -4,7 +4,7 @@
 
 TEST(Matrix, Constructor) {
     ThreeDiagonalMatrix nan_matrix;
-    ThreeDiagonalMatrix empty_matrix(5);
+    ThreeDiagonalMatrix empty_matrix{};
     ThreeDiagonalMatrix not_empty_matrix({{7, 1,  0},
                                           {0, 5,  2},
                                           {3, 16, 27},
