@@ -42,6 +42,7 @@ public:
     double GiveElement(const size_t &number_line, const size_t &number_element_amount_3) const;
 
     void ReplaceRow(const size_t &number_line, const DiagonalElementsLine &new_line);
+
     friend bool operator==(const ThreeDiagonalMatrix &first_matrix, const ThreeDiagonalMatrix &second_matrix);
 
     vector<DiagonalElementsLine> GiveMatrix() const;
@@ -51,8 +52,6 @@ private:
 
     void PrintMatrix() const;
 };
-
-//bool operator==(const ThreeDiagonalMatrix &first_matrix, const ThreeDiagonalMatrix &second_matrix);
 
 ThreeDiagonalMatrix MakeMatrix(const int &number_rows);
 

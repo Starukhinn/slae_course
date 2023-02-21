@@ -28,6 +28,7 @@ public:
     float GiveElement(const size_t &number_row, const size_t &number_column) const;
     vector<float> MultiplyByColumn(const vector<float> &column);
     CSRMatrixData GiveInformation() const;
+    friend bool operator==(const CSRMatrix &first_matrix, const CSRMatrix &second_matrix);
 
 private:
     vector<double>  values_;
@@ -40,7 +41,5 @@ private:
     vector<float> MultiplicationColumn(const vector<float> &column);
 
 };
-
-bool operator==(const CSRMatrix &first_matrix, const CSRMatrix &second_matrix);
 
 

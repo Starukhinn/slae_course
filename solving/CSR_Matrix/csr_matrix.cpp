@@ -67,16 +67,10 @@ CSRMatrixData CSRMatrix::GiveInformation() const {
     return {values_, columns_indexes_, number_rows_non_0_elements_};
 }
 
-bool operator==(const CSRMatrixData &first_data, const CSRMatrixData &second_data) {
-    if (first_data.values == second_data.values and first_data.columns_indexes == second_data.columns_indexes
-        and first_data.number_rows_non_0_elements == second_data.number_rows_non_0_elements) {
-        return true;
-    }
-    return false;
-}
-
 bool operator==(const CSRMatrix &first_matrix, const CSRMatrix &second_matrix) {
-    if (first_matrix.GiveInformation() == second_matrix.GiveInformation()) {
+    if (first_matrix.values_ == second_matrix.values_ and
+    first_matrix.number_rows_non_0_elements_ == second_matrix.number_rows_non_0_elements_ and
+    first_matrix.columns_indexes_ == second_matrix.columns_indexes_){
         return true;
     }
     return false;
