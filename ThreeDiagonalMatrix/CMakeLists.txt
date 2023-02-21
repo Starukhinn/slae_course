@@ -1,5 +1,0 @@
-cmake_minimum_required(VERSION 3.20)
-project(slae_course)
-set(CMAKE_CXX_STANDARD 17)
-file(GLOB_RECURSE ThreeDiagonalMatrix_files "*.cpp" ".h")
-add_library(ThreeDiagonalMatrix ${ThreeDiagonalMatrix_files})
