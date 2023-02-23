@@ -6,8 +6,8 @@ DiagonalElementsLine::DiagonalElementsLine() {
     third_element_ = 0.0;
 }
 
-DiagonalElementsLine::DiagonalElementsLine(const double &first_element, const double &second_element,
-                                           const double &third_element) {
+DiagonalElementsLine::DiagonalElementsLine(const float &first_element, const float &second_element,
+                                           const float &third_element) {
     first_element_ = first_element;
     second_element_ = second_element;
     third_element_ = third_element;
@@ -18,7 +18,7 @@ double DiagonalElementsLine::GiveElement(const int &number_element) const {
 }
 
 
-double DiagonalElementsLine::GiveElementByNumber(const int &number_element) const {
+float DiagonalElementsLine::GiveElementByNumber(const int &number_element) const {
     if (number_element == 0) {
         return first_element_;
     } else if (number_element == 1) {
@@ -43,11 +43,6 @@ bool operator==(const DiagonalElementsLine &first_element, const DiagonalElement
 
 ThreeDiagonalMatrix::ThreeDiagonalMatrix() {
     diagonal_elements_ = {};
-}
-
-ThreeDiagonalMatrix::ThreeDiagonalMatrix(const size_t &number_rows) {
-    diagonal_elements_ = {};
-    diagonal_elements_.resize(number_rows, {});
 }
 
 ThreeDiagonalMatrix::ThreeDiagonalMatrix(const vector<DiagonalElementsLine> &diagonal_elements) {

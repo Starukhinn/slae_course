@@ -3,14 +3,14 @@
 vector<AuxiliaryCoefficients>
 FindAuxiliaryCoefficients(const ThreeDiagonalMatrix &matrix, const NumbersColumn &free_members) {
     vector<AuxiliaryCoefficients> array_of_auxiliary_coefficients = {};
-    for (auto number_line = 0; number_line < matrix.GetSize() - 2; ++number_line) {
+    for (auto number_line = 0; number_line < matrix.GetSize() - 1; ++number_line) {
         double p_coef;
         double q_coef;
         if (number_line == 0) {
-            p_coef = -1 * matrix.GiveElement(0, 0) /
-                     matrix.GiveElement(0, 1);
+            p_coef = -1 * matrix.GiveElement(0, 1) /
+                     matrix.GiveElement(0, 0);
             q_coef = free_members.GiveElement(0) /
-                     matrix.GiveElement(0, 1);
+                     matrix.GiveElement(0, 0);
         } else {
             p_coef = -1 * matrix.GiveElement(number_line, 2) /
                      (matrix.GiveElement(number_line, 0) * array_of_auxiliary_coefficients[number_line - 1].p_coef +
@@ -33,11 +33,11 @@ NumbersColumn Progonka(const ThreeDiagonalMatrix &matrix, const NumbersColumn &f
         double answer_member;
         if (number_line == matrix.GetSize() - 1) {
             answer_member = (free_members.GiveElement(number_line) -
-                             matrix.GiveElement(number_line, 0) *
+                             matrix.GiveElement(number_line, 1) *
                              array_of_auxiliary_coefficients[number_line - 1].q_coef) /
-                            (matrix.GiveElement(number_line, 0) *
+                            (matrix.GiveElement(number_line, 1) *
                              array_of_auxiliary_coefficients[number_line - 1].p_coef +
-                             matrix.GiveElement(number_line, 1));
+                             matrix.GiveElement(number_line, 2));
         } else {
             answer_member =
                     array_of_auxiliary_coefficients[number_line].p_coef * unknown_members.GiveElement(number_line + 1) +

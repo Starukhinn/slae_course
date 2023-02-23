@@ -1,9 +1,9 @@
 #include "csr_matrix.h"
 
 
-CSRMatrix::CSRMatrix(const map<Indexes, double> &matrix) {
+CSRMatrix::CSRMatrix(const map<Indexes, float> &matrix) {
     for (auto const &element: matrix) {
-        if (element.second == 0) {
+        if (element.second == 0.0) {
             continue;
         }
         values_.push_back(element.second);
@@ -12,15 +12,16 @@ CSRMatrix::CSRMatrix(const map<Indexes, double> &matrix) {
     number_rows_non_0_elements_ = CountNonZeroRowElements(matrix);
 }
 
-vector<int> CSRMatrix::CountNonZeroRowElements(const map<Indexes, double> &matrix) {
+vector<int> CSRMatrix::CountNonZeroRowElements(const map<Indexes, float> &matrix) {
     vector<int> number_non_0_rows_elements;
     int number_non_0_elements = 0;
+    number_non_0_rows_elements.push_back(number_non_0_elements);
     for (auto matrix_element = matrix.begin(); matrix_element != matrix.end(); ++matrix_element) {
-        if (matrix_element == matrix.begin() or
-            prev(matrix_element, 1)->first.number_row != matrix_element->first.number_row) {
-            number_non_0_rows_elements.push_back(number_non_0_elements);
-        } else {
+        if (matrix_element->second != 0) {
             ++number_non_0_elements;
+        }
+        if (matrix_element != matrix.begin() and (next(matrix_element) == matrix.end() or next(matrix_element)->first.number_row != matrix_element->first.number_row)) {
+            number_non_0_rows_elements.push_back(number_non_0_elements);
         }
     }
     return number_non_0_rows_elements;
@@ -44,10 +45,10 @@ float CSRMatrix::GiveElement(const size_t &number_row, const size_t &number_colu
 
 vector<float> CSRMatrix::MultiplicationColumn(const vector<float> &column) {
     vector<float> result_column;
-    for (size_t number_row_in_matrix = 0; number_row_in_matrix < number_rows_non_0_elements_.size();
+    for (size_t number_row_in_matrix = 1; number_row_in_matrix < number_rows_non_0_elements_.size();
          ++number_row_in_matrix) {
-        int number_elements_before_row = number_rows_non_0_elements_[number_row_in_matrix];
-        int number_elements_after_row = number_rows_non_0_elements_[number_row_in_matrix + 1];
+        int number_elements_before_row = number_rows_non_0_elements_[number_row_in_matrix - 1];
+        int number_elements_after_row = number_rows_non_0_elements_[number_row_in_matrix];
         float result_column_element = 0;
         for (int number_non_0_element = number_elements_before_row; number_non_0_element < number_elements_after_row;
              ++number_non_0_element) {

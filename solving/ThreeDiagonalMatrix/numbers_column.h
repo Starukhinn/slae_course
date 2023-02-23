@@ -12,16 +12,17 @@ class NumbersColumn {
 public:
     NumbersColumn(const int &number_elements);
 
-    NumbersColumn(const vector<double> &column);
+    NumbersColumn(const vector<float> &column);
 
-    void ChangeElement(const int &number_element, const double &element);
+    void ChangeElement(const int &number_element, const float &element);
 
-    double GiveElement(const int number_element) const;
+    float GiveElement(const int number_element) const;
 
     friend bool operator==(const NumbersColumn &first_column, const NumbersColumn &second_column);
 
+    size_t GiveSize() const;
 private:
-    vector<double> numbers_;
+    vector<float> numbers_;
 
-    void ReplaceElement(const int &number_element, const double &element);
+    void ReplaceElement(const int &number_element, const float &element);
 };

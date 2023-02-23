@@ -5,20 +5,20 @@ NumbersColumn::NumbersColumn(const int &number_elements) {
     numbers_.resize(number_elements, 0);
 }
 
-NumbersColumn::NumbersColumn(const vector<double> &column) {
+NumbersColumn::NumbersColumn(const vector<float> &column) {
     numbers_ = column;
 }
 
 
-void NumbersColumn::ChangeElement(const int &number_element, const double &element) {
+void NumbersColumn::ChangeElement(const int &number_element, const float &element) {
     ReplaceElement(number_element, element);
 }
 
-void NumbersColumn::ReplaceElement(const int &number_element, const double &element) {
+void NumbersColumn::ReplaceElement(const int &number_element, const float &element) {
     numbers_[number_element] = element;
 }
 
-double NumbersColumn::GiveElement(const int number_element) const {
+float NumbersColumn::GiveElement(const int number_element) const {
     return numbers_[number_element];
 }
 
@@ -27,4 +27,7 @@ bool operator==(const NumbersColumn &first_column, const NumbersColumn &second_c
         return true;
     }
     return false;
+}
+size_t NumbersColumn::GiveSize() const {
+    return numbers_.size();
 }
