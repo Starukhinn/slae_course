@@ -1,2 +1,0 @@
-/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ar qc libslae_course.a CMakeFiles/slae_course.dir/numbers_column.cpp.o CMakeFiles/slae_course.dir/progonka.cpp.o CMakeFiles/slae_course.dir/threediagonal_matrix.cpp.o
-/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ranlib libslae_course.a
