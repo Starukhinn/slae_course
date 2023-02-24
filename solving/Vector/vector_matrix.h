@@ -12,7 +12,6 @@ public:
     float GiveElement(const int &number_element) const;
 private:
     vector<float> numbers_;
-    vector<float> MultiplicationByNumber(const float &number);
 };
 
 VectorMatrix operator+(const VectorMatrix &first_vector, const VectorMatrix &second_vector);
@@ -20,3 +19,5 @@ VectorMatrix operator+(const VectorMatrix &first_vector, const VectorMatrix &sec
 VectorMatrix operator-(const VectorMatrix &first_vector, const VectorMatrix &second_vector);
 
 float operator*(const VectorMatrix &first_vector, const VectorMatrix &second_vector);
+
+VectorMatrix operator*(const float &number, const VectorMatrix &second_vector);

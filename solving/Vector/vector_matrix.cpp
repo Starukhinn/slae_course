@@ -3,11 +3,10 @@
 vector<float> VectorMatrix::GiveVector() const {
     return numbers_;
 }
-vector<float> VectorMatrix::MultiplicationByNumber(const float& number) {
-    vector<float> new_vector;
-    for(auto element: numbers_){
-        element *= number;
-        new_vector.push_back(element);
+VectorMatrix operator*(const float &number, const VectorMatrix &numbers){
+    vector<float> new_vector(0, numbers.GiveVector().size());
+    for(size_t number_element = 0; number_element < numbers.GiveVector().size(); ++number_element){
+        new_vector[number_element] = numbers.GiveElement(number_element) * number;
     }
     return new_vector;
 }
@@ -15,7 +14,7 @@ float VectorMatrix::GiveElement(const int& number_element) const {
     return numbers_[number_element];
 }
 VectorMatrix::VectorMatrix() {
-    numbers_ ={};
+    numbers_ = {};
 }
 VectorMatrix::VectorMatrix(const vector<float> &elements) {
     numbers_ = elements;
