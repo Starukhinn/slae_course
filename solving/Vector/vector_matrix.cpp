@@ -4,9 +4,10 @@ vector<float> VectorMatrix::GiveVector() const {
     return numbers_;
 }
 VectorMatrix operator*(const float &number, const VectorMatrix &numbers){
-    vector<float> new_vector(0, numbers.GiveVector().size());
+    vector<float> new_vector;
+    new_vector.reserve(numbers.GiveSize());
     for(size_t number_element = 0; number_element < numbers.GiveVector().size(); ++number_element){
-        new_vector[number_element] = numbers.GiveElement(number_element) * number;
+        new_vector.push_back(numbers.GiveElement(number_element) * number);
     }
     return new_vector;
 }
