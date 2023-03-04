@@ -19,6 +19,9 @@ VectorMatrix::VectorMatrix() {
 VectorMatrix::VectorMatrix(const vector<float> &elements) {
     numbers_ = elements;
 }
+int VectorMatrix::GiveSize() const {
+    return numbers_.size();
+}
 
 VectorMatrix operator+(const VectorMatrix &first_vector, const VectorMatrix &second_vector){
     vector<float> new_vector;

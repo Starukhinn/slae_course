@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include <vector>
+
 using std::vector;
 
 class VectorMatrix{
@@ -10,6 +11,7 @@ public:
     VectorMatrix(const vector<float> &elements);
     vector<float> GiveVector()const;
     float GiveElement(const int &number_element) const;
+    int GiveSize() const;
 private:
     vector<float> numbers_;
 };

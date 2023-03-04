@@ -3,9 +3,6 @@
 
 CSRMatrix::CSRMatrix(const map<Indexes, float> &matrix) {
     for (auto const &element: matrix) {
-        if (element.second == 0.0) {
-            continue;
-        }
         values_.push_back(element.second);
         columns_indexes_.push_back(element.first.number_column);
     }
