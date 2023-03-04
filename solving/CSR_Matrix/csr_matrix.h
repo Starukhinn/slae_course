@@ -37,7 +37,6 @@ private:
 
     vector<int>CountNonZeroRowElements(const map<Indexes,float> &matrix);
     float FindElement(const size_t &number_row, const size_t &number_column) const;
-
     vector<float> MultiplicationColumn(const vector<float> &column);
 
 };
