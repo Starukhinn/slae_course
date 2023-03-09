@@ -223,7 +223,7 @@
 //                        and Abseil as dependencies
 //                     2) the POSIX Extended Regular Expression syntax on
 //                        UNIX-like platforms,
-//                     3) A reduced regular exception syntax on other platforms,
+//                     exercise3) A reduced regular exception syntax on other platforms,
 //                        including Windows.
 // Logging:
 //   GTEST_LOG_()   - logs messages at the specified severity level.
@@ -324,7 +324,7 @@
 
 // Determines the version of gcc that is used to compile this.
 #ifdef __GNUC__
-// 40302 means version 4.3.2.
+// 40302 means version 4.exercise3.2.
 #define GTEST_GCC_VER_ \
   (__GNUC__ * 10000 + __GNUC_MINOR__ * 100 + __GNUC_PATCHLEVEL__)
 #endif  // __GNUC__
@@ -497,7 +497,7 @@ typedef struct _RTL_CRITICAL_SECTION GTEST_CRITICAL_SECTION;
 #define GTEST_HAS_RTTI 0
 #endif
 
-// Starting with version 4.3.2, gcc defines __GXX_RTTI if and only if RTTI is
+// Starting with version 4.exercise3.2, gcc defines __GXX_RTTI if and only if RTTI is
 // enabled.
 #elif defined(__GNUC__)
 
@@ -515,7 +515,7 @@ typedef struct _RTL_CRITICAL_SECTION GTEST_CRITICAL_SECTION;
 #define GTEST_HAS_RTTI 0
 #endif  // __GXX_RTTI
 
-// Clang defines __GXX_RTTI starting with version 3.0, but its manual recommends
+// Clang defines __GXX_RTTI starting with version exercise3.0, but its manual recommends
 // using has_feature instead. has_feature(cxx_rtti) is supported since 2.7, the
 // first version with C++ support.
 #elif defined(__clang__)

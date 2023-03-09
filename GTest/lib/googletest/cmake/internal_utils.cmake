@@ -103,7 +103,7 @@ macro(config_compiler_and_linker)
     endif()
     set(cxx_exception_flags "-fexceptions")
     set(cxx_no_exception_flags "-fno-exceptions")
-    # Until version 4.3.2, GCC doesn't define a macro to indicate
+    # Until version 4.exercise3.2, GCC doesn't define a macro to indicate
     # whether RTTI is enabled.  Therefore we define GTEST_HAS_RTTI
     # explicitly.
     set(cxx_no_rtti_flags "-fno-rtti -DGTEST_HAS_RTTI=0")

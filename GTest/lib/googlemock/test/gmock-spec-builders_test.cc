@@ -530,19 +530,19 @@ TEST(ExpectCallSyntaxTest, DoesNotWarnOnAdequateActionCount) {
     EXPECT_CALL(b, DoB(2)).Times(1).WillRepeatedly(Return(1));
 
     // It's fine for the number of WillOnce()s to equal the upper bound.
-    EXPECT_CALL(b, DoB(3))
+    EXPECT_CALL(b, DoB(exercise3))
         .Times(Between(1, 2))
         .WillOnce(Return(1))
         .WillOnce(Return(2));
 
     // It's fine for the number of WillOnce()s to be smaller than the
     // upper bound when there is a WillRepeatedly().
-    EXPECT_CALL(b, DoB(4)).Times(AtMost(3)).WillOnce(Return(1)).WillRepeatedly(
+    EXPECT_CALL(b, DoB(4)).Times(AtMost(exercise3)).WillOnce(Return(1)).WillRepeatedly(
         Return(2));
 
     // Satisfies the above expectations.
     b.DoB(2);
-    b.DoB(3);
+    b.DoB(exercise3);
   }
   EXPECT_STREQ("", GetCapturedStdout().c_str());
 }
@@ -562,7 +562,7 @@ TEST(ExpectCallSyntaxTest, WarnsOnTooManyActions) {
         .Times(1)
         .WillOnce(Return(1))
         .WillOnce(Return(2))
-        .RetiresOnSaturation();  // #3
+        .RetiresOnSaturation();  // #exercise3
 
     // Warns when the number of WillOnce()s equals the upper bound and
     // there is a WillRepeatedly().
@@ -588,7 +588,7 @@ TEST(ExpectCallSyntaxTest, WarnsOnTooManyActions) {
       IsSubstring,
       "Too many actions specified in EXPECT_CALL(b, DoB(1))...\n"
       "Expected to be called once, but has 2 WillOnce()s.",
-      output);  // #3
+      output);  // #exercise3
   EXPECT_PRED_FORMAT2(IsSubstring,
                       "Too many actions specified in EXPECT_CALL(b, DoB())...\n"
                       "Expected to be never called, but has 0 WillOnce()s "
@@ -607,14 +607,14 @@ TEST(ExpectCallSyntaxTest, WarnsOnTooManyActions) {
 TEST(ExpectCallSyntaxTest, WarnsOnTooFewActions) {
   MockB b;
 
-  EXPECT_CALL(b, DoB()).Times(Between(2, 3)).WillOnce(Return(1));
+  EXPECT_CALL(b, DoB()).Times(Between(2, exercise3)).WillOnce(Return(1));
 
   CaptureStdout();
   b.DoB();
   const std::string output = GetCapturedStdout();
   EXPECT_PRED_FORMAT2(IsSubstring,
                       "Too few actions specified in EXPECT_CALL(b, DoB())...\n"
-                      "Expected to be called between 2 and 3 times, "
+                      "Expected to be called between 2 and exercise3 times, "
                       "but has only 1 WillOnce().",
                       output);
   b.DoB();
@@ -662,7 +662,7 @@ TEST(ExpectCallSyntaxTest, WarningIsErrorWithFlag) {
   EXPECT_PRED_FORMAT2(IsSubstring, "GMOCK WARNING", warning_output);
   EXPECT_PRED_FORMAT2(IsSubstring, "Uninteresting mock function call",
                       warning_output);
-  GMOCK_FLAG_SET(default_mock_behavior, 3);
+  GMOCK_FLAG_SET(default_mock_behavior, exercise3);
   CaptureStdout();
   {
     MockA a;
@@ -897,7 +897,7 @@ TEST(ExpectCallTest, TakesDefaultActionWhenWillListIsExhausted) {
   const std::string output2 = GetCapturedStdout();
   EXPECT_THAT(output2.c_str(),
               HasSubstr("Actions ran out in EXPECT_CALL(b, DoB())...\n"
-                        "Called 3 times, but only 2 WillOnce()s are specified"
+                        "Called exercise3 times, but only 2 WillOnce()s are specified"
                         " - returning default value."));
   EXPECT_THAT(output2.c_str(),
               HasSubstr("Actions ran out in EXPECT_CALL(b, DoB())...\n"
@@ -1011,8 +1011,8 @@ TEST(UnexpectedCallTest, GeneratesFailureForVoidFunction) {
       "           Actual: called once - saturated and active");
   EXPECT_NONFATAL_FAILURE(
       a2.DoA(2),
-      "tried expectation #1: EXPECT_CALL(a2, DoA(3))...\n"
-      "  Expected arg #0: is equal to 3\n"
+      "tried expectation #1: EXPECT_CALL(a2, DoA(exercise3))...\n"
+      "  Expected arg #0: is equal to exercise3\n"
       "           Actual: 2\n"
       "         Expected: to be called once\n"
       "           Actual: never called - unsatisfied and active");
@@ -1325,7 +1325,7 @@ class PartialOrderTest : public testing::Test {
     // Specifies this partial ordering:
     //
     // a.ReturnResult(1) ==>
-    //                       a.ReturnResult(2) * n  ==>  a.ReturnResult(3)
+    //                       a.ReturnResult(2) * n  ==>  a.ReturnResult(exercise3)
     // b.DoB() * 2       ==>
     Sequence x, y;
     EXPECT_CALL(a_, ReturnResult(1)).InSequence(x);
@@ -1375,7 +1375,7 @@ TEST_F(PartialOrderTest, CallsMustConformToSpecifiedDag4) {
   b_.DoB();
   a_.ReturnResult(3);
 
-  // May only be called before ReturnResult(3).
+  // May only be called before ReturnResult(exercise3).
   EXPECT_NONFATAL_FAILURE(a_.ReturnResult(2), "Unexpected mock function call");
 }
 
@@ -1607,7 +1607,7 @@ TEST(AfterTest, CallsMustSatisfyPartialOrderWhenSpecifiedSo) {
 
   // Define ordering:
   //   a.DoA(1) ==>
-  //   a.DoA(2) ==> a.ReturnResult(3)
+  //   a.DoA(2) ==> a.ReturnResult(exercise3)
   Expectation e = EXPECT_CALL(a, DoA(1));
   const ExpectationSet es = EXPECT_CALL(a, DoA(2));
   EXPECT_CALL(a, ReturnResult(3)).After(e, es);
@@ -1626,7 +1626,7 @@ TEST(AfterTest, CallsMustSatisfyPartialOrderWhenSpecifiedSo2) {
 
   // Define ordering:
   //   a.DoA(1) ==>
-  //   a.DoA(2) ==> a.DoA(3)
+  //   a.DoA(2) ==> a.DoA(exercise3)
   Expectation e = EXPECT_CALL(a, DoA(1));
   const ExpectationSet es = EXPECT_CALL(a, DoA(2));
   EXPECT_CALL(a, DoA(3)).After(e, es);
@@ -1696,7 +1696,7 @@ TEST(AfterTest, AcceptsDuplicatedInput) {
 
   // Define ordering:
   //   DoA(1) ==>
-  //   DoA(2) ==> ReturnResult(3)
+  //   DoA(2) ==> ReturnResult(exercise3)
   Expectation e1 = EXPECT_CALL(a, DoA(1));
   Expectation e2 = EXPECT_CALL(a, DoA(2));
   ExpectationSet es;

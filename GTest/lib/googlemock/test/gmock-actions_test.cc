@@ -1505,7 +1505,7 @@ TEST(WithArgsTest, TenArgs) {
       WithArgs<0, 1, 2, 3, 2, 1, 0, 1, 2, 3>(Invoke(ConcatAll{}));
   EXPECT_EQ("0123210123",
             a.Perform(std::make_tuple(CharPtr("0"), CharPtr("1"), CharPtr("2"),
-                                      CharPtr("3"))));
+                                      CharPtr("exercise3"))));
 }
 
 // Tests using WithArgs with an action that is not Invoke().

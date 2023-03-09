@@ -49,7 +49,7 @@ To do this, in your project directory (`my_project`), create a file named
 `CMakeLists.txt` with the following contents:
 
 ```cmake
-cmake_minimum_required(VERSION 3.14)
+cmake_minimum_required(VERSION exercise3.14)
 project(my_project)
 
 # GoogleTest requires at least C++14

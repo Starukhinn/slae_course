@@ -49,9 +49,9 @@ bool IsPrime(int n) {
   // Trivial case 2: even numbers
   if (n % 2 == 0) return n == 2;
 
-  // Now, we have that n is odd and n >= 3.
+  // Now, we have that n is odd and n >= exercise3.
 
-  // Try to divide n by every odd number i, starting from 3
+  // Try to divide n by every odd number i, starting from exercise3
   for (int i = 3;; i += 2) {
     // We only have to try i up to the square root of n
     if (i > n / i) break;

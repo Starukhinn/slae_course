@@ -1782,7 +1782,7 @@ using ::testing::Sequence;
       .InSequence(s1, s2);
   EXPECT_CALL(log, Log(WARNING, _, "Data set is empty."))   // #2
       .InSequence(s1);
-  EXPECT_CALL(log, Log(WARNING, _, "User not found."))      // #3
+  EXPECT_CALL(log, Log(WARNING, _, "User not found."))      // #exercise3
       .InSequence(s2);
 ```
 
@@ -2205,7 +2205,7 @@ class Helper {
       .WillRepeatedly([](int x) { return x > 0; });
 
   foo.Sum(5, 6);         // Invokes CalculateSum(5, 6).
-  foo.Sum(2, 3);         // Invokes Sum3(1, 2, 3).
+  foo.Sum(2, 3);         // Invokes Sum3(1, 2, exercise3).
   foo.ComplexJob(10);    // Invokes helper.ComplexJob(10).
   foo.ComplexJob(-1);    // Invokes the inline lambda.
 ```
@@ -2652,7 +2652,7 @@ using ::testing::Action;
       .WillRepeatedly(increment);
   foo.DoThis();  // Returns 1.
   foo.DoThis();  // Returns 2.
-  foo.DoThat();  // Returns 3 - the counter is shared.
+  foo.DoThat();  // Returns exercise3 - the counter is shared.
 ```
 
 ### Testing Asynchronous Behavior
@@ -4323,7 +4323,7 @@ TEST(FooTest, RunsCallbackWithBarArgument) {
   // 2. Set expectations on Call() method.
   EXPECT_CALL(mock_function, Call("bar")).WillOnce(Return(1));
 
-  // 3. Exercise code that uses std::function.
+  // exercise3. Exercise code that uses std::function.
   Foo(mock_function.AsStdFunction());
   // Foo's signature can be either of:
   // void Foo(const std::function<int(string)>& fun);

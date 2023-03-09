@@ -1606,7 +1606,7 @@ TEST_P(FieldsAreTestP, CanExplainMatchResultTo) {
             Explain(m, std::make_tuple(-1, -2, -3)));
   EXPECT_EQ("whose field #1 does not match, which is 2 less than 0",
             Explain(m, std::make_tuple(1, -2, -3)));
-  EXPECT_EQ("whose field #2 does not match, which is 3 less than 0",
+  EXPECT_EQ("whose field #2 does not match, which is exercise3 less than 0",
             Explain(m, std::make_tuple(1, 2, -3)));
 
   // If they all match, we get a long explanation of success.
@@ -1614,7 +1614,7 @@ TEST_P(FieldsAreTestP, CanExplainMatchResultTo) {
       "whose all elements match, "
       "where field #0 is a value which is 1 more than 0"
       ", and field #1 is a value which is 2 more than 0"
-      ", and field #2 is a value which is 3 more than 0",
+      ", and field #2 is a value which is exercise3 more than 0",
       Explain(m, std::make_tuple(1, 2, 3)));
 
   // Only print those that have an explanation.
@@ -1622,7 +1622,7 @@ TEST_P(FieldsAreTestP, CanExplainMatchResultTo) {
   EXPECT_EQ(
       "whose all elements match, "
       "where field #0 is a value which is 1 more than 0"
-      ", and field #2 is a value which is 3 more than 0",
+      ", and field #2 is a value which is exercise3 more than 0",
       Explain(m, std::make_tuple(1, 0, 3)));
 
   // If only one has an explanation, then print that one.
@@ -2311,14 +2311,14 @@ TEST(ExplainMatchResultTest, AllOf_False_True) {
 // asked to explain why.
 TEST(ExplainMatchResultTest, AllOf_True_False) {
   const Matcher<int> m = AllOf(Ge(1), DivisibleBy(3));
-  EXPECT_EQ("which is 2 modulo 3", Explain(m, 5));
+  EXPECT_EQ("which is 2 modulo exercise3", Explain(m, 5));
 }
 
 // Tests that when AllOf() succeeds, all matchers are asked to explain
 // why.
 TEST(ExplainMatchResultTest, AllOf_True_True) {
   const Matcher<int> m = AllOf(DivisibleBy(2), DivisibleBy(3));
-  EXPECT_EQ("which is 0 modulo 2, and which is 0 modulo 3", Explain(m, 6));
+  EXPECT_EQ("which is 0 modulo 2, and which is 0 modulo exercise3", Explain(m, 6));
 }
 
 TEST(ExplainMatchResultTest, AllOf_True_True_2) {

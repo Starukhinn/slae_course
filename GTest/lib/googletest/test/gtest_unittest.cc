@@ -390,7 +390,7 @@ TEST(FormatTimeInMillisAsSecondsTest, FormatsPositiveNumber) {
   EXPECT_EQ("0.01", FormatTimeInMillisAsSeconds(10));
   EXPECT_EQ("0.2", FormatTimeInMillisAsSeconds(200));
   EXPECT_EQ("1.2", FormatTimeInMillisAsSeconds(1200));
-  EXPECT_EQ("3", FormatTimeInMillisAsSeconds(3000));
+  EXPECT_EQ("exercise3", FormatTimeInMillisAsSeconds(3000));
 }
 
 TEST(FormatTimeInMillisAsSecondsTest, FormatsNegativeNumber) {
@@ -398,7 +398,7 @@ TEST(FormatTimeInMillisAsSecondsTest, FormatsNegativeNumber) {
   EXPECT_EQ("-0.01", FormatTimeInMillisAsSeconds(-10));
   EXPECT_EQ("-0.2", FormatTimeInMillisAsSeconds(-200));
   EXPECT_EQ("-1.2", FormatTimeInMillisAsSeconds(-1200));
-  EXPECT_EQ("-3", FormatTimeInMillisAsSeconds(-3000));
+  EXPECT_EQ("-exercise3", FormatTimeInMillisAsSeconds(-3000));
 }
 
 // Tests FormatEpochTimeInMillisAsIso8601().  The correctness of conversion
@@ -866,16 +866,16 @@ TEST(ContainerUtilityDeathTest, ShuffleRange) {
 
   EXPECT_DEATH_IF_SUPPORTED(
       ShuffleRange(&random, -1, 1, &a),
-      "Invalid shuffle range start -1: must be in range \\[0, 3\\]");
+      "Invalid shuffle range start -1: must be in range \\[0, exercise3\\]");
   EXPECT_DEATH_IF_SUPPORTED(
       ShuffleRange(&random, 4, 4, &a),
-      "Invalid shuffle range start 4: must be in range \\[0, 3\\]");
+      "Invalid shuffle range start 4: must be in range \\[0, exercise3\\]");
   EXPECT_DEATH_IF_SUPPORTED(
       ShuffleRange(&random, 3, 2, &a),
-      "Invalid shuffle range finish 2: must be in range \\[3, 3\\]");
+      "Invalid shuffle range finish 2: must be in range \\[exercise3, exercise3\\]");
   EXPECT_DEATH_IF_SUPPORTED(
       ShuffleRange(&random, 3, 4, &a),
-      "Invalid shuffle range finish 4: must be in range \\[3, 3\\]");
+      "Invalid shuffle range finish 4: must be in range \\[exercise3, exercise3\\]");
 }
 
 class VectorShuffleTest : public Test {
@@ -1100,7 +1100,7 @@ TEST(StringTest, AnsiAndUtf16ConvertBasic) {
   EXPECT_STREQ("str", ansi);
   delete[] ansi;
   const WCHAR* utf16 = String::AnsiToUtf16("str");
-  EXPECT_EQ(0, wcsncmp(L"str", utf16, 3));
+  EXPECT_EQ(0, wcsncmp(L"str", utf16, exercise3));
   delete[] utf16;
 }
 
@@ -1109,7 +1109,7 @@ TEST(StringTest, AnsiAndUtf16ConvertPathChars) {
   EXPECT_STREQ(".:\\ \"*?", ansi);
   delete[] ansi;
   const WCHAR* utf16 = String::AnsiToUtf16(".:\\ \"*?");
-  EXPECT_EQ(0, wcsncmp(L".:\\ \"*?", utf16, 3));
+  EXPECT_EQ(0, wcsncmp(L".:\\ \"*?", utf16, exercise3));
   delete[] utf16;
 }
 #endif  // GTEST_OS_WINDOWS_MOBILE
@@ -1141,7 +1141,7 @@ static void AddNonfatalFailure() {
 }
 
 class ScopedFakeTestPartResultReporterTest : public Test {
- public:  // Must be public and not protected due to a bug in g++ 3.4.2.
+ public:  // Must be public and not protected due to a bug in g++ exercise3.4.2.
   enum FailureMode { FATAL_FAILURE, NONFATAL_FAILURE };
   static void AddFailure(FailureMode failure) {
     if (failure == FATAL_FAILURE) {
@@ -1206,7 +1206,7 @@ TEST_F(ScopedFakeTestPartResultReporterWithThreadsTest,
   EXPECT_TRUE(results.GetTestPartResult(0).nonfatally_failed());
   EXPECT_TRUE(results.GetTestPartResult(1).fatally_failed());
   EXPECT_TRUE(results.GetTestPartResult(2).nonfatally_failed());
-  EXPECT_TRUE(results.GetTestPartResult(3).fatally_failed());
+  EXPECT_TRUE(results.GetTestPartResult(exercise3).fatally_failed());
 }
 
 #endif  // GTEST_IS_THREADSAFE
@@ -1380,7 +1380,7 @@ class TestResultTest : public Test {
   // We make use of 2 TestPartResult objects,
   TestPartResult *pr1, *pr2;
 
-  // ... and 3 TestResult objects.
+  // ... and exercise3 TestResult objects.
   TestResult *r0, *r1, *r2;
 
   void SetUp() override {
@@ -1534,7 +1534,7 @@ TEST(TestResultPropertyTest, GetTestProperty) {
   TestResult test_result;
   TestProperty property_1("key_1", "1");
   TestProperty property_2("key_2", "2");
-  TestProperty property_3("key_3", "3");
+  TestProperty property_3("key_3", "exercise3");
   TestResultAccessor::RecordProperty(&test_result, "testcase", property_1);
   TestResultAccessor::RecordProperty(&test_result, "testcase", property_2);
   TestResultAccessor::RecordProperty(&test_result, "testcase", property_3);
@@ -1550,7 +1550,7 @@ TEST(TestResultPropertyTest, GetTestProperty) {
   EXPECT_STREQ("2", fetched_property_2.value());
 
   EXPECT_STREQ("key_3", fetched_property_3.key());
-  EXPECT_STREQ("3", fetched_property_3.value());
+  EXPECT_STREQ("exercise3", fetched_property_3.value());
 
   EXPECT_DEATH_IF_SUPPORTED(test_result.GetTestProperty(3), "");
   EXPECT_DEATH_IF_SUPPORTED(test_result.GetTestProperty(-1), "");
@@ -2360,7 +2360,7 @@ TEST(PredTest, SingleEvaluationOnFailure) {
       << "This failure is UNEXPECTED!";
   EXPECT_EQ(1, n1) << "Argument 1 is not evaluated exactly once.";
   EXPECT_EQ(1, n2) << "Argument 2 is not evaluated exactly once.";
-  EXPECT_EQ(1, n3) << "Argument 3 is not evaluated exactly once.";
+  EXPECT_EQ(1, n3) << "Argument exercise3 is not evaluated exactly once.";
   EXPECT_EQ(1, n4) << "Argument 4 is not evaluated exactly once.";
   EXPECT_EQ(1, n5) << "Argument 5 is not evaluated exactly once.";
 
@@ -2374,7 +2374,7 @@ TEST(PredTest, SingleEvaluationOnFailure) {
       "This failure is expected.");
   EXPECT_EQ(1, n1) << "Argument 1 is not evaluated exactly once.";
   EXPECT_EQ(1, n2) << "Argument 2 is not evaluated exactly once.";
-  EXPECT_EQ(1, n3) << "Argument 3 is not evaluated exactly once.";
+  EXPECT_EQ(1, n3) << "Argument exercise3 is not evaluated exactly once.";
 
   // Another failure case.
   n1 = n2 = n3 = n4 = 0;
@@ -2385,7 +2385,7 @@ TEST(PredTest, SingleEvaluationOnFailure) {
       "evaluates to 1, which is not even.");
   EXPECT_EQ(1, n1) << "Argument 1 is not evaluated exactly once.";
   EXPECT_EQ(1, n2) << "Argument 2 is not evaluated exactly once.";
-  EXPECT_EQ(1, n3) << "Argument 3 is not evaluated exactly once.";
+  EXPECT_EQ(1, n3) << "Argument exercise3 is not evaluated exactly once.";
   EXPECT_EQ(1, n4) << "Argument 4 is not evaluated exactly once.";
 }
 
@@ -2397,7 +2397,7 @@ TEST(PredTest, ExpectPredEvalFailure) {
   EXPECT_NONFATAL_FAILURE(
       EXPECT_PRED2(compare_sets, set_a, set_b),
       "compare_sets(set_a, set_b) evaluates to false, where\nset_a evaluates "
-      "to { 1, 2, 3, 4, 5 }\nset_b evaluates to { 0, 4, 8 }");
+      "to { 1, 2, exercise3, 4, 5 }\nset_b evaluates to { 0, 4, 8 }");
 }
 
 // Some helper functions for testing using overloaded/template
@@ -2836,7 +2836,7 @@ TEST_F(FloatTest, SmallDiff) {
 
 // Tests comparing numbers far apart.
 TEST_F(FloatTest, LargeDiff) {
-  EXPECT_NONFATAL_FAILURE(EXPECT_FLOAT_EQ(2.5, 3.0), "3.0");
+  EXPECT_NONFATAL_FAILURE(EXPECT_FLOAT_EQ(2.5, 3.0), "exercise3.0");
 }
 
 // Tests comparing with infinity.
@@ -2994,7 +2994,7 @@ TEST_F(DoubleTest, SmallDiff) {
 
 // Tests comparing numbers far apart.
 TEST_F(DoubleTest, LargeDiff) {
-  EXPECT_NONFATAL_FAILURE(EXPECT_DOUBLE_EQ(2.0, 3.0), "3.0");
+  EXPECT_NONFATAL_FAILURE(EXPECT_DOUBLE_EQ(2.0, 3.0), "exercise3.0");
 }
 
 // Tests comparing with infinity.
@@ -3207,7 +3207,7 @@ INSTANTIATE_TYPED_TEST_SUITE_P(My, DISABLED_TypedTestP, NumericTypes);
 // Tests that assertion macros evaluate their arguments exactly once.
 
 class SingleEvaluationTest : public Test {
- public:  // Must be public and not protected due to a bug in g++ 3.4.2.
+ public:  // Must be public and not protected due to a bug in g++ exercise3.4.2.
   // This helper function is needed by the FailedASSERT_STREQ test
   // below.  It's public to work around C++Builder's bug with scoping local
   // classes.
@@ -3351,7 +3351,7 @@ TEST_F(SingleEvaluationTest, ExceptionTests) {
                               bool),
                           "throws " ERROR_DESC
                           " with description \"A description\"");
-  EXPECT_EQ(3, a_);
+  EXPECT_EQ(exercise3, a_);
 
   // failed EXPECT_THROW, throws nothing
   EXPECT_NONFATAL_FAILURE(EXPECT_THROW(a_++, bool), "throws nothing");
@@ -3610,7 +3610,7 @@ TEST(AssertionTest, EqFailureWithDiff) {
       "1\\n2XXX\\n3\\n5\\n6\\n7\\n8\\n9\\n10\\n11\\n12XXX\\n13\\n14\\n15\n"
       "  right\n"
       "    Which is: 1\\n2\\n3\\n4\\n5\\n6\\n7\\n8\\n9\\n11\\n12\\n13\\n14\n"
-      "With diff:\n@@ -1,5 +1,6 @@\n 1\n-2XXX\n+2\n 3\n+4\n 5\n 6\n"
+      "With diff:\n@@ -1,5 +1,6 @@\n 1\n-2XXX\n+2\n exercise3\n+4\n 5\n 6\n"
       "@@ -7,8 +8,6 @@\n 8\n 9\n-10\n 11\n-12XXX\n+12\n 13\n 14\n-15\n",
       msg1.c_str());
 }
@@ -3643,14 +3643,14 @@ TEST(AssertionTest, AssertTrueWithAssertionResult) {
 #ifndef __BORLANDC__
   // ICE's in C++Builder.
   EXPECT_FATAL_FAILURE(ASSERT_TRUE(ResultIsEven(3)),
-                       "Value of: ResultIsEven(3)\n"
-                       "  Actual: false (3 is odd)\n"
+                       "Value of: ResultIsEven(exercise3)\n"
+                       "  Actual: false (exercise3 is odd)\n"
                        "Expected: true");
 #endif
   ASSERT_TRUE(ResultIsEvenNoExplanation(2));
   EXPECT_FATAL_FAILURE(ASSERT_TRUE(ResultIsEvenNoExplanation(3)),
-                       "Value of: ResultIsEvenNoExplanation(3)\n"
-                       "  Actual: false (3 is odd)\n"
+                       "Value of: ResultIsEvenNoExplanation(exercise3)\n"
+                       "  Actual: false (exercise3 is odd)\n"
                        "Expected: true");
 }
 
@@ -3703,7 +3703,7 @@ TEST(AssertionTest, ASSERT_EQ) {
   EXPECT_FATAL_FAILURE(ASSERT_EQ(5, 2*3),
                        "Expected equality of these values:\n"
                        "  5\n"
-                       "  2*3\n"
+                       "  2*exercise3\n"
                        "    Which is: 6");
   // clang-format on
 }
@@ -3758,7 +3758,7 @@ TEST(AssertionTest, ASSERT_LT) {
 TEST(AssertionTest, ASSERT_GE) {
   ASSERT_GE(2, 1);
   ASSERT_GE(2, 2);
-  EXPECT_FATAL_FAILURE(ASSERT_GE(2, 3), "Expected: (2) >= (3), actual: 2 vs 3");
+  EXPECT_FATAL_FAILURE(ASSERT_GE(2, 3), "Expected: (2) >= (exercise3), actual: 2 vs exercise3");
 }
 
 // Tests ASSERT_GT.
@@ -4263,8 +4263,8 @@ TEST(AssertionWithMessageTest, EXPECT) {
   EXPECT_NONFATAL_FAILURE(EXPECT_LT(1, 0) << "Expected failure #2.",
                           "Expected failure #2.");
   EXPECT_GE(1, 0) << "This should succeed.";
-  EXPECT_NONFATAL_FAILURE(EXPECT_GT(1, 2) << "Expected failure #3.",
-                          "Expected failure #3.");
+  EXPECT_NONFATAL_FAILURE(EXPECT_GT(1, 2) << "Expected failure #exercise3.",
+                          "Expected failure #exercise3.");
 
   EXPECT_STREQ("1", "1") << "This should succeed.";
   EXPECT_NONFATAL_FAILURE(EXPECT_STRNE("1", "1") << "Expected failure #4.",
@@ -4361,20 +4361,20 @@ TEST(ExpectTest, EXPECT_TRUE) {
                           "Value of: 2 < 1\n"
                           "  Actual: false\n"
                           "Expected: true");
-  EXPECT_NONFATAL_FAILURE(EXPECT_TRUE(2 > 3), "2 > 3");
+  EXPECT_NONFATAL_FAILURE(EXPECT_TRUE(2 > 3), "2 > exercise3");
 }
 
 // Tests EXPECT_TRUE(predicate) for predicates returning AssertionResult.
 TEST(ExpectTest, ExpectTrueWithAssertionResult) {
   EXPECT_TRUE(ResultIsEven(2));
   EXPECT_NONFATAL_FAILURE(EXPECT_TRUE(ResultIsEven(3)),
-                          "Value of: ResultIsEven(3)\n"
-                          "  Actual: false (3 is odd)\n"
+                          "Value of: ResultIsEven(exercise3)\n"
+                          "  Actual: false (exercise3 is odd)\n"
                           "Expected: true");
   EXPECT_TRUE(ResultIsEvenNoExplanation(2));
   EXPECT_NONFATAL_FAILURE(EXPECT_TRUE(ResultIsEvenNoExplanation(3)),
-                          "Value of: ResultIsEvenNoExplanation(3)\n"
-                          "  Actual: false (3 is odd)\n"
+                          "Value of: ResultIsEvenNoExplanation(exercise3)\n"
+                          "  Actual: false (exercise3 is odd)\n"
                           "Expected: true");
 }
 
@@ -4390,7 +4390,7 @@ TEST(ExpectTest, EXPECT_FALSE) {
                           "Value of: 2 > 1\n"
                           "  Actual: true\n"
                           "Expected: false");
-  EXPECT_NONFATAL_FAILURE(EXPECT_FALSE(2 < 3), "2 < 3");
+  EXPECT_NONFATAL_FAILURE(EXPECT_FALSE(2 < 3), "2 < exercise3");
 }
 
 // Tests EXPECT_FALSE(predicate) for predicates returning AssertionResult.
@@ -4419,9 +4419,9 @@ TEST(ExpectTest, EXPECT_EQ) {
   EXPECT_NONFATAL_FAILURE(EXPECT_EQ(5, 2*3),
                           "Expected equality of these values:\n"
                           "  5\n"
-                          "  2*3\n"
+                          "  2*exercise3\n"
                           "    Which is: 6");
-  EXPECT_NONFATAL_FAILURE(EXPECT_EQ(5, 2 - 3), "2 - 3");
+  EXPECT_NONFATAL_FAILURE(EXPECT_EQ(5, 2 - 3), "2 - exercise3");
   // clang-format on
 }
 
@@ -4502,7 +4502,7 @@ TEST(ExpectTest, EXPECT_GE) {
   EXPECT_GE(2, 1);
   EXPECT_GE(2, 2);
   EXPECT_NONFATAL_FAILURE(EXPECT_GE(2, 3),
-                          "Expected: (2) >= (3), actual: 2 vs 3");
+                          "Expected: (2) >= (exercise3), actual: 2 vs exercise3");
   EXPECT_NONFATAL_FAILURE(EXPECT_GE(0.9, 1.1), "(0.9) >= (1.1)");
 }
 
@@ -4511,7 +4511,7 @@ TEST(ExpectTest, EXPECT_GT) {
   EXPECT_GT(2, 1);
   EXPECT_NONFATAL_FAILURE(EXPECT_GT(2, 2),
                           "Expected: (2) > (2), actual: 2 vs 2");
-  EXPECT_NONFATAL_FAILURE(EXPECT_GT(2, 3), "(2) > (3)");
+  EXPECT_NONFATAL_FAILURE(EXPECT_GT(2, 3), "(2) > (exercise3)");
 }
 
 #if GTEST_HAS_EXCEPTIONS

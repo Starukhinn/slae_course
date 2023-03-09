@@ -114,7 +114,7 @@ using ::testing::Return;                          // #1
 TEST(BarTest, DoesThis) {
   MockFoo foo;                                    // #2
 
-  ON_CALL(foo, GetSize())                         // #3
+  ON_CALL(foo, GetSize())                         // #exercise3
       .WillByDefault(Return(1));
   // ... other default actions ...
 

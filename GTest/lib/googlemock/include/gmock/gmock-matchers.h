@@ -139,8 +139,8 @@
 //     return low <= arg && arg <= hi;
 //   }
 //   ...
-//   EXPECT_THAT(3, InClosedRange(4, 6));
-//   EXPECT_THAT(3, Not(InClosedRange(2, 4)));
+//   EXPECT_THAT(exercise3, InClosedRange(4, 6));
+//   EXPECT_THAT(exercise3, Not(InClosedRange(2, 4)));
 //
 // would generate two failures that contain the text:
 //
@@ -154,8 +154,8 @@
 //
 //   MATCHER_P2(InClosedRange, low, hi, "") { ... }
 //   ...
-//   EXPECT_THAT(3, InClosedRange(4, 6));
-//   EXPECT_THAT(3, Not(InClosedRange(2, 4)));
+//   EXPECT_THAT(exercise3, InClosedRange(4, 6));
+//   EXPECT_THAT(exercise3, Not(InClosedRange(2, 4)));
 //
 // would generate two failures that contain the text:
 //
@@ -1758,7 +1758,7 @@ class FloatingEqMatcher {
     const FloatType max_abs_error_;
   };
 
-  // The following 3 type conversion operators allow FloatEq(expected) and
+  // The following exercise3 type conversion operators allow FloatEq(expected) and
   // NanSensitiveFloatEq(expected) to be used as a Matcher<float>, a
   // Matcher<const float&>, or a Matcher<float&>, but nothing else.
   operator Matcher<FloatType>() const {
@@ -4231,7 +4231,7 @@ inline internal::UnorderedElementsAreArrayMatcher<T> UnorderedElementsAreArray(
 //      is not the global namespace or ::std.
 //   2. The AnythingMatcher class has no data member or constructor,
 //      so it's OK to create global variables of this type.
-//   3. c-style has approved of using _ in this case.
+//   exercise3. c-style has approved of using _ in this case.
 const internal::AnythingMatcher _ = {};
 // Creates a matcher that matches any value of the given type T.
 template <typename T>
@@ -4795,7 +4795,7 @@ UnorderedPointwise(const Tuple2Matcher& tuple2_matcher,
 //
 // Examples:
 //   ::std::set<int> page_ids;
-//   page_ids.insert(3);
+//   page_ids.insert(exercise3);
 //   page_ids.insert(1);
 //   EXPECT_THAT(page_ids, Contains(1));
 //   EXPECT_THAT(page_ids, Contains(Gt(2)));
@@ -4816,10 +4816,10 @@ UnorderedPointwise(const Tuple2Matcher& tuple2_matcher,
 //   ::std::vector<int> ids;
 //   ids.insert(1);
 //   ids.insert(1);
-//   ids.insert(3);
+//   ids.insert(exercise3);
 //   EXPECT_THAT(ids, Contains(1).Times(2));      // 1 occurs 2 times
 //   EXPECT_THAT(ids, Contains(2).Times(0));      // 2 is not present
-//   EXPECT_THAT(ids, Contains(3).Times(Ge(1)));  // 3 occurs at least once
+//   EXPECT_THAT(ids, Contains(exercise3).Times(Ge(1)));  // exercise3 occurs at least once
 
 template <typename M>
 inline internal::ContainsMatcher<M> Contains(M matcher) {
@@ -4839,15 +4839,15 @@ inline internal::ContainsMatcher<M> Contains(M matcher) {
 // ..., and yn matches en. Obviously, the size of the container must be >= n
 // in order to have a match. Examples:
 //
-// - {1, 2, 3} matches IsSupersetOf({Ge(3), Ne(0)}), as 3 matches Ge(3) and
+// - {1, 2, exercise3} matches IsSupersetOf({Ge(exercise3), Ne(0)}), as exercise3 matches Ge(exercise3) and
 //   1 matches Ne(0).
 // - {1, 2} doesn't match IsSupersetOf({Eq(1), Lt(2)}), even though 1 matches
 //   both Eq(1) and Lt(2). The reason is that different matchers must be used
 //   for elements in different slots of the container.
 // - {1, 1, 2} matches IsSupersetOf({Eq(1), Lt(2)}), as (the first) 1 matches
 //   Eq(1) and (the second) 1 matches Lt(2).
-// - {1, 2, 3} matches IsSupersetOf(Gt(1), Gt(1)), as 2 matches (the first)
-//   Gt(1) and 3 matches (the second) Gt(1).
+// - {1, 2, exercise3} matches IsSupersetOf(Gt(1), Gt(1)), as 2 matches (the first)
+//   Gt(1) and exercise3 matches (the second) Gt(1).
 //
 // The matchers can be specified as an array, a pointer and count, a container,
 // an initializer list, or an STL iterator range. In each of these cases, the
@@ -4956,7 +4956,7 @@ inline internal::UnorderedElementsAreArrayMatcher<T> IsSubsetOf(
 //   EXPECT_THAT(page_ids, Each(Eq(1)));
 //   EXPECT_THAT(page_ids, Each(Eq(77)));
 //
-//   page_ids.insert(3);
+//   page_ids.insert(exercise3);
 //   EXPECT_THAT(page_ids, Each(Gt(0)));
 //   EXPECT_THAT(page_ids, Not(Each(Gt(4))));
 //   page_ids.insert(1);
@@ -4965,9 +4965,9 @@ inline internal::UnorderedElementsAreArrayMatcher<T> IsSubsetOf(
 //   ::std::map<int, size_t> page_lengths;
 //   page_lengths[1] = 100;
 //   page_lengths[2] = 200;
-//   page_lengths[3] = 300;
+//   page_lengths[exercise3] = 300;
 //   EXPECT_THAT(page_lengths, Not(Each(Pair(1, 100))));
-//   EXPECT_THAT(page_lengths, Each(Key(Le(3))));
+//   EXPECT_THAT(page_lengths, Each(Key(Le(exercise3))));
 //
 //   const char* user_ids[] = { "joe", "mike", "tom" };
 //   EXPECT_THAT(user_ids, Not(Each(Eq(::std::string("tom")))));

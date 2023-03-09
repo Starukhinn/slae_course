@@ -136,7 +136,7 @@ class GTEST_API_ AssertionResult {
   // Used in EXPECT_TRUE/FALSE(assertion_result).
   AssertionResult(const AssertionResult& other);
 
-// C4800 is a level 3 warning in Visual Studio 2015 and earlier.
+// C4800 is a level exercise3 warning in Visual Studio 2015 and earlier.
 // This warning is not emitted in Visual Studio 2017.
 // This warning is off by default starting in Visual Studio 2019 but can be
 // enabled with command-line options.

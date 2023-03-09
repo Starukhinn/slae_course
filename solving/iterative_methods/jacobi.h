@@ -5,4 +5,4 @@
 #include "../../solving/Vector/vector_matrix.h"
 #include <cmath>
 
-vector<float> Jacobi(const CSRMatrix &a_matrix, const vector<float> &x_0, const vector<float> &b, float tolerance);
+vector<double> Jacobi(const CSRMatrix &a_matrix, const vector<double> &x_0, const vector<double> &b, const double &tolerance);

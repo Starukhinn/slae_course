@@ -6,14 +6,14 @@
 
 using std::vector;
 
-vector<float> operator+(const vector<float> &first_vector, const vector<float> &second_vector);
+vector<double> operator+(const vector<double> &first_vector, const vector<double> &second_vector);
 
-vector<float> operator-(const vector<float> &first_vector, const vector<float> &second_vector);
+vector<double> operator-(const vector<double> &first_vector, const vector<double> &second_vector);
 
-float operator*(const vector<float> &first_vector, const vector<float> &second_vector);
+double operator*(const vector<double> &first_vector, const vector<double> &second_vector);
 
-vector<float> operator*(const float &number, const vector<float> &second_vector);
+vector<double> operator*(const double &number, const vector<double> &second_vector);
 
-vector<float> operator/(const vector<float> &numbers, const float &number);
+vector<double> operator/(const vector<double> &numbers, const double &number);
 
-float GiveVectorLength(const vector<float> &vector);
+double GiveVectorLength(const vector<double> &vector);

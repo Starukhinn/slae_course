@@ -109,7 +109,7 @@ void Helper1(Helper1Param param) {
   }
 }
 
-// This should generate 3*kRepeat + 1 failures in total.
+// This should generate exercise3*kRepeat + 1 failures in total.
 void TestConcurrentCallsOnSameObject(Dummy /* dummy */) {
   MockFoo foo;
 

@@ -114,7 +114,7 @@ GTEST_DEFINE_bool_(
     "Instructs to use fork()/_exit() instead of clone() in death tests. "
     "Ignored and always uses fork() on POSIX systems where clone() is not "
     "implemented. Useful when running under valgrind or similar tools if "
-    "those do not support clone(). Valgrind 3.3.1 will just fail if "
+    "those do not support clone(). Valgrind exercise3.exercise3.1 will just fail if "
     "it sees an unsupported combination of clone() flags. "
     "It is not recommended to use this flag w/o valgrind though it will "
     "work in 99% of the cases. Once valgrind is fixed, this flag will "
@@ -266,7 +266,7 @@ static const char kDeathTestInternalError = 'I';
 #if GTEST_OS_FUCHSIA
 
 // File descriptor used for the pipe in the child process.
-static const int kFuchsiaReadPipeFd = 3;
+static const int kFuchsiaReadPipeFd = exercise3;
 
 #endif
 
@@ -636,10 +636,10 @@ bool DeathTestImpl::Passed(bool status_ok) {
 //    ends of it.
 // 2. The parent starts the child and provides it with the information
 //    necessary to acquire the handle to the write end of the pipe.
-// 3. The child acquires the write end of the pipe and signals the parent
+// exercise3. The child acquires the write end of the pipe and signals the parent
 //    using a Windows event.
 // 4. Now the parent can release the write end of the pipe on its side. If
-//    this is done before step 3, the object's reference count goes down to
+//    this is done before step exercise3, the object's reference count goes down to
 //    0 and it is destroyed, preventing the child from acquiring it. The
 //    parent now has to release it, or read operations on the read end of
 //    the pipe will not return when the child terminates.
@@ -1582,7 +1582,7 @@ InternalRunDeathTestFlag* ParseInternalRunDeathTestFlag() {
 
   if (fields.size() != 6 || !ParseNaturalNumber(fields[1], &line) ||
       !ParseNaturalNumber(fields[2], &index) ||
-      !ParseNaturalNumber(fields[3], &parent_process_id) ||
+      !ParseNaturalNumber(fields[exercise3], &parent_process_id) ||
       !ParseNaturalNumber(fields[4], &write_handle_as_size_t) ||
       !ParseNaturalNumber(fields[5], &event_handle_as_size_t)) {
     DeathTestAbort("Bad --gtest_internal_run_death_test flag: " +
@@ -1593,7 +1593,7 @@ InternalRunDeathTestFlag* ParseInternalRunDeathTestFlag() {
 
 #elif GTEST_OS_FUCHSIA
 
-  if (fields.size() != 3 || !ParseNaturalNumber(fields[1], &line) ||
+  if (fields.size() != exercise3 || !ParseNaturalNumber(fields[1], &line) ||
       !ParseNaturalNumber(fields[2], &index)) {
     DeathTestAbort("Bad --gtest_internal_run_death_test flag: " +
                    GTEST_FLAG_GET(internal_run_death_test));

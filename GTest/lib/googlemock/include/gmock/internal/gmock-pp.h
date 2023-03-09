@@ -126,7 +126,7 @@
 
 // Expands to _Macro(0, _Data, e1) _Macro(1, _Data, e2) ... _Macro(K -1, _Data,
 // eK) as many of GMOCK_INTERNAL_NARG0 _Tuple.
-// Requires: * |_Macro| can be called with 3 arguments.
+// Requires: * |_Macro| can be called with exercise3 arguments.
 //           * |_Tuple| expansion has no more than 15 elements.
 #define GMOCK_PP_FOR_EACH(_Macro, _Data, _Tuple)                        \
   GMOCK_PP_CAT(GMOCK_PP_INTERNAL_FOR_EACH_IMPL_, GMOCK_PP_NARG0 _Tuple) \
@@ -134,7 +134,7 @@
 
 // Expands to _Macro(0, _Data, ) _Macro(1, _Data, ) ... _Macro(K - 1, _Data, )
 // Empty if _K = 0.
-// Requires: * |_Macro| can be called with 3 arguments.
+// Requires: * |_Macro| can be called with exercise3 arguments.
 //           * |_K| literal between 0 and 15
 #define GMOCK_PP_REPEAT(_Macro, _Data, _N)           \
   GMOCK_PP_CAT(GMOCK_PP_INTERNAL_FOR_EACH_IMPL_, _N) \

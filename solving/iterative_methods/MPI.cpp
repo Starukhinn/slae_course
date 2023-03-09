@@ -2,13 +2,13 @@
 #include <iomanip>
 #include <fstream>
 
-vector<float> MPI(const CSRMatrix &a_matrix, const vector<float> &x_0, const vector<float> &b,
-                  float tolerance, float tau) {
+pair<vector<double>, int> MPI(const CSRMatrix &a_matrix, const vector<double> &x_0, const vector<double> &b,
+                  const double &tolerance, const double &tau) {
     std::ofstream outfile;
     outfile.open("/Users/dmitrystarukhin/slae_course/solving/iterative_methods/data_graphs/MPI.txt",
                  std::ofstream::out | std::ofstream::app);
-    vector<float> x = x_0;
-    vector<float> delta_solve = a_matrix * x - b;
+    vector<double> x = x_0;
+    vector<double> delta_solve = a_matrix * x - b;
     int number_iteration = 0;
     while (GiveVectorLength(delta_solve) >= tolerance) {
         x = x - tau * delta_solve;
@@ -19,6 +19,6 @@ vector<float> MPI(const CSRMatrix &a_matrix, const vector<float> &x_0, const vec
         ++number_iteration;
     }
     outfile.close();
-    return x;
+    return {x, number_iteration};
 }
 

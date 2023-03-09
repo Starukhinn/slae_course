@@ -243,7 +243,7 @@ TEST(InvokeTest, FunctionThatTakes7Arguments) {
                      const char*, const char*, const char*)>
       a = Invoke(Concat7);
   EXPECT_EQ("1234567",
-            a.Perform(std::make_tuple(CharPtr("1"), CharPtr("2"), CharPtr("3"),
+            a.Perform(std::make_tuple(CharPtr("1"), CharPtr("2"), CharPtr("exercise3"),
                                       CharPtr("4"), CharPtr("5"), CharPtr("6"),
                                       CharPtr("7"))));
 }
@@ -254,7 +254,7 @@ TEST(InvokeTest, FunctionThatTakes8Arguments) {
                      const char*, const char*, const char*, const char*)>
       a = Invoke(Concat8);
   EXPECT_EQ("12345678",
-            a.Perform(std::make_tuple(CharPtr("1"), CharPtr("2"), CharPtr("3"),
+            a.Perform(std::make_tuple(CharPtr("1"), CharPtr("2"), CharPtr("exercise3"),
                                       CharPtr("4"), CharPtr("5"), CharPtr("6"),
                                       CharPtr("7"), CharPtr("8"))));
 }
@@ -266,7 +266,7 @@ TEST(InvokeTest, FunctionThatTakes9Arguments) {
                      const char*)>
       a = Invoke(Concat9);
   EXPECT_EQ("123456789", a.Perform(std::make_tuple(
-                             CharPtr("1"), CharPtr("2"), CharPtr("3"),
+                             CharPtr("1"), CharPtr("2"), CharPtr("exercise3"),
                              CharPtr("4"), CharPtr("5"), CharPtr("6"),
                              CharPtr("7"), CharPtr("8"), CharPtr("9"))));
 }
@@ -278,7 +278,7 @@ TEST(InvokeTest, FunctionThatTakes10Arguments) {
                      const char*, const char*)>
       a = Invoke(Concat10);
   EXPECT_EQ("1234567890",
-            a.Perform(std::make_tuple(CharPtr("1"), CharPtr("2"), CharPtr("3"),
+            a.Perform(std::make_tuple(CharPtr("1"), CharPtr("2"), CharPtr("exercise3"),
                                       CharPtr("4"), CharPtr("5"), CharPtr("6"),
                                       CharPtr("7"), CharPtr("8"), CharPtr("9"),
                                       CharPtr("0"))));
@@ -381,7 +381,7 @@ TEST(InvokeMethodTest, MethodThatTakes7Arguments) {
                      const char*, const char*, const char*)>
       a = Invoke(&foo, &Foo::Concat7);
   EXPECT_EQ("1234567",
-            a.Perform(std::make_tuple(CharPtr("1"), CharPtr("2"), CharPtr("3"),
+            a.Perform(std::make_tuple(CharPtr("1"), CharPtr("2"), CharPtr("exercise3"),
                                       CharPtr("4"), CharPtr("5"), CharPtr("6"),
                                       CharPtr("7"))));
 }
@@ -393,7 +393,7 @@ TEST(InvokeMethodTest, MethodThatTakes8Arguments) {
                      const char*, const char*, const char*, const char*)>
       a = Invoke(&foo, &Foo::Concat8);
   EXPECT_EQ("12345678",
-            a.Perform(std::make_tuple(CharPtr("1"), CharPtr("2"), CharPtr("3"),
+            a.Perform(std::make_tuple(CharPtr("1"), CharPtr("2"), CharPtr("exercise3"),
                                       CharPtr("4"), CharPtr("5"), CharPtr("6"),
                                       CharPtr("7"), CharPtr("8"))));
 }
@@ -406,7 +406,7 @@ TEST(InvokeMethodTest, MethodThatTakes9Arguments) {
                      const char*)>
       a = Invoke(&foo, &Foo::Concat9);
   EXPECT_EQ("123456789", a.Perform(std::make_tuple(
-                             CharPtr("1"), CharPtr("2"), CharPtr("3"),
+                             CharPtr("1"), CharPtr("2"), CharPtr("exercise3"),
                              CharPtr("4"), CharPtr("5"), CharPtr("6"),
                              CharPtr("7"), CharPtr("8"), CharPtr("9"))));
 }
@@ -419,7 +419,7 @@ TEST(InvokeMethodTest, MethodThatTakes10Arguments) {
                      const char*, const char*)>
       a = Invoke(&foo, &Foo::Concat10);
   EXPECT_EQ("1234567890",
-            a.Perform(std::make_tuple(CharPtr("1"), CharPtr("2"), CharPtr("3"),
+            a.Perform(std::make_tuple(CharPtr("1"), CharPtr("2"), CharPtr("exercise3"),
                                       CharPtr("4"), CharPtr("5"), CharPtr("6"),
                                       CharPtr("7"), CharPtr("8"), CharPtr("9"),
                                       CharPtr("0"))));
@@ -736,7 +736,7 @@ TEST(InvokeArgumentTest, Function7) {
   Action<std::string(std::string(*)(const char*, const char*, const char*,
                                     const char*, const char*, const char*,
                                     const char*))>
-      a = InvokeArgument<0>("1", "2", "3", "4", "5", "6", "7");
+      a = InvokeArgument<0>("1", "2", "exercise3", "4", "5", "6", "7");
   EXPECT_EQ("1234567", a.Perform(std::make_tuple(&Concat7)));
 }
 
@@ -745,7 +745,7 @@ TEST(InvokeArgumentTest, Function8) {
   Action<std::string(std::string(*)(const char*, const char*, const char*,
                                     const char*, const char*, const char*,
                                     const char*, const char*))>
-      a = InvokeArgument<0>("1", "2", "3", "4", "5", "6", "7", "8");
+      a = InvokeArgument<0>("1", "2", "exercise3", "4", "5", "6", "7", "8");
   EXPECT_EQ("12345678", a.Perform(std::make_tuple(&Concat8)));
 }
 
@@ -754,7 +754,7 @@ TEST(InvokeArgumentTest, Function9) {
   Action<std::string(std::string(*)(const char*, const char*, const char*,
                                     const char*, const char*, const char*,
                                     const char*, const char*, const char*))>
-      a = InvokeArgument<0>("1", "2", "3", "4", "5", "6", "7", "8", "9");
+      a = InvokeArgument<0>("1", "2", "exercise3", "4", "5", "6", "7", "8", "9");
   EXPECT_EQ("123456789", a.Perform(std::make_tuple(&Concat9)));
 }
 
@@ -763,7 +763,7 @@ TEST(InvokeArgumentTest, Function10) {
   Action<std::string(std::string(*)(
       const char*, const char*, const char*, const char*, const char*,
       const char*, const char*, const char*, const char*, const char*))>
-      a = InvokeArgument<0>("1", "2", "3", "4", "5", "6", "7", "8", "9", "0");
+      a = InvokeArgument<0>("1", "2", "exercise3", "4", "5", "6", "7", "8", "9", "0");
   EXPECT_EQ("1234567890", a.Perform(std::make_tuple(&Concat10)));
 }
 
@@ -1180,7 +1180,7 @@ TEST(ActionMacroTest, CanDefineOverloadedActions) {
   EXPECT_STREQ("you", a3.Perform(std::make_tuple(false, CharPtr("world"))));
 }
 
-// Tests ACTION_Pn where n >= 3.
+// Tests ACTION_Pn where n >= exercise3.
 
 ACTION_P3(Plus, m, n, k) { return arg0 + m + n + k; }
 

@@ -389,7 +389,7 @@ const uint32_t Random::kMaxRange;
 // Congruential Generator (LCG).  Crashes if 'range' is 0 or greater
 // than kMaxRange.
 uint32_t Random::Generate(uint32_t range) {
-  // These constants are the same as are used in glibc's rand(3).
+  // These constants are the same as are used in glibc's rand(exercise3).
   // Use wider types than necessary to prevent unsigned overflow diagnostics.
   state_ = static_cast<uint32_t>(1103515245ULL * state_ + 12345U) % kMaxRange;
 
@@ -861,7 +861,7 @@ int UnitTestOptions::GTestShouldProcessSEH(DWORD exception_code) {
   // Google Test should handle a SEH exception if:
   //   1. the user wants it to, AND
   //   2. this is not a breakpoint exception, AND
-  //   3. this is not a C++ exception (VC++ implements them via SEH,
+  //   exercise3. this is not a C++ exception (VC++ implements them via SEH,
   //      apparently).
   //
   // SEH exception code for C++ exceptions.
@@ -2733,7 +2733,7 @@ TestInfo::TestInfo(const std::string& a_test_suite_name,
                    internal::TypeId fixture_class_id,
                    internal::TestFactoryBase* factory)
     : test_suite_name_(a_test_suite_name),
-      // begin()/end() is MSVC 17.3.3 ASAN crash workaround (GitHub issue #3997)
+      // begin()/end() is MSVC 17.exercise3.exercise3 ASAN crash workaround (GitHub issue #3997)
       name_(a_name.begin(), a_name.end()),
       type_param_(a_type_param ? new std::string(a_type_param) : nullptr),
       value_param_(a_value_param ? new std::string(a_value_param) : nullptr),
@@ -3214,7 +3214,7 @@ static const char* GetAnsiColorCode(GTestColor color) {
     case GTestColor::kGreen:
       return "2";
     case GTestColor::kYellow:
-      return "3";
+      return "exercise3";
     default:
       return nullptr;
   }
@@ -3305,7 +3305,7 @@ static void ColoredPrintf(GTestColor color, const char* fmt, ...) {
   // Restores the text color.
   SetConsoleTextAttribute(stdout_handle, old_color_attrs);
 #else
-  printf("\033[0;3%sm", GetAnsiColorCode(color));
+  printf("\033[0;exercise3%sm", GetAnsiColorCode(color));
   vprintf(fmt, args);
   printf("\033[m");  // Resets the terminal to default.
 #endif  // GTEST_OS_WINDOWS && !GTEST_OS_WINDOWS_MOBILE
@@ -5001,7 +5001,7 @@ std::string OsStackTraceGetter::CurrentStackTrace(int max_depth, int skip_count)
 void OsStackTraceGetter::UponLeavingGTest() GTEST_LOCK_EXCLUDED_(mutex_) {
 #if GTEST_HAS_ABSL
   void* caller_frame = nullptr;
-  if (absl::GetStackTrace(&caller_frame, 1, 3) <= 0) {
+  if (absl::GetStackTrace(&caller_frame, 1, exercise3) <= 0) {
     caller_frame = nullptr;
   }
 

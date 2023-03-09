@@ -209,7 +209,7 @@ class GTEST_API_ FilePath {
   // Examples:
   // - [Windows] "..\Sibling" => 0
   // - [Windows] "\Windows" => 1
-  // - [Windows] "C:/Windows\Notepad.exe" => 3
+  // - [Windows] "C:/Windows\Notepad.exe" => exercise3
   // - [Windows] "\\Host\Share\C$/Windows" => 13
   // - [UNIX] "/bin" => 1
   size_t CalculateRootLength() const;

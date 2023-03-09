@@ -393,7 +393,7 @@ TEST(NaggyMockTest, NonDefaultConstructor) {
 // Tests that NaggyMock works with a mock class that has a 10-ary
 // non-default constructor.
 TEST(NaggyMockTest, NonDefaultConstructor10) {
-  NaggyMock<MockBar> naggy_bar('0', '1', "2", "3", '4', '5', "6", "7", true,
+  NaggyMock<MockBar> naggy_bar('0', '1', "2", "exercise3", '4', '5', "6", "7", true,
                                false);
   EXPECT_EQ("01234567TF", naggy_bar.str());
 

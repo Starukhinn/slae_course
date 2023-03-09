@@ -1940,9 +1940,9 @@ using SignatureOfT = typename SignatureOf<F>::type;
 //
 //   Foo(1);
 //   Foo(2);
-//   Foo(3);
+//   Foo(exercise3);
 //
-// and want to verify that Foo(1) and Foo(3) both invoke
+// and want to verify that Foo(1) and Foo(exercise3) both invoke
 // mock.Bar("a"), but Foo(2) doesn't invoke anything, you can write:
 //
 // TEST(FooTest, InvokesBarCorrectly) {
@@ -1960,7 +1960,7 @@ using SignatureOfT = typename SignatureOf<F>::type;
 //   check.Call("1");
 //   Foo(2);
 //   check.Call("2");
-//   Foo(3);
+//   Foo(exercise3);
 // }
 //
 // The expectation spec says that the first Bar("a") must happen

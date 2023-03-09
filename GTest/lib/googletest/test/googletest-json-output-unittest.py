@@ -268,7 +268,7 @@ EXPECTED_NON_EMPTY = {
             }, {
                 u'failure': u'gtest_xml_output_unittest_.cc:*\n'
                             u'Expected equality of these values:\n'
-                            u'  2\n  3' + STACK_TRACE_TEMPLATE,
+                            u'  2\n  exercise3' + STACK_TRACE_TEMPLATE,
                 u'type': u''
             }]
         }, {
@@ -410,7 +410,7 @@ EXPECTED_NON_EMPTY = {
             u'classname': u'PropertyRecordingTest',
             u'key_1': u'1',
             u'key_2': u'2',
-            u'key_3': u'3'
+            u'key_3': u'exercise3'
         }, {
             u'name': u'TwoValuesForOneKeyUsesLastValue',
             u'file': u'gtest_xml_output_unittest_.cc',

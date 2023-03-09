@@ -1,7 +1,7 @@
 #include "csr_matrix.h"
 
 
-CSRMatrix::CSRMatrix(const map<Indexes, float> &matrix, const int &number_rows, const int &number_column) {
+CSRMatrix::CSRMatrix(const map<Indexes, double> &matrix, const int &number_rows, const int &number_column) {
     for (auto const &element: matrix) {
         values_.push_back(element.second);
         columns_indexes_.push_back(element.first.number_column);
@@ -13,7 +13,7 @@ CSRMatrix::CSRMatrix(const map<Indexes, float> &matrix, const int &number_rows, 
     number_columns_ = number_rows;
 }
 
-vector<int> CSRMatrix::CountNonZeroRowElements(const map<Indexes, float> &matrix) {
+vector<int> CSRMatrix::CountNonZeroRowElements(const map<Indexes, double> &matrix) {
     vector<int> number_non_0_rows_elements;
     int number_non_0_elements = 0;
     number_non_0_rows_elements.push_back(number_non_0_elements);
@@ -28,7 +28,7 @@ vector<int> CSRMatrix::CountNonZeroRowElements(const map<Indexes, float> &matrix
     return number_non_0_rows_elements;
 }
 
-float CSRMatrix::FindElement(const size_t &number_row, const size_t &number_column) const {
+double CSRMatrix::FindElement(const size_t &number_row, const size_t &number_column) const {
     int number_elements_before_row = number_rows_non_0_elements_[number_row];
     int number_elements_after_row = number_rows_non_0_elements_[number_row + 1];
     for (int number_non_0_element = number_elements_before_row;
@@ -40,7 +40,7 @@ float CSRMatrix::FindElement(const size_t &number_row, const size_t &number_colu
     return 0;
 }
 
-float CSRMatrix::GiveElement(const size_t &number_row, const size_t &number_column) const {
+double CSRMatrix::GiveElement(const size_t &number_row, const size_t &number_column) const {
     return FindElement(number_row, number_column);
 }
 
@@ -52,7 +52,7 @@ bool operator==(const CSRMatrix &first_matrix, const CSRMatrix &second_matrix) {
     }
     return false;
 }
-vector<float> CSRMatrix::GiveValues() const {
+vector<double> CSRMatrix::GiveValues() const {
     return values_;
 }
 
@@ -69,13 +69,13 @@ int CSRMatrix::GiveNumberColumns() const {
 int CSRMatrix::GiveNumberRows() const {
     return number_rows_;
 }
-vector<float> operator*(const CSRMatrix &matrix, const vector<float> &column) {
-    vector<float> result_column;
+vector<double> operator*(const CSRMatrix &matrix, const vector<double> &column) {
+    vector<double> result_column;
     for (size_t number_row_in_matrix = 1; number_row_in_matrix < matrix.GiveNumberRowsNon0Elements().size();
          ++number_row_in_matrix) {
         int number_elements_before_row = matrix.GiveNumberRowsNon0Elements()[number_row_in_matrix - 1];
         int number_elements_after_row = matrix.GiveNumberRowsNon0Elements()[number_row_in_matrix];
-        float result_column_element = 0;
+        double result_column_element = 0;
         for (int number_non_0_element = number_elements_before_row; number_non_0_element < number_elements_after_row;
              ++number_non_0_element) {
             size_t column_index_of_element = matrix.GiveColumnsIndexes()[number_non_0_element];

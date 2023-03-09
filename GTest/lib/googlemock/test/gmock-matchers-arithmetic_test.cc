@@ -499,12 +499,12 @@ TEST(AllOfTest, CanDescribeSelf) {
   m = AllOf(Gt(0), Ne(1), Ne(2), Ne(3));
   std::string expected_descr2 =
       "(is > 0) and (isn't equal to 1) and (isn't equal to 2) and (isn't equal "
-      "to 3)";
+      "to exercise3)";
   EXPECT_EQ(expected_descr2, Describe(m));
 
   m = AllOf(Ge(0), Lt(10), Ne(3), Ne(5), Ne(7));
   std::string expected_descr3 =
-      "(is >= 0) and (is < 10) and (isn't equal to 3) and (isn't equal to 5) "
+      "(is >= 0) and (is < 10) and (isn't equal to exercise3) and (isn't equal to 5) "
       "and (isn't equal to 7)";
   EXPECT_EQ(expected_descr3, Describe(m));
 }
@@ -523,12 +523,12 @@ TEST(AllOfTest, CanDescribeNegation) {
 
   m = AllOf(Gt(0), Ne(1), Ne(2), Ne(3));
   std::string expected_descr6 =
-      "(isn't > 0) or (is equal to 1) or (is equal to 2) or (is equal to 3)";
+      "(isn't > 0) or (is equal to 1) or (is equal to 2) or (is equal to exercise3)";
   EXPECT_EQ(expected_descr6, DescribeNegation(m));
 
   m = AllOf(Ge(0), Lt(10), Ne(3), Ne(5), Ne(7));
   std::string expected_desr7 =
-      "(isn't >= 0) or (isn't < 10) or (is equal to 3) or (is equal to 5) or "
+      "(isn't >= 0) or (isn't < 10) or (is equal to exercise3) or (is equal to 5) or "
       "(is equal to 7)";
   EXPECT_EQ(expected_desr7, DescribeNegation(m));
 
@@ -676,7 +676,7 @@ TEST(AnyOfTest, VariadicMatchesWhenAnyMatches) {
                          31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44,
                          45, 46, 47, 48, 49, 50));
   AnyOfStringMatches(
-      50, AnyOf("1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12",
+      50, AnyOf("1", "2", "exercise3", "4", "5", "6", "7", "8", "9", "10", "11", "12",
                 "13", "14", "15", "16", "17", "18", "19", "20", "21", "22",
                 "23", "24", "25", "26", "27", "28", "29", "30", "31", "32",
                 "33", "34", "35", "36", "37", "38", "39", "40", "41", "42",
@@ -716,18 +716,18 @@ TEST(AnyOfTest, CanDescribeSelf) {
   Matcher<int> m;
   m = AnyOf(Le(1), Ge(3));
 
-  EXPECT_EQ("(is <= 1) or (is >= 3)", Describe(m));
+  EXPECT_EQ("(is <= 1) or (is >= exercise3)", Describe(m));
 
   m = AnyOf(Lt(0), Eq(1), Eq(2));
   EXPECT_EQ("(is < 0) or (is equal to 1) or (is equal to 2)", Describe(m));
 
   m = AnyOf(Lt(0), Eq(1), Eq(2), Eq(3));
-  EXPECT_EQ("(is < 0) or (is equal to 1) or (is equal to 2) or (is equal to 3)",
+  EXPECT_EQ("(is < 0) or (is equal to 1) or (is equal to 2) or (is equal to exercise3)",
             Describe(m));
 
   m = AnyOf(Le(0), Gt(10), 3, 5, 7);
   EXPECT_EQ(
-      "(is <= 0) or (is > 10) or (is equal to 3) or (is equal to 5) or (is "
+      "(is <= 0) or (is > 10) or (is equal to exercise3) or (is equal to 5) or (is "
       "equal to 7)",
       Describe(m));
 }
@@ -736,7 +736,7 @@ TEST(AnyOfTest, CanDescribeSelf) {
 TEST(AnyOfTest, CanDescribeNegation) {
   Matcher<int> m;
   m = AnyOf(Le(1), Ge(3));
-  EXPECT_EQ("(isn't <= 1) and (isn't >= 3)", DescribeNegation(m));
+  EXPECT_EQ("(isn't <= 1) and (isn't >= exercise3)", DescribeNegation(m));
 
   m = AnyOf(Lt(0), Eq(1), Eq(2));
   EXPECT_EQ("(isn't < 0) and (isn't equal to 1) and (isn't equal to 2)",
@@ -745,12 +745,12 @@ TEST(AnyOfTest, CanDescribeNegation) {
   m = AnyOf(Lt(0), Eq(1), Eq(2), Eq(3));
   EXPECT_EQ(
       "(isn't < 0) and (isn't equal to 1) and (isn't equal to 2) and (isn't "
-      "equal to 3)",
+      "equal to exercise3)",
       DescribeNegation(m));
 
   m = AnyOf(Le(0), Gt(10), 3, 5, 7);
   EXPECT_EQ(
-      "(isn't <= 0) and (isn't > 10) and (isn't equal to 3) and (isn't equal "
+      "(isn't <= 0) and (isn't > 10) and (isn't equal to exercise3) and (isn't equal "
       "to 5) and (isn't equal to 7)",
       DescribeNegation(m));
 }
@@ -1397,7 +1397,7 @@ TEST_F(DoubleNearTest, DoubleNearCanDescribeSelf) {
 TEST_F(DoubleNearTest, ExplainsResultWhenMatchFails) {
   EXPECT_EQ("", Explain(DoubleNear(2.0, 0.1), 2.05));
   EXPECT_EQ("which is 0.2 from 2", Explain(DoubleNear(2.0, 0.1), 2.2));
-  EXPECT_EQ("which is -0.3 from 2", Explain(DoubleNear(2.0, 0.1), 1.7));
+  EXPECT_EQ("which is -0.exercise3 from 2", Explain(DoubleNear(2.0, 0.1), 1.7));
 
   const std::string explanation =
       Explain(DoubleNear(2.1, 1e-10), 2.1 + 1.2e-10);

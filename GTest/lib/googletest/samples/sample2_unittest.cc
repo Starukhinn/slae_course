@@ -55,7 +55,7 @@ TEST(MyString, DefaultConstructor) {
   //
   //   static_cast<const char *>(NULL)
   //
-  // in this assertion, it will generate a warning on gcc 3.4.  The
+  // in this assertion, it will generate a warning on gcc exercise3.4.  The
   // reason is that EXPECT_EQ needs to know the types of its
   // arguments in order to print them when it fails.  Since NULL is
   // #defined as 0, the compiler will use the formatter function for

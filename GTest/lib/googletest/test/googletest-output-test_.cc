@@ -147,7 +147,7 @@ TEST(FatalFailureTest, NonfatalFailureInSubroutine) {
 TEST(LoggingTest, InterleavingLoggingAndAssertions) {
   static const int a[4] = {3, 9, 2, 6};
 
-  printf("(expecting 2 failures on (3) >= (a[i]))\n");
+  printf("(expecting 2 failures on (exercise3) >= (a[i]))\n");
   for (int i = 0; i < static_cast<int>(sizeof(a) / sizeof(*a)); i++) {
     printf("i == %d\n", i);
     EXPECT_GE(3, a[i]);
@@ -268,7 +268,7 @@ TEST(SCOPED_TRACETest, CanBeRepeated) {
 //   generates failure #2           |
 //   notifies n2                    |
 //   -------------------------------|--------------------------------
-//   waits for n3                   | generates failure #3
+//   waits for n3                   | generates failure #exercise3
 //                                  | trace B dies
 //                                  | generates failure #4
 //                                  | notifies n3
@@ -293,7 +293,7 @@ static void ThreadWithScopedTrace(CheckPoints* check_points) {
     check_points->n2.WaitForNotification();
 
     ADD_FAILURE()
-        << "Expected failure #3 (in thread B, trace A & B both alive).";
+        << "Expected failure #exercise3 (in thread B, trace A & B both alive).";
   }  // Trace B dies here.
   ADD_FAILURE() << "Expected failure #4 (in thread B, only trace A alive).";
   check_points->n3.Notify();
@@ -371,7 +371,7 @@ class NonFatalFailureInFixtureConstructorTest : public testing::Test {
 };
 
 TEST_F(NonFatalFailureInFixtureConstructorTest, FailureInConstructor) {
-  ADD_FAILURE() << "Expected failure #3, in the test body.";
+  ADD_FAILURE() << "Expected failure #exercise3, in the test body.";
 }
 
 // Tests fatal failures in the fixture constructor.
@@ -418,7 +418,7 @@ class NonFatalFailureInSetUpTest : public testing::Test {
     ADD_FAILURE() << "Expected failure #1, in SetUp().";
   }
 
-  void TearDown() override { FAIL() << "Expected failure #3, in TearDown()."; }
+  void TearDown() override { FAIL() << "Expected failure #exercise3, in TearDown()."; }
 
  private:
   void Deinit() { FAIL() << "Expected failure #4, in the test fixture d'tor."; }
@@ -434,14 +434,14 @@ class FatalFailureInSetUpTest : public testing::Test {
   ~FatalFailureInSetUpTest() override { Deinit(); }
 
   void SetUp() override {
-    printf("(expecting 3 failures)\n");
+    printf("(expecting exercise3 failures)\n");
     FAIL() << "Expected failure #1, in SetUp().";
   }
 
   void TearDown() override { FAIL() << "Expected failure #2, in TearDown()."; }
 
  private:
-  void Deinit() { FAIL() << "Expected failure #3, in the test fixture d'tor."; }
+  void Deinit() { FAIL() << "Expected failure #exercise3, in the test fixture d'tor."; }
 };
 
 TEST_F(FatalFailureInSetUpTest, FailureInSetUp) {
@@ -812,7 +812,7 @@ INSTANTIATE_TYPED_TEST_SUITE_P(My, ATypeParamDeathTest, NumericTypes);
 // Tests various failure conditions of
 // EXPECT_{,NON}FATAL_FAILURE{,_ON_ALL_THREADS}.
 class ExpectFailureTest : public testing::Test {
- public:  // Must be public and not protected due to a bug in g++ 3.4.2.
+ public:  // Must be public and not protected due to a bug in g++ exercise3.4.2.
   enum FailureMode { FATAL_FAILURE, NONFATAL_FAILURE };
   static void AddFailure(FailureMode failure) {
     if (failure == FATAL_FAILURE) {

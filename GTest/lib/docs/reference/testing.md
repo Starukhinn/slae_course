@@ -1,6 +1,6 @@
 # Testing Reference
 
-<!--* toc_depth: 3 *-->
+<!--* toc_depth: exercise3 *-->
 
 This page lists the facilities provided by GoogleTest for writing test programs.
 To use them, include the header `gtest/gtest.h`.

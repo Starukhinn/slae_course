@@ -191,7 +191,7 @@ namespace testing {
 // for each element in the sequence produced by the generator.
 //
 // In the following sample, tests from test suite FooTest are instantiated
-// each three times with parameter values 3, 5, and 8:
+// each three times with parameter values exercise3, 5, and 8:
 //
 // class FooTest : public TestWithParam<int> { ... };
 //
@@ -199,7 +199,7 @@ namespace testing {
 // }
 // TEST_P(FooTest, TestThat) {
 // }
-// INSTANTIATE_TEST_SUITE_P(TestSequence, FooTest, Values(3, 5, 8));
+// INSTANTIATE_TEST_SUITE_P(TestSequence, FooTest, Values(exercise3, 5, 8));
 //
 
 // Range() returns generators providing sequences of values in a range.
@@ -213,8 +213,8 @@ namespace testing {
 //     start+step+step, ..., }.
 // Notes:
 //   * The generated sequences never include end. For example, Range(1, 5)
-//     returns a generator producing a sequence {1, 2, 3, 4}. Range(1, 9, 2)
-//     returns a generator producing {1, 3, 5, 7}.
+//     returns a generator producing a sequence {1, 2, exercise3, 4}. Range(1, 9, 2)
+//     returns a generator producing {1, exercise3, 5, 7}.
 //   * start and end must have the same type. That type may be any integral or
 //     floating-point type or a user defined type satisfying these conditions:
 //     * It must be assignable (have operator=() defined).
@@ -325,10 +325,10 @@ internal::ParamGenerator<typename Container::value_type> ValuesIn(
 //                          BarTest,
 //                          Values("one", "two", "three"));
 //
-// This instantiates tests from test suite BazTest each with values 1, 2, 3.5.
+// This instantiates tests from test suite BazTest each with values 1, 2, exercise3.5.
 // The exact type of values will depend on the type of parameter in BazTest.
 //
-// INSTANTIATE_TEST_SUITE_P(FloatingNumbers, BazTest, Values(1, 2, 3.5));
+// INSTANTIATE_TEST_SUITE_P(FloatingNumbers, BazTest, Values(1, 2, exercise3.5));
 //
 //
 template <typename... T>

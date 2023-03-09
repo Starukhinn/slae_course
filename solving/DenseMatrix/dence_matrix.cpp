@@ -4,26 +4,26 @@ Matrix::Matrix() {
     matrix_ = {};
     number_columns_ = 0;
 }
-Matrix::Matrix(const vector<float>& elements, const int& number_columns) {
+Matrix::Matrix(const vector<double>& elements, const int& number_columns) {
     number_columns_ = number_columns;
     matrix_ = elements;
 }
 
-float Matrix::FindElement(const int& number_row, const int& number_column) const {
+double Matrix::FindElement(const int& number_row, const int& number_column) const {
     int number_element_in_list = number_columns_ * number_row + number_column;
     return matrix_[number_element_in_list];
 }
-float Matrix::GiveElement(const int& number_row, const int& number_column) const {
+double Matrix::GiveElement(const int& number_row, const int& number_column) const {
     return FindElement(number_row, number_column);
 }
 
-vector<float> Matrix::GiveMatrix() const {
+vector<double> Matrix::GiveMatrix() const {
     return matrix_;
 }
 int Matrix::GiveNumberColumns() const {
     return number_columns_;
 }
-void Matrix::ChangeNestedColumn(const vector<float>& column, const int& number_column) {
+void Matrix::ChangeNestedColumn(const vector<double>& column, const int& number_column) {
     int number_elements_above_column_in_matrix = matrix_.size() / number_columns_ - column.size();
     for (int number_column_element = 0; number_column_element < column.size();
          ++number_column_element) {
@@ -33,13 +33,13 @@ void Matrix::ChangeNestedColumn(const vector<float>& column, const int& number_c
         matrix_[number_matrix_element_fro_swapping] = column[number_column_element];
     }
 }
-void Matrix::ModifyNestedColumn(const vector<float>& column, const int& number_column) {
+void Matrix::ModifyNestedColumn(const vector<double>& column, const int& number_column) {
     ChangeNestedColumn(column, number_column);
 }
 
-vector<float> Matrix::SelectsNestedColumn(const int& number_first_element,
+vector<double> Matrix::SelectsNestedColumn(const int& number_first_element,
                                           const int& number_column) {
-    vector<float> nested_column;
+    vector<double> nested_column;
     nested_column.reserve(matrix_.size() / number_columns_ - number_first_element);
     int number_matrix_rows = matrix_.size() / number_columns_;
     int number_first_column_element_in_matrix =
@@ -51,12 +51,12 @@ vector<float> Matrix::SelectsNestedColumn(const int& number_first_element,
     return nested_column;
 }
 
-vector<float> Matrix::GiveNestedColumn(const int& first_element, const int& number_column) {
+vector<double> Matrix::GiveNestedColumn(const int& first_element, const int& number_column) {
     return SelectsNestedColumn(first_element, number_column);
 }
 
-vector<float> Matrix::SelectsNestedRow(const int& first_element, const int& number_row) {
-    vector<float> nested_row;
+vector<double> Matrix::SelectsNestedRow(const int& first_element, const int& number_row) {
+    vector<double> nested_row;
     nested_row.reserve(number_columns_ - first_element);
     int number_matrix_element = number_row * number_columns_ + first_element;
     for (number_matrix_element; number_matrix_element < number_columns_; ++number_matrix_element) {
@@ -65,11 +65,11 @@ vector<float> Matrix::SelectsNestedRow(const int& first_element, const int& numb
     return nested_row;
 }
 
-vector<float> Matrix::GiveNestedRow(const int& first_element, const int& number_row) {
+vector<double> Matrix::GiveNestedRow(const int& first_element, const int& number_row) {
     return SelectsNestedRow(first_element, number_row);
 }
 
-void Matrix::ChangeNestedRow(const vector<float>& row, const int& number_row) {
+void Matrix::ChangeNestedRow(const vector<double>& row, const int& number_row) {
     int number_elements_left_of_row = matrix_.size() / number_columns_ - row.size();
     for (int number_row_element = 0; number_row_element < row.size(); ++number_row_element) {
         int number_matrix_element_for_swapping =
@@ -79,12 +79,12 @@ void Matrix::ChangeNestedRow(const vector<float>& row, const int& number_row) {
     }
 }
 
-void Matrix::ModifyNestedRow(const vector<float>& row, const int& number_row) {
+void Matrix::ModifyNestedRow(const vector<double>& row, const int& number_row) {
     ChangeNestedRow(row, number_row);
 }
 
-Matrix operator*(const float& number, const Matrix& matrix) {
-    vector<float> new_matrix;
+Matrix operator*(const double& number, const Matrix& matrix) {
+    vector<double> new_matrix;
     new_matrix.reserve(matrix.GiveMatrix().size());
     for (auto element : matrix.GiveMatrix()) {
         element *= number;
@@ -93,15 +93,15 @@ Matrix operator*(const float& number, const Matrix& matrix) {
     return {new_matrix, matrix.GiveNumberColumns()};
 }
 
-Matrix operator*(const Matrix& matrix, vector<float>& numbers) {
-    vector<float> new_matrix;
+Matrix operator*(const Matrix& matrix, vector<double>& numbers) {
+    vector<double> new_matrix;
     new_matrix.reserve(matrix.GiveMatrix().size());
     int number_rows = matrix.GiveMatrix().size() / matrix.GiveNumberColumns();
     for (int number_row = 0; number_row < number_rows; ++number_row) {
         float new_element = 0;
         for (int number_column = 0; number_column < matrix.GiveNumberColumns(); ++number_column) {
-            float matrix_element = matrix.GiveElement(number_row, number_column);
-            float column_element = numbers[number_column];
+            double matrix_element = matrix.GiveElement(number_row, number_column);
+            double column_element = numbers[number_column];
             new_element += matrix_element * column_element;
         }
         new_matrix.push_back(new_element);
@@ -110,7 +110,7 @@ Matrix operator*(const Matrix& matrix, vector<float>& numbers) {
 }
 
 Matrix operator-(const Matrix& first_matrix, const Matrix& second_matrix) {
-    vector<float> new_matrix;
+    vector<double> new_matrix;
     new_matrix.reserve(first_matrix.GiveMatrix().size());
     for (int number_matrix_element = 0; number_matrix_element < first_matrix.GiveMatrix().size();
          ++number_matrix_element) {

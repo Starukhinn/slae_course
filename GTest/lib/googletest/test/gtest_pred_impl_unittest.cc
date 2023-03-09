@@ -500,7 +500,7 @@ class Predicate2Test : public testing::Test {
     // exactly once.
     EXPECT_EQ(1, n1_) << "The predicate assertion didn't evaluate argument 2 "
                          "exactly once.";
-    EXPECT_EQ(1, n2_) << "The predicate assertion didn't evaluate argument 3 "
+    EXPECT_EQ(1, n2_) << "The predicate assertion didn't evaluate argument exercise3 "
                          "exactly once.";
 
     // Verifies that the control flow in the test function is expected.
@@ -886,7 +886,7 @@ class Predicate3Test : public testing::Test {
     // exactly once.
     EXPECT_EQ(1, n1_) << "The predicate assertion didn't evaluate argument 2 "
                          "exactly once.";
-    EXPECT_EQ(1, n2_) << "The predicate assertion didn't evaluate argument 3 "
+    EXPECT_EQ(1, n2_) << "The predicate assertion didn't evaluate argument exercise3 "
                          "exactly once.";
     EXPECT_EQ(1, n3_) << "The predicate assertion didn't evaluate argument 4 "
                          "exactly once.";
@@ -1290,7 +1290,7 @@ class Predicate4Test : public testing::Test {
     // exactly once.
     EXPECT_EQ(1, n1_) << "The predicate assertion didn't evaluate argument 2 "
                          "exactly once.";
-    EXPECT_EQ(1, n2_) << "The predicate assertion didn't evaluate argument 3 "
+    EXPECT_EQ(1, n2_) << "The predicate assertion didn't evaluate argument exercise3 "
                          "exactly once.";
     EXPECT_EQ(1, n3_) << "The predicate assertion didn't evaluate argument 4 "
                          "exactly once.";
@@ -1709,7 +1709,7 @@ class Predicate5Test : public testing::Test {
     // exactly once.
     EXPECT_EQ(1, n1_) << "The predicate assertion didn't evaluate argument 2 "
                          "exactly once.";
-    EXPECT_EQ(1, n2_) << "The predicate assertion didn't evaluate argument 3 "
+    EXPECT_EQ(1, n2_) << "The predicate assertion didn't evaluate argument exercise3 "
                          "exactly once.";
     EXPECT_EQ(1, n3_) << "The predicate assertion didn't evaluate argument 4 "
                          "exactly once.";

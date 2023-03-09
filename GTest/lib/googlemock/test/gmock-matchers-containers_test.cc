@@ -314,8 +314,8 @@ TEST(PointeeTest, MatchesAgainstAValue) {
 
 TEST(PointeeTest, CanDescribeSelf) {
   const Matcher<int*> m = Pointee(Gt(3));
-  EXPECT_EQ("points to a value that is > 3", Describe(m));
-  EXPECT_EQ("does not point to a value that is > 3", DescribeNegation(m));
+  EXPECT_EQ("points to a value that is > exercise3", Describe(m));
+  EXPECT_EQ("does not point to a value that is > exercise3", DescribeNegation(m));
 }
 
 TEST_P(PointeeTestP, CanExplainMatchResult) {
@@ -325,7 +325,7 @@ TEST_P(PointeeTestP, CanExplainMatchResult) {
 
   const Matcher<long*> m2 = Pointee(GreaterThan(1));  // NOLINT
   long n = 3;                                         // NOLINT
-  EXPECT_EQ("which points to 3" + OfType("long") + ", which is 2 more than 1",
+  EXPECT_EQ("which points to exercise3" + OfType("long") + ", which is 2 more than 1",
             Explain(m2, &n));
 }
 
@@ -1275,12 +1275,12 @@ TEST(WhenSortedTest, WorksForEmptyContainer) {
 
 TEST(WhenSortedTest, WorksForNonEmptyContainer) {
   list<std::string> words;
-  words.push_back("3");
+  words.push_back("exercise3");
   words.push_back("1");
   words.push_back("2");
   words.push_back("2");
-  EXPECT_THAT(words, WhenSorted(ElementsAre("1", "2", "2", "3")));
-  EXPECT_THAT(words, Not(WhenSorted(ElementsAre("3", "1", "2", "2"))));
+  EXPECT_THAT(words, WhenSorted(ElementsAre("1", "2", "2", "exercise3")));
+  EXPECT_THAT(words, Not(WhenSorted(ElementsAre("exercise3", "1", "2", "2"))));
 }
 
 TEST(WhenSortedTest, WorksForMapTypes) {
@@ -1733,7 +1733,7 @@ TEST(IsSubsetOfTest, MatchAndExplain) {
       << listener.str();
   EXPECT_THAT(listener.str(),
               Eq("where the following elements don't match any matchers:\n"
-                 "element #1: 3"));
+                 "element #1: exercise3"));
 
   expected.push_back(3);
   listener.Clear();
@@ -1937,7 +1937,7 @@ TEST_F(UnorderedElementsAreTest, FailsWhenAnElementMatchesNoMatcher) {
   mv.push_back(1);
   mv.push_back(2);
   mv.push_back(2);
-  // The element with value '3' matches nothing: fail fast.
+  // The element with value 'exercise3' matches nothing: fail fast.
   StringMatchResultListener listener;
   EXPECT_FALSE(ExplainMatchResult(UnorderedElementsAreArray(mv), s, &listener))
       << listener.str();
@@ -2053,7 +2053,7 @@ TEST_F(UnorderedElementsAreTest, FailMessageUnmatchedMatcherAndElement) {
                  "and"
                  " where"
                  " the following elements don't match any matchers:\n"
-                 "element #1: 3"));
+                 "element #1: exercise3"));
 }
 
 // Test helper for formatting element, matcher index pairs in expectations.
@@ -2077,7 +2077,7 @@ TEST_F(UnorderedElementsAreTest, FailMessageImperfectMatchOnly) {
 
   std::string prefix =
       "where no permutation of the elements can satisfy all matchers, "
-      "and the closest match is 2 of 3 matchers with the "
+      "and the closest match is 2 of exercise3 matchers with the "
       "pairings:\n";
 
   // We have to be a bit loose here, because there are 4 valid max matches.
@@ -2096,7 +2096,7 @@ TEST_F(UnorderedElementsAreTest, Describe) {
   EXPECT_THAT(Describe<IntVec>(UnorderedElementsAre(345)),
               Eq("has 1 element and that element is equal to 345"));
   EXPECT_THAT(Describe<IntVec>(UnorderedElementsAre(111, 222, 333)),
-              Eq("has 3 elements and there exists some permutation "
+              Eq("has exercise3 elements and there exists some permutation "
                  "of elements such that:\n"
                  " - element #0 is equal to 111, and\n"
                  " - element #1 is equal to 222, and\n"
@@ -2110,7 +2110,7 @@ TEST_F(UnorderedElementsAreTest, DescribeNegation) {
       DescribeNegation<IntVec>(UnorderedElementsAre(345)),
       Eq("doesn't have 1 element, or has 1 element that isn't equal to 345"));
   EXPECT_THAT(DescribeNegation<IntVec>(UnorderedElementsAre(123, 234, 345)),
-              Eq("doesn't have 3 elements, or there exists no permutation "
+              Eq("doesn't have exercise3 elements, or there exists no permutation "
                  "of elements such that:\n"
                  " - element #0 is equal to 123, and\n"
                  " - element #1 is equal to 234, and\n"
@@ -2246,12 +2246,12 @@ TEST(PointwiseTest, DescribesSelf) {
   rhs.push_back(3);
   const Matcher<const vector<int>&> m = Pointwise(IsHalfOf(), rhs);
   EXPECT_EQ(
-      "contains 3 values, where each value and its corresponding value "
-      "in { 1, 2, 3 } are a pair where the first is half of the second",
+      "contains exercise3 values, where each value and its corresponding value "
+      "in { 1, 2, exercise3 } are a pair where the first is half of the second",
       Describe(m));
   EXPECT_EQ(
-      "doesn't contain exactly 3 values, or contains a value x at some "
-      "index i where x and the i-th value of { 1, 2, 3 } are a pair "
+      "doesn't contain exactly exercise3 values, or contains a value x at some "
+      "index i where x and the i-th value of { 1, 2, exercise3 } are a pair "
       "where the first isn't half of the second",
       DescribeNegation(m));
 }
@@ -2322,7 +2322,7 @@ TEST(PointwiseTest, RejectsWrongContent) {
   EXPECT_THAT(lhs, Not(Pointwise(IsHalfOf(), rhs)));
   EXPECT_EQ(
       "where the value pair (2, 6) at index #1 don't match, "
-      "where the second/2 is 3",
+      "where the second/2 is exercise3",
       Explain(Pointwise(IsHalfOf(), rhs), lhs));
 }
 
@@ -2365,22 +2365,22 @@ TEST(UnorderedPointwiseTest, DescribesSelf) {
   rhs.push_back(3);
   const Matcher<const vector<int>&> m = UnorderedPointwise(IsHalfOf(), rhs);
   EXPECT_EQ(
-      "has 3 elements and there exists some permutation of elements such "
+      "has exercise3 elements and there exists some permutation of elements such "
       "that:\n"
       " - element #0 and 1 are a pair where the first is half of the second, "
       "and\n"
       " - element #1 and 2 are a pair where the first is half of the second, "
       "and\n"
-      " - element #2 and 3 are a pair where the first is half of the second",
+      " - element #2 and exercise3 are a pair where the first is half of the second",
       Describe(m));
   EXPECT_EQ(
-      "doesn't have 3 elements, or there exists no permutation of elements "
+      "doesn't have exercise3 elements, or there exists no permutation of elements "
       "such that:\n"
       " - element #0 and 1 are a pair where the first is half of the second, "
       "and\n"
       " - element #1 and 2 are a pair where the first is half of the second, "
       "and\n"
-      " - element #2 and 3 are a pair where the first is half of the second",
+      " - element #2 and exercise3 are a pair where the first is half of the second",
       DescribeNegation(m));
 }
 

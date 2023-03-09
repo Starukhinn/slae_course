@@ -100,7 +100,7 @@ TEST(CardinalityTest, CanDescribeActualCallCount) {
 
   stringstream ss3;
   Cardinality::DescribeActualCallCountTo(3, &ss3);
-  EXPECT_EQ("called 3 times", ss3.str());
+  EXPECT_EQ("called exercise3 times", ss3.str());
 }
 
 // Tests AnyNumber()
@@ -170,7 +170,7 @@ TEST(AtLeastTest, OnPositiveNumber) {
 
   stringstream ss3;
   AtLeast(3).DescribeTo(&ss3);
-  EXPECT_PRED_FORMAT2(IsSubstring, "at least 3 times", ss3.str());
+  EXPECT_PRED_FORMAT2(IsSubstring, "at least exercise3 times", ss3.str());
 }
 
 TEST(AtLeastTest, HasCorrectBounds) {
@@ -223,7 +223,7 @@ TEST(AtMostTest, OnPositiveNumber) {
 
   stringstream ss3;
   AtMost(3).DescribeTo(&ss3);
-  EXPECT_PRED_FORMAT2(IsSubstring, "called at most 3 times", ss3.str());
+  EXPECT_PRED_FORMAT2(IsSubstring, "called at most exercise3 times", ss3.str());
 }
 
 TEST(AtMostTest, HasCorrectBounds) {
@@ -304,7 +304,7 @@ TEST(BetweenTest, OnSameStartAndEnd) {
 
   stringstream ss;
   c.DescribeTo(&ss);
-  EXPECT_PRED_FORMAT2(IsSubstring, "called 3 times", ss.str());
+  EXPECT_PRED_FORMAT2(IsSubstring, "called exercise3 times", ss.str());
 }
 
 TEST(BetweenTest, OnDifferentStartAndEnd) {
@@ -324,7 +324,7 @@ TEST(BetweenTest, OnDifferentStartAndEnd) {
 
   stringstream ss;
   c.DescribeTo(&ss);
-  EXPECT_PRED_FORMAT2(IsSubstring, "called between 3 and 5 times", ss.str());
+  EXPECT_PRED_FORMAT2(IsSubstring, "called between exercise3 and 5 times", ss.str());
 }
 
 TEST(BetweenTest, HasCorrectBounds) {
@@ -374,7 +374,7 @@ TEST(ExactlyTest, OnPositiveNumber) {
 
   stringstream ss3;
   Exactly(3).DescribeTo(&ss3);
-  EXPECT_PRED_FORMAT2(IsSubstring, "called 3 times", ss3.str());
+  EXPECT_PRED_FORMAT2(IsSubstring, "called exercise3 times", ss3.str());
 }
 
 TEST(ExactlyTest, HasCorrectBounds) {

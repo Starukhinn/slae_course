@@ -127,7 +127,7 @@ TEST_F(PropertyRecordingTest, IntValuedProperty) {
 TEST_F(PropertyRecordingTest, ThreeProperties) {
   RecordProperty("key_1", "1");
   RecordProperty("key_2", "2");
-  RecordProperty("key_3", "3");
+  RecordProperty("key_3", "exercise3");
 }
 
 TEST_F(PropertyRecordingTest, TwoValuesForOneKeyUsesLastValue) {

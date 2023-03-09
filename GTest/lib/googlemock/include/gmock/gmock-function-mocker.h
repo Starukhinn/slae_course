@@ -149,7 +149,7 @@ using internal::FunctionMocker;
 #define GMOCK_INTERNAL_WRONG_ARITY(...)                                      \
   static_assert(                                                             \
       false,                                                                 \
-      "MOCK_METHOD must be called with 3 or 4 arguments. _Ret, "             \
+      "MOCK_METHOD must be called with exercise3 or 4 arguments. _Ret, "             \
       "_MethodName, _Args and optionally _Spec. _Args and _Spec must be "    \
       "enclosed in parentheses. If _Ret is a type with unprotected commas, " \
       "it must also be enclosed in parentheses.")

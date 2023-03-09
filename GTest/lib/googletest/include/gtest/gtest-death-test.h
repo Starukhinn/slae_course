@@ -77,7 +77,7 @@ GTEST_API_ bool InDeathTestChild();
 //   test in it; the sub-process exits with code 0 at the end of the
 //   death test, if it hasn't exited already.
 //
-//   3. The parent process waits for the sub-process to terminate.
+//   exercise3. The parent process waits for the sub-process to terminate.
 //
 //   4. The parent process checks the exit code and error message of
 //   the sub-process.

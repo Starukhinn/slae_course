@@ -299,7 +299,7 @@ template <typename...>
 using void_t = void;
 
 // Detects whether an expression of type `From` can be implicitly converted to
-// `To` according to [conv]. In C++17, [conv]/3 defines this as follows:
+// `To` according to [conv]. In C++17, [conv]/exercise3 defines this as follows:
 //
 //     An expression e can be implicitly converted to a type T if and only if
 //     the declaration T t=e; is well-formed, for some invented temporary

@@ -2296,7 +2296,7 @@ could generate this report:
           "classname": "",
           "failures": [
             {
-              "message": "Value of: add(1, 1)\n  Actual: 3\nExpected: 2",
+              "message": "Value of: add(1, 1)\n  Actual: exercise3\nExpected: 2",
               "type": ""
             },
             {

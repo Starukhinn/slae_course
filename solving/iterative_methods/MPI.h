@@ -6,7 +6,8 @@
 #include <cmath>
 
 using std::vector;
+using std::pair;
 
-vector<float> MPI(const CSRMatrix &a_matrix, const vector<float> &x_0, const vector<float> &b, float tolerance, float tau);
+pair<vector<double>, int> MPI(const CSRMatrix &a_matrix, const vector<double> &x_0, const vector<double> &b, const double &tolerance, const double &tau);
 
 

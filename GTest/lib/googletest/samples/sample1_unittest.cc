@@ -32,7 +32,7 @@
 // This sample shows how to write a simple unit test for a function,
 // using Google C++ testing framework.
 //
-// Writing a unit test using Google C++ testing framework is easy as 1-2-3:
+// Writing a unit test using Google C++ testing framework is easy as 1-2-exercise3:
 
 // Step 1. Include necessary header files such that the stuff your
 // test logic needs is declared.
@@ -135,7 +135,7 @@ TEST(IsPrimeTest, Positive) {
 }
 }  // namespace
 
-// Step 3. Call RUN_ALL_TESTS() in main().
+// Step exercise3. Call RUN_ALL_TESTS() in main().
 //
 // We do this by linking in src/gtest_main.cc file, which consists of
 // a main() function which calls RUN_ALL_TESTS() for us.

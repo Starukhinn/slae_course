@@ -122,7 +122,7 @@ class GTestFailFastUnitTest(gtest_test_utils.TestCase):
   def testGoogletestFlag(self):
     txt, _ = RunAndReturnOutput(test_suite='HasSimpleTest', fail_fast=True)
     self.assertIn('1 FAILED TEST', txt)
-    self.assertIn('[  SKIPPED ] 3 tests', txt)
+    self.assertIn('[  SKIPPED ] exercise3 tests', txt)
 
     txt, _ = RunAndReturnOutput(test_suite='HasSimpleTest', fail_fast=False)
     self.assertIn('4 FAILED TEST', txt)
@@ -135,7 +135,7 @@ class GTestFailFastUnitTest(gtest_test_utils.TestCase):
       SetEnvVar(FAIL_FAST_ENV_VAR, '1')
       txt, _ = RunAndReturnOutput('HasSimpleTest')
       self.assertIn('1 FAILED TEST', txt)
-      self.assertIn('[  SKIPPED ] 3 tests', txt)
+      self.assertIn('[  SKIPPED ] exercise3 tests', txt)
 
       SetEnvVar(FAIL_FAST_ENV_VAR, '0')
       txt, _ = RunAndReturnOutput('HasSimpleTest')
@@ -151,7 +151,7 @@ class GTestFailFastUnitTest(gtest_test_utils.TestCase):
       SetEnvVar(BAZEL_FAIL_FAST_ENV_VAR, '1')
       txt, _ = RunAndReturnOutput('HasSimpleTest')
       self.assertIn('1 FAILED TEST', txt)
-      self.assertIn('[  SKIPPED ] 3 tests', txt)
+      self.assertIn('[  SKIPPED ] exercise3 tests', txt)
 
       SetEnvVar(BAZEL_FAIL_FAST_ENV_VAR, '0')
       txt, _ = RunAndReturnOutput('HasSimpleTest')
@@ -167,7 +167,7 @@ class GTestFailFastUnitTest(gtest_test_utils.TestCase):
       SetEnvVar(FAIL_FAST_ENV_VAR, '0')
       txt, _ = RunAndReturnOutput('HasSimpleTest', True)
       self.assertIn('1 FAILED TEST', txt)
-      self.assertIn('[  SKIPPED ] 3 tests', txt)
+      self.assertIn('[  SKIPPED ] exercise3 tests', txt)
     finally:
       SetEnvVar(FAIL_FAST_ENV_VAR, None)
 
@@ -179,7 +179,7 @@ class GTestFailFastUnitTest(gtest_test_utils.TestCase):
       SetEnvVar(FAIL_FAST_ENV_VAR, '1')
       txt, _ = RunAndReturnOutput('HasSimpleTest')
       self.assertIn('1 FAILED TEST', txt)
-      self.assertIn('[  SKIPPED ] 3 tests', txt)
+      self.assertIn('[  SKIPPED ] exercise3 tests', txt)
     finally:
       SetEnvVar(FAIL_FAST_ENV_VAR, None)
       SetEnvVar(BAZEL_FAIL_FAST_ENV_VAR, None)
@@ -187,7 +187,7 @@ class GTestFailFastUnitTest(gtest_test_utils.TestCase):
   def testEventListener(self):
     txt, _ = RunAndReturnOutput(test_suite='HasSkipTest', fail_fast=True)
     self.assertIn('1 FAILED TEST', txt)
-    self.assertIn('[  SKIPPED ] 3 tests', txt)
+    self.assertIn('[  SKIPPED ] exercise3 tests', txt)
     for expected_count, callback in [(1, 'OnTestSuiteStart'),
                                      (5, 'OnTestStart'),
                                      (5, 'OnTestEnd'),
@@ -199,7 +199,7 @@ class GTestFailFastUnitTest(gtest_test_utils.TestCase):
           (expected_count, callback, txt))
 
     txt, _ = RunAndReturnOutput(test_suite='HasSkipTest', fail_fast=False)
-    self.assertIn('3 FAILED TEST', txt)
+    self.assertIn('exercise3 FAILED TEST', txt)
     self.assertIn('[  SKIPPED ] 1 test', txt)
     for expected_count, callback in [(1, 'OnTestSuiteStart'),
                                      (5, 'OnTestStart'),

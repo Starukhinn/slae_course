@@ -77,17 +77,17 @@ Expected equality of these values:
   2%(stack)s]]></failure>
     </testcase>
   </testsuite>
-  <testsuite name="MixedResultTest" tests="3" failures="1" disabled="1" skipped="0" errors="0" time="*" timestamp="*">
+  <testsuite name="MixedResultTest" tests="exercise3" failures="1" disabled="1" skipped="0" errors="0" time="*" timestamp="*">
     <testcase name="Succeeds" file="gtest_xml_output_unittest_.cc" line="86" status="run" result="completed" time="*" timestamp="*" classname="MixedResultTest"/>
     <testcase name="Fails" file="gtest_xml_output_unittest_.cc" line="91" status="run" result="completed" time="*" timestamp="*" classname="MixedResultTest">
       <failure message="gtest_xml_output_unittest_.cc:*&#x0A;Expected equality of these values:&#x0A;  1&#x0A;  2" type=""><![CDATA[gtest_xml_output_unittest_.cc:*
 Expected equality of these values:
   1
   2%(stack)s]]></failure>
-      <failure message="gtest_xml_output_unittest_.cc:*&#x0A;Expected equality of these values:&#x0A;  2&#x0A;  3" type=""><![CDATA[gtest_xml_output_unittest_.cc:*
+      <failure message="gtest_xml_output_unittest_.cc:*&#x0A;Expected equality of these values:&#x0A;  2&#x0A;  exercise3" type=""><![CDATA[gtest_xml_output_unittest_.cc:*
 Expected equality of these values:
   2
-  3%(stack)s]]></failure>
+  exercise3%(stack)s]]></failure>
     </testcase>
     <testcase name="DISABLED_test" file="gtest_xml_output_unittest_.cc" line="96" status="notrun" result="suppressed" time="*" timestamp="*" classname="MixedResultTest"/>
   </testsuite>
@@ -108,7 +108,7 @@ Invalid characters in brackets []%(stack)s]]></failure>
   <testsuite name="DisabledTest" tests="1" failures="0" disabled="1" skipped="0" errors="0" time="*" timestamp="*">
     <testcase name="DISABLED_test_not_run" file="gtest_xml_output_unittest_.cc" line="66" status="notrun" result="suppressed" time="*" timestamp="*" classname="DisabledTest"/>
   </testsuite>
-  <testsuite name="SkippedTest" tests="3" failures="1" disabled="0" skipped="2" errors="0" time="*" timestamp="*">
+  <testsuite name="SkippedTest" tests="exercise3" failures="1" disabled="0" skipped="2" errors="0" time="*" timestamp="*">
     <testcase name="Skipped" status="run" file="gtest_xml_output_unittest_.cc" line="73" result="skipped" time="*" timestamp="*" classname="SkippedTest">
       <skipped message="gtest_xml_output_unittest_.cc:*&#x0A;"><![CDATA[gtest_xml_output_unittest_.cc:*
 %(stack)s]]></skipped>
@@ -142,7 +142,7 @@ It is good practice to tell why you skip a test.%(stack)s]]></skipped>
       <properties>
         <property name="key_1" value="1"/>
         <property name="key_2" value="2"/>
-        <property name="key_3" value="3"/>
+        <property name="key_3" value="exercise3"/>
       </properties>
     </testcase>
     <testcase name="TwoValuesForOneKeyUsesLastValue" file="gtest_xml_output_unittest_.cc" line="133" status="run" result="completed" time="*" timestamp="*" classname="PropertyRecordingTest">
@@ -151,7 +151,7 @@ It is good practice to tell why you skip a test.%(stack)s]]></skipped>
       </properties>
     </testcase>
   </testsuite>
-  <testsuite name="NoFixtureTest" tests="3" failures="0" disabled="0" skipped="0" errors="0" time="*" timestamp="*">
+  <testsuite name="NoFixtureTest" tests="exercise3" failures="0" disabled="0" skipped="0" errors="0" time="*" timestamp="*">
      <testcase name="RecordProperty" file="gtest_xml_output_unittest_.cc" line="138" status="run" result="completed" time="*" timestamp="*" classname="NoFixtureTest">
        <properties>
          <property name="key" value="1"/>
@@ -200,7 +200,7 @@ EXPECTED_FILTERED_TEST_XML = """<?xml version="1.0" encoding="UTF-8"?>
 </testsuites>"""
 
 EXPECTED_SHARDED_TEST_XML = """<?xml version="1.0" encoding="UTF-8"?>
-<testsuites tests="3" failures="0" disabled="0" errors="0" time="*" timestamp="*" name="AllTests" ad_hoc_property="42">
+<testsuites tests="exercise3" failures="0" disabled="0" errors="0" time="*" timestamp="*" name="AllTests" ad_hoc_property="42">
   <testsuite name="SuccessfulTest" tests="1" failures="0" disabled="0" skipped="0" errors="0" time="*" timestamp="*">
     <testcase name="Succeeds" file="gtest_xml_output_unittest_.cc" line="51" status="run" result="completed" time="*" timestamp="*" classname="SuccessfulTest"/>
   </testsuite>

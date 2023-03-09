@@ -719,7 +719,7 @@ void MyFunction(int /* n */) {}
 TEST(PrintPointerTest, NonMemberFunctionPointer) {
   // We cannot directly cast &MyFunction to const void* because the
   // standard disallows casting between pointers to functions and
-  // pointers to objects, and some compilers (e.g. GCC 3.4) enforce
+  // pointers to objects, and some compilers (e.g. GCC exercise3.4) enforce
   // this limitation.
   EXPECT_EQ(PrintPointer(reinterpret_cast<const void*>(
                 reinterpret_cast<internal::BiggestInt>(&MyFunction))),
@@ -788,13 +788,13 @@ std::string PrintArrayHelper(T (&a)[N]) {
 // One-dimensional array.
 TEST(PrintArrayTest, OneDimensionalArray) {
   int a[5] = {1, 2, 3, 4, 5};
-  EXPECT_EQ("{ 1, 2, 3, 4, 5 }", PrintArrayHelper(a));
+  EXPECT_EQ("{ 1, 2, exercise3, 4, 5 }", PrintArrayHelper(a));
 }
 
 // Two-dimensional array.
 TEST(PrintArrayTest, TwoDimensionalArray) {
   int a[2][5] = {{1, 2, 3, 4, 5}, {6, 7, 8, 9, 0}};
-  EXPECT_EQ("{ { 1, 2, 3, 4, 5 }, { 6, 7, 8, 9, 0 } }", PrintArrayHelper(a));
+  EXPECT_EQ("{ { 1, 2, exercise3, 4, 5 }, { 6, 7, 8, 9, 0 } }", PrintArrayHelper(a));
 }
 
 // Array of const elements.
@@ -881,7 +881,7 @@ TEST(PrintArrayTest, ObjectArray) {
 // Array with many elements.
 TEST(PrintArrayTest, BigArray) {
   int a[100] = {1, 2, 3};
-  EXPECT_EQ("{ 1, 2, 3, 0, 0, 0, 0, 0, ..., 0, 0, 0, 0, 0, 0, 0, 0 }",
+  EXPECT_EQ("{ 1, 2, exercise3, 0, 0, 0, 0, 0, ..., 0, 0, 0, 0, 0, 0, 0, 0 }",
             PrintArrayHelper(a));
 }
 
@@ -900,8 +900,8 @@ TEST(PrintStringTest, StringAmbiguousHex) {
   // '\x6', '\x6B', or '\x6BA'.
 
   // a hex escaping sequence following by a decimal digit
-  EXPECT_EQ("\"0\\x12\" \"3\"", Print(::std::string("0\x12"
-                                                    "3")));
+  EXPECT_EQ("\"0\\x12\" \"exercise3\"", Print(::std::string("0\x12"
+                                                    "exercise3")));
   // a hex escaping sequence following by a hex digit (lower-case)
   EXPECT_EQ("\"mm\\x6\" \"bananas\"", Print(::std::string("mm\x6"
                                                           "bananas")));
@@ -926,8 +926,8 @@ TEST(PrintWideStringTest, StringInStdNamespace) {
 
 TEST(PrintWideStringTest, StringAmbiguousHex) {
   // same for wide strings.
-  EXPECT_EQ("L\"0\\x12\" L\"3\"", Print(::std::wstring(L"0\x12"
-                                                       L"3")));
+  EXPECT_EQ("L\"0\\x12\" L\"exercise3\"", Print(::std::wstring(L"0\x12"
+                                                       L"exercise3")));
   EXPECT_EQ("L\"mm\\x6\" L\"bananas\"", Print(::std::wstring(L"mm\x6"
                                                              L"bananas")));
   EXPECT_EQ("L\"NOM\\x6\" L\"BANANA\"", Print(::std::wstring(L"NOM\x6"
@@ -1042,7 +1042,7 @@ TEST(PrintStlContainerTest, NonEmptyDeque) {
   deque<int> non_empty;
   non_empty.push_back(1);
   non_empty.push_back(3);
-  EXPECT_EQ("{ 1, 3 }", Print(non_empty));
+  EXPECT_EQ("{ 1, exercise3 }", Print(non_empty));
 }
 
 TEST(PrintStlContainerTest, OneElementHashMap) {
@@ -1109,7 +1109,7 @@ TEST(PrintStlContainerTest, Map) {
   map1[1] = true;
   map1[5] = false;
   map1[3] = true;
-  EXPECT_EQ("{ (1, true), (3, true), (5, false) }", Print(map1));
+  EXPECT_EQ("{ (1, true), (exercise3, true), (5, false) }", Print(map1));
 }
 
 TEST(PrintStlContainerTest, MultiMap) {
@@ -1129,7 +1129,7 @@ TEST(PrintStlContainerTest, MultiMap) {
 TEST(PrintStlContainerTest, Set) {
   const unsigned int a[] = {3, 0, 5};
   set<unsigned int> set1(a, a + 3);
-  EXPECT_EQ("{ 0, 3, 5 }", Print(set1));
+  EXPECT_EQ("{ 0, exercise3, 5 }", Print(set1));
 }
 
 TEST(PrintStlContainerTest, MultiSet) {
@@ -1160,7 +1160,7 @@ TEST(PrintStlContainerTest, LongSequence) {
   const int a[100] = {1, 2, 3};
   const vector<int> v(a, a + 100);
   EXPECT_EQ(
-      "{ 1, 2, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "
+      "{ 1, 2, exercise3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "
       "0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ... }",
       Print(v));
 }
@@ -1174,19 +1174,19 @@ TEST(PrintStlContainerTest, NestedContainer) {
   vector<list<int>> v;
   v.push_back(l1);
   v.push_back(l2);
-  EXPECT_EQ("{ { 1, 2 }, { 3, 4, 5 } }", Print(v));
+  EXPECT_EQ("{ { 1, 2 }, { exercise3, 4, 5 } }", Print(v));
 }
 
 TEST(PrintStlContainerTest, OneDimensionalNativeArray) {
   const int a[3] = {1, 2, 3};
   NativeArray<int> b(a, 3, RelationToSourceReference());
-  EXPECT_EQ("{ 1, 2, 3 }", Print(b));
+  EXPECT_EQ("{ 1, 2, exercise3 }", Print(b));
 }
 
 TEST(PrintStlContainerTest, TwoDimensionalNativeArray) {
   const int a[2][3] = {{1, 2, 3}, {4, 5, 6}};
   NativeArray<int[3]> b(a, 2, RelationToSourceReference());
-  EXPECT_EQ("{ { 1, 2, 3 }, { 4, 5, 6 } }", Print(b));
+  EXPECT_EQ("{ { 1, 2, exercise3 }, { 4, 5, 6 } }", Print(b));
 }
 
 // Tests that a class named iterator isn't treated as a container.
@@ -1225,17 +1225,17 @@ TEST(PrintStdTupleTest, VariousSizes) {
   EXPECT_EQ("('a' (97, 0x61), true)", Print(t2));
 
   ::std::tuple<bool, int, int> t3(false, 2, 3);
-  EXPECT_EQ("(false, 2, 3)", Print(t3));
+  EXPECT_EQ("(false, 2, exercise3)", Print(t3));
 
   ::std::tuple<bool, int, int, int> t4(false, 2, 3, 4);
-  EXPECT_EQ("(false, 2, 3, 4)", Print(t4));
+  EXPECT_EQ("(false, 2, exercise3, 4)", Print(t4));
 
   const char* const str = "8";
   ::std::tuple<bool, char, short, int32_t, int64_t, float, double,  // NOLINT
                const char*, void*, std::string>
       t10(false, 'a', static_cast<short>(3), 4, 5, 1.5F, -2.5, str,  // NOLINT
           nullptr, "10");
-  EXPECT_EQ("(false, 'a' (97, 0x61), 3, 4, 5, 1.5, -2.5, " + PrintPointer(str) +
+  EXPECT_EQ("(false, 'a' (97, 0x61), exercise3, 4, 5, 1.5, -2.5, " + PrintPointer(str) +
                 " pointing to \"8\", NULL, \"10\")",
             Print(t10));
 }
@@ -1362,7 +1362,7 @@ TEST(PrintReferenceTest, PrintsAddressAndValue) {
   EXPECT_EQ("@" + PrintPointer(&n) + " 5", PrintByRef(n));
 
   int a[2][3] = {{0, 1, 2}, {3, 4, 5}};
-  EXPECT_EQ("@" + PrintPointer(a) + " { { 0, 1, 2 }, { 3, 4, 5 } }",
+  EXPECT_EQ("@" + PrintPointer(a) + " { { 0, 1, 2 }, { exercise3, 4, 5 } }",
             PrintByRef(a));
 
   const ::foo::UnprintableInFoo x;
@@ -1380,7 +1380,7 @@ TEST(PrintReferenceTest, HandlesFunctionPointer) {
       PrintPointer(reinterpret_cast<const void*>(&fp));
   // We cannot directly cast &MyFunction to const void* because the
   // standard disallows casting between pointers to functions and
-  // pointers to objects, and some compilers (e.g. GCC 3.4) enforce
+  // pointers to objects, and some compilers (e.g. GCC exercise3.4) enforce
   // this limitation.
   const std::string fp_string = PrintPointer(reinterpret_cast<const void*>(
       reinterpret_cast<internal::BiggestInt>(fp)));
@@ -1590,7 +1590,7 @@ TEST(PrintToStringTest, EscapesForPointerToNonConstChar) {
 
 TEST(PrintToStringTest, WorksForArray) {
   int n[3] = {1, 2, 3};
-  EXPECT_PRINT_TO_STRING_(n, "{ 1, 2, 3 }");
+  EXPECT_PRINT_TO_STRING_(n, "{ 1, 2, exercise3 }");
 }
 
 TEST(PrintToStringTest, WorksForCharArray) {
@@ -1647,17 +1647,17 @@ TEST(IsValidUTF8Test, IllFormedUTF8) {
       {"\xC3\x84\xA4", "\"\\xC3\\x84\\xA4\""},
       // Lead byte without trail byte.
       {"abc\xC3", "\"abc\\xC3\""},
-      // 3-byte lead byte, single-byte character, orphan trail byte.
+      // exercise3-byte lead byte, single-byte character, orphan trail byte.
       {"x\xE2\x70\x94", "\"x\\xE2p\\x94\""},
-      // Truncated 3-byte character.
+      // Truncated exercise3-byte character.
       {"\xE2\x80", "\"\\xE2\\x80\""},
-      // Truncated 3-byte character followed by valid 2-byte char.
+      // Truncated exercise3-byte character followed by valid 2-byte char.
       {"\xE2\x80\xC3\x84", "\"\\xE2\\x80\\xC3\\x84\""},
-      // Truncated 3-byte character followed by a single-byte character.
+      // Truncated exercise3-byte character followed by a single-byte character.
       {"\xE2\x80\x7A", "\"\\xE2\\x80z\""},
-      // 3-byte lead byte followed by valid 3-byte character.
+      // exercise3-byte lead byte followed by valid exercise3-byte character.
       {"\xE2\xE2\x80\x94", "\"\\xE2\\xE2\\x80\\x94\""},
-      // 4-byte lead byte followed by valid 3-byte character.
+      // 4-byte lead byte followed by valid exercise3-byte character.
       {"\xF0\xE2\x80\x94", "\"\\xF0\\xE2\\x80\\x94\""},
       // Truncated 4-byte character.
       {"\xF0\xE2\x80", "\"\\xF0\\xE2\\x80\""},

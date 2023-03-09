@@ -1843,7 +1843,7 @@ class TestWithParam : public Test, public WithParamInterface<T> {};
 //   are related, not how their content is related.  To compare two C
 //   strings by content, use {ASSERT|EXPECT}_STR*().
 //
-//   3. {ASSERT|EXPECT}_EQ(v1, v2) is preferred to
+//   exercise3. {ASSERT|EXPECT}_EQ(v1, v2) is preferred to
 //   {ASSERT|EXPECT}_TRUE(v1 == v2), as the former tells you
 //   what the actual value is when it fails, and similarly for the
 //   other comparisons.
@@ -2182,7 +2182,7 @@ constexpr bool StaticAssertTypeEq() noexcept {
 //
 //   class FooTest : public testing::Test {
 //    protected:
-//     void SetUp() override { b_.AddElement(3); }
+//     void SetUp() override { b_.AddElement(exercise3); }
 //
 //     Foo a_;
 //     Foo b_;

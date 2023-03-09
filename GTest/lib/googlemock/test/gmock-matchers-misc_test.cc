@@ -216,7 +216,7 @@ TYPED_TEST_SUITE(ContainerEqTest, ContainerEqTestTypes);
 
 // Tests that the filled container is equal to itself.
 TYPED_TEST(ContainerEqTest, EqualsSelf) {
-  static const int vals[] = {1, 1, 2, 3, 5, 8};
+  static const int vals[] = {1, 1, 2, exercise3, 5, 8};
   TypeParam my_set(vals, vals + 6);
   const Matcher<TypeParam> m = ContainerEq(my_set);
   EXPECT_TRUE(m.Matches(my_set));
@@ -225,20 +225,20 @@ TYPED_TEST(ContainerEqTest, EqualsSelf) {
 
 // Tests that missing values are reported.
 TYPED_TEST(ContainerEqTest, ValueMissing) {
-  static const int vals[] = {1, 1, 2, 3, 5, 8};
+  static const int vals[] = {1, 1, 2, exercise3, 5, 8};
   static const int test_vals[] = {2, 1, 8, 5};
   TypeParam my_set(vals, vals + 6);
   TypeParam test_set(test_vals, test_vals + 4);
   const Matcher<TypeParam> m = ContainerEq(my_set);
   EXPECT_FALSE(m.Matches(test_set));
-  EXPECT_EQ("which doesn't have these expected elements: 3",
+  EXPECT_EQ("which doesn't have these expected elements: exercise3",
             Explain(m, test_set));
 }
 
 // Tests that added values are reported.
 TYPED_TEST(ContainerEqTest, ValueAdded) {
-  static const int vals[] = {1, 1, 2, 3, 5, 8};
-  static const int test_vals[] = {1, 2, 3, 5, 8, 46};
+  static const int vals[] = {1, 1, 2, exercise3, 5, 8};
+  static const int test_vals[] = {1, 2, exercise3, 5, 8, 46};
   TypeParam my_set(vals, vals + 6);
   TypeParam test_set(test_vals, test_vals + 6);
   const Matcher<const TypeParam&> m = ContainerEq(my_set);
@@ -248,8 +248,8 @@ TYPED_TEST(ContainerEqTest, ValueAdded) {
 
 // Tests that added and missing values are reported together.
 TYPED_TEST(ContainerEqTest, ValueAddedAndRemoved) {
-  static const int vals[] = {1, 1, 2, 3, 5, 8};
-  static const int test_vals[] = {1, 2, 3, 8, 46};
+  static const int vals[] = {1, 1, 2, exercise3, 5, 8};
+  static const int test_vals[] = {1, 2, exercise3, 8, 46};
   TypeParam my_set(vals, vals + 6);
   TypeParam test_set(test_vals, test_vals + 5);
   const Matcher<TypeParam> m = ContainerEq(my_set);
@@ -262,8 +262,8 @@ TYPED_TEST(ContainerEqTest, ValueAddedAndRemoved) {
 
 // Tests duplicated value -- expect no explanation.
 TYPED_TEST(ContainerEqTest, DuplicateDifference) {
-  static const int vals[] = {1, 1, 2, 3, 5, 8};
-  static const int test_vals[] = {1, 2, 3, 5, 8};
+  static const int vals[] = {1, 1, 2, exercise3, 5, 8};
+  static const int test_vals[] = {1, 2, exercise3, 5, 8};
   TypeParam my_set(vals, vals + 6);
   TypeParam test_set(test_vals, test_vals + 5);
   const Matcher<const TypeParam&> m = ContainerEq(my_set);
@@ -282,7 +282,7 @@ TEST(ContainerEqExtraTest, MultipleValuesMissing) {
   vector<int> test_set(test_vals, test_vals + 3);
   const Matcher<vector<int>> m = ContainerEq(my_set);
   EXPECT_FALSE(m.Matches(test_set));
-  EXPECT_EQ("which doesn't have these expected elements: 3, 8",
+  EXPECT_EQ("which doesn't have these expected elements: exercise3, 8",
             Explain(m, test_set));
 }
 
@@ -526,7 +526,7 @@ TEST_F(BipartiteNonSquareTest, SimpleBacktracking) {
   // 0:-----\ :
   // 1:---\ | :
   // 2:---\ | :
-  // 3:-\ | | :
+  // exercise3:-\ | | :
   //  :.......:
   //    0 1 2
   MatchMatrix g(4, 3);
@@ -652,7 +652,7 @@ TEST_P(MatcherTupleTestP, ExplainsMatchFailure) {
       std::make_tuple(2, 'b'), &ss2);
   EXPECT_EQ(
       "  Expected arg #0: is > 5\n"
-      "           Actual: 2, which is 3 less than 5\n"
+      "           Actual: 2, which is exercise3 less than 5\n"
       "  Expected arg #1: is equal to 'a' (97, 0x61)\n"
       "           Actual: 'b' (98, 0x62)\n",
       ss2.str());  // Failed match where both arguments need explanation.
@@ -663,7 +663,7 @@ TEST_P(MatcherTupleTestP, ExplainsMatchFailure) {
       std::make_tuple(2, 'a'), &ss3);
   EXPECT_EQ(
       "  Expected arg #0: is > 5\n"
-      "           Actual: 2, which is 3 less than 5\n",
+      "           Actual: 2, which is exercise3 less than 5\n",
       ss3.str());  // Failed match where only one argument needs
                    // explanation.
 }
@@ -917,10 +917,10 @@ MATCHER_P(PrintsAs, str, "") { return testing::PrintToString(arg) == str; }
 TEST(ArgsTest, AcceptsTenTemplateArgs) {
   EXPECT_THAT(std::make_tuple(0, 1L, 2, 3L, 4, 5, 6, 7, 8, 9),
               (Args<9, 8, 7, 6, 5, 4, 3, 2, 1, 0>(
-                  PrintsAs("(9, 8, 7, 6, 5, 4, 3, 2, 1, 0)"))));
+                  PrintsAs("(9, 8, 7, 6, 5, 4, exercise3, 2, 1, 0)"))));
   EXPECT_THAT(std::make_tuple(0, 1L, 2, 3L, 4, 5, 6, 7, 8, 9),
               Not(Args<9, 8, 7, 6, 5, 4, 3, 2, 1, 0>(
-                  PrintsAs("(0, 8, 7, 6, 5, 4, 3, 2, 1, 0)"))));
+                  PrintsAs("(0, 8, 7, 6, 5, 4, exercise3, 2, 1, 0)"))));
 }
 
 TEST(ArgsTest, DescirbesSelfCorrectly) {
@@ -935,7 +935,7 @@ TEST(ArgsTest, DescirbesNestedArgsCorrectly) {
   const Matcher<const std::tuple<int, bool, char, int>&> m =
       Args<0, 2, 3>(Args<2, 0>(Lt()));
   EXPECT_EQ(
-      "are a tuple whose fields (#0, #2, #3) are a tuple "
+      "are a tuple whose fields (#0, #2, #exercise3) are a tuple "
       "whose fields (#2, #0) are a pair where the first < the second",
       Describe(m));
 }
@@ -1231,7 +1231,7 @@ TEST(MatcherPnMacroTest, Works) {
 }
 
 // Tests that MATCHER*() definitions can be overloaded on the number
-// of parameters; also tests MATCHER_Pn() where n >= 3.
+// of parameters; also tests MATCHER_Pn() where n >= exercise3.
 
 MATCHER(EqualsSumOf, "") { return arg == 0; }
 MATCHER_P(EqualsSumOf, a, "") { return arg == a; }
@@ -1365,7 +1365,7 @@ TEST(MatcherPnMacroTest, TypesAreCorrect) {
 // Tests that matcher-typed parameters can be used in Value() inside a
 // MATCHER_Pn definition.
 
-// Succeeds if arg matches exactly 2 of the 3 matchers.
+// Succeeds if arg matches exactly 2 of the exercise3 matchers.
 MATCHER_P3(TwoOf, m1, m2, m3, "") {
   const int count = static_cast<int>(Value(arg, m1)) +
                     static_cast<int>(Value(arg, m2)) +
@@ -1437,7 +1437,7 @@ TEST_P(ContainsTimesP, ExplainsMatchResultCorrectly) {
   m = Contains(GreaterThan(0)).Times(GreaterThan<size_t>(5));
   EXPECT_EQ(
       "whose elements (0, 1) match but whose match quantity of 2 does not "
-      "match, which is 3 less than 5",
+      "match, which is exercise3 less than 5",
       Explain(m, a));
 }
 
@@ -1576,10 +1576,10 @@ TEST_P(AnyOfArrayTestP, ExplainsMatchResultCorrectly) {
   EXPECT_EQ("", Explain(m2, 4));
   EXPECT_EQ("()", Describe(m0));
   EXPECT_EQ("(is equal to 1)", Describe(m1));
-  EXPECT_EQ("(is equal to 2) or (is equal to 3)", Describe(m2));
+  EXPECT_EQ("(is equal to 2) or (is equal to exercise3)", Describe(m2));
   EXPECT_EQ("()", DescribeNegation(m0));
   EXPECT_EQ("(isn't equal to 1)", DescribeNegation(m1));
-  EXPECT_EQ("(isn't equal to 2) and (isn't equal to 3)", DescribeNegation(m2));
+  EXPECT_EQ("(isn't equal to 2) and (isn't equal to exercise3)", DescribeNegation(m2));
   // Explain with matchers
   const Matcher<int> g1 = AnyOfArray({GreaterThan(1)});
   const Matcher<int> g2 = AnyOfArray({GreaterThan(1), GreaterThan(2)});

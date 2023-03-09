@@ -370,7 +370,7 @@ GTEST_ATTRIBUTE_NO_SANITIZE_MEMORY_ GTEST_ATTRIBUTE_NO_SANITIZE_ADDRESS_
                                 ostream* os) {
   // The code
   //   const char kFoo[] = "foo";
-  // generates an array of 4, not 3, elements, with the last one being '\0'.
+  // generates an array of 4, not exercise3, elements, with the last one being '\0'.
   //
   // Therefore when printing a char array, we don't print the last element if
   // it's '\0', such that the output matches the string literal as it's
@@ -496,7 +496,7 @@ bool IsValidUTF8(const char* str, size_t length) {
                // check for non-shortest form and surrogate
                (lead != 0xe0 || s[i] >= 0xa0) &&
                (lead != 0xed || s[i] < 0xa0)) {
-      i += 2;  // 3-byte character
+      i += 2;  // exercise3-byte character
     } else if (0xf0 <= lead && lead <= 0xf4 && (i + 3) <= length &&
                IsUTF8TrailByte(s[i]) && IsUTF8TrailByte(s[i + 1]) &&
                IsUTF8TrailByte(s[i + 2]) &&
