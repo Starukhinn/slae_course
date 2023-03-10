@@ -17,7 +17,6 @@ double DiagonalElementsLine::GiveElement(const int &number_element) const {
     return GiveElementByNumber(number_element);
 }
 
-
 float DiagonalElementsLine::GiveElementByNumber(const int &number_element) const {
     if (number_element == 0) {
         return first_element_;
@@ -30,8 +29,8 @@ float DiagonalElementsLine::GiveElementByNumber(const int &number_element) const
     }
 }
 
-
-bool operator==(const DiagonalElementsLine &first_element, const DiagonalElementsLine &second_element) {
+bool operator==(const DiagonalElementsLine &first_element,
+                const DiagonalElementsLine &second_element) {
     if (first_element.GiveElement(0) == second_element.GiveElement(0) and
         first_element.GiveElement(1) == second_element.GiveElement(1) and
         first_element.GiveElement(2) == second_element.GiveElement(2)) {
@@ -39,7 +38,6 @@ bool operator==(const DiagonalElementsLine &first_element, const DiagonalElement
     }
     return false;
 }
-
 
 ThreeDiagonalMatrix::ThreeDiagonalMatrix() {
     diagonal_elements_ = {};
@@ -49,16 +47,14 @@ ThreeDiagonalMatrix::ThreeDiagonalMatrix(const vector<DiagonalElementsLine> &dia
     diagonal_elements_ = diagonal_elements;
 }
 
-
-double ThreeDiagonalMatrix::GiveElement(const size_t &number_line, const size_t &number_element_amount_3) const {
+double ThreeDiagonalMatrix::GiveElement(const size_t &number_line,
+                                        const size_t &number_element_amount_3) const {
     return diagonal_elements_[number_line].GiveElement(number_element_amount_3);
-
 }
 
 size_t ThreeDiagonalMatrix::GetSize() const {
     return diagonal_elements_.size();
 }
-
 
 vector<DiagonalElementsLine> ThreeDiagonalMatrix::GiveMatrix() const {
     return diagonal_elements_;

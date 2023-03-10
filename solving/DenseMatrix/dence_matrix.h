@@ -1,12 +1,11 @@
 #pragma once
 
 #include <iostream>
-#include <iostream>
 #include <vector>
 
 using std::vector;
 
-class Matrix{
+class Matrix {
 public:
     Matrix();
     Matrix(const vector<double> &elements, const int &number_columns);
@@ -16,7 +15,8 @@ public:
     void ModifyNestedColumn(const vector<double> &column, const int &number_column);
     void ModifyNestedRow(const vector<double> &row, const int &number_row);
     vector<double> GiveNestedColumn(const int &first_element, const int &number_column);
-    vector<double> GiveNestedRow(const int& first_element, const int& number_row);
+    vector<double> GiveNestedRow(const int &first_element, const int &number_row);
+
 private:
     vector<double> matrix_;
     int number_columns_;

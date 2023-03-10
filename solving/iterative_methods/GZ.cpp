@@ -1,12 +1,13 @@
 #include "GZ.h"
-#include <iomanip>
-#include <fstream>
 
-vector<double> GZ(const CSRMatrix &a_matrix, const vector<double> &x_0, const vector<double> &b,
-                 const double &tolerance) {
+#include <fstream>
+#include <iomanip>
+
+pair<vector<double>, int> GZ(const CSRMatrix &a_matrix, const vector<double> &x_0,
+                             const vector<double> &b, const double &tolerance,
+                             const string &file_path) {
     std::ofstream outfile;
-    outfile.open("/Users/dmitrystarukhin/slae_course/solving/iterative_methods/data_graphs/GZ.txt",
-                 std::ofstream::out | std::ofstream::app);
+    outfile.open(file_path, std::ofstream::out | std::ofstream::app);
     vector<double> x = x_0;
     vector<double> delta_solve = a_matrix * x - b;
     int number_iteration = 0;
@@ -30,5 +31,5 @@ vector<double> GZ(const CSRMatrix &a_matrix, const vector<double> &x_0, const ve
         outfile << log(GiveVectorLength(delta_solve)) << " " << number_iteration << '\n';
     }
     outfile.close();
-    return x;
+    return {x, number_iteration};
 }

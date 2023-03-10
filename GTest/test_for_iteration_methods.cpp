@@ -16,7 +16,7 @@ TEST(ITTERATIONS, GAUS_ZEIDEL) {
     vector<double> b{11.0, 13.0};
     vector<double> x{1.0, 1.0};
     double tolerance = 1e-7;
-    vector<double> result = GZ(matrix_a, x, b, tolerance);
+    vector<double> result = GZ(matrix_a, x, b, tolerance, "/Users/dmitrystarukhin/slae_course/GTest/data_graphs/GZ.txt").first;
     vector<double> delta_solve = matrix_a * result - b;
     for (int i = 0; i < 2; i++) {
         ASSERT_NEAR(delta_solve[i], 0, 1e-3);
@@ -34,7 +34,7 @@ TEST(ITTERATIONS, JACOBI) {
     vector<double> b{11.0, 13.0};
     vector<double> x{1.0, 1.0};
     double tolerance = 1e-7;
-    vector<double> result = Jacobi(matrix_a, x, b, tolerance);
+    vector<double> result = Jacobi(matrix_a, x, b, tolerance, "/Users/dmitrystarukhin/slae_course/GTest/data_graphs/Jacobi.txt").first;
     vector<double> delta_solve = matrix_a * result - b;
     for (int i = 0; i < 2; i++) {
         ASSERT_NEAR(delta_solve[i], 0, 1e-3);
@@ -53,7 +53,7 @@ TEST(ITTERATIONS, MPI) {
     vector<double> x{1, 1};
     double tolerance = 1e-12;
     double tau = 1e-2;
-    vector<double> result = MPI(matrix_a, x, b, tolerance, tau).first;
+    vector<double> result = MPI(matrix_a, x, b, tolerance, tau, "/Users/dmitrystarukhin/slae_course/GTest/data_graphs/MPI.txt").first;
     vector<double> delta_solve = matrix_a * result - b;
     for (int i = 0; i < 2; i++) {
         ASSERT_NEAR(delta_solve[i], 0, 1e-3);

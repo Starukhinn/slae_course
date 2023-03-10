@@ -38,7 +38,7 @@ void Matrix::ModifyNestedColumn(const vector<double>& column, const int& number_
 }
 
 vector<double> Matrix::SelectsNestedColumn(const int& number_first_element,
-                                          const int& number_column) {
+                                           const int& number_column) {
     vector<double> nested_column;
     nested_column.reserve(matrix_.size() / number_columns_ - number_first_element);
     int number_matrix_rows = matrix_.size() / number_columns_;

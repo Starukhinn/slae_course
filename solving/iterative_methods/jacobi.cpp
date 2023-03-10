@@ -1,16 +1,18 @@
 #include "jacobi.h"
-#include <iomanip>
-#include <fstream>
 
-vector<double> Jacobi(const CSRMatrix &a_matrix, const vector<double> &x_0, const vector<double> &b, const double &tolerance){
+#include <fstream>
+#include <iomanip>
+
+pair<vector<double>, int> Jacobi(const CSRMatrix &a_matrix, const vector<double> &x_0,
+                                 const vector<double> &b, const double &tolerance,
+                                 const string &file_path) {
     vector<double> x = x_0;
-    vector <double> delta_solve = a_matrix * x - b;
+    vector<double> delta_solve = a_matrix * x - b;
     vector<double> initial_x;
     int number_iteration = 0;
     std::ofstream outfile;
-    outfile.open("/Users/dmitrystarukhin/slae_course/solving/iterative_methods/data_graphs/Jacobi.txt",
-                 std::ofstream::out | std::ofstream::app);
-    while (GiveVectorLength(delta_solve) >= tolerance){
+    outfile.open(file_path, std::ofstream::out | std::ofstream::app);
+    while (GiveVectorLength(delta_solve) >= tolerance) {
         initial_x = x;
         for (int number_row = 0; number_row < a_matrix.GiveNumberRows(); ++number_row) {
             double result_column_element = 0;
@@ -31,5 +33,5 @@ vector<double> Jacobi(const CSRMatrix &a_matrix, const vector<double> &x_0, cons
         ++number_iteration;
         outfile << log(GiveVectorLength(delta_solve)) << " " << number_iteration << "\n";
     }
-    return x;
+    return {x, number_iteration};
 }

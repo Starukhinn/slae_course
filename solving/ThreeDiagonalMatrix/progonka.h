@@ -1,8 +1,9 @@
 #pragma once
 
 #include <iostream>
-#include "threediagonal_matrix.h"
+
 #include "numbers_column.h"
+#include "threediagonal_matrix.h"
 
 struct AuxiliaryCoefficients {
     double p_coef;
@@ -11,5 +12,5 @@ struct AuxiliaryCoefficients {
 
 NumbersColumn Progonka(const ThreeDiagonalMatrix &matrix, const NumbersColumn &free_members);
 
-vector<AuxiliaryCoefficients>
-FindAuxiliaryCoefficients(const ThreeDiagonalMatrix &matrix, const NumbersColumn &unknown_column);
+vector<AuxiliaryCoefficients> FindAuxiliaryCoefficients(const ThreeDiagonalMatrix &matrix,
+                                                        const NumbersColumn &unknown_column);

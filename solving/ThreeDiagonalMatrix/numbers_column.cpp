@@ -9,7 +9,6 @@ NumbersColumn::NumbersColumn(const vector<float> &column) {
     numbers_ = column;
 }
 
-
 void NumbersColumn::ChangeElement(const int &number_element, const float &element) {
     ReplaceElement(number_element, element);
 }

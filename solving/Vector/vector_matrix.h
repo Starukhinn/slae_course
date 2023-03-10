@@ -1,8 +1,8 @@
 #pragma once
 
+#include <cmath>
 #include <iostream>
 #include <vector>
-#include <cmath>
 
 using std::vector;
 

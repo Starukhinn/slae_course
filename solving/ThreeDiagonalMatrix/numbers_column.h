@@ -1,12 +1,12 @@
 #pragma once
 
-#include <vector>
 #include <iostream>
+#include <vector>
 
-using std::vector;
-using std::cout;
 using std::cin;
+using std::cout;
 using std::istream;
+using std::vector;
 
 class NumbersColumn {
 public:
@@ -21,6 +21,7 @@ public:
     friend bool operator==(const NumbersColumn &first_column, const NumbersColumn &second_column);
 
     size_t GiveSize() const;
+
 private:
     vector<float> numbers_;
 

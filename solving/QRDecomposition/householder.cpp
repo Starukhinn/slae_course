@@ -26,10 +26,8 @@ Matrix MultiplyColumnRow(const vector<double> &column, const vector<double> &row
     matrix.reserve(row.size() * column.size());
     for (int number_column_element = 0; number_column_element < column.size();
          ++number_column_element) {
-        for (int number_row_element = 0; number_row_element < row.size();
-             ++number_row_element) {
-            matrix.push_back(column[number_column_element] *
-                             row[number_row_element]);
+        for (int number_row_element = 0; number_row_element < row.size(); ++number_row_element) {
+            matrix.push_back(column[number_column_element] * row[number_row_element]);
         }
     }
     return {matrix, row.size()};
@@ -48,7 +46,7 @@ Matrix MakeTransformationMatrix(const vector<double> &normal) {
 }
 
 vector<double> ConvertsMatrixColumnOrRow(const vector<double> &matrix_column,
-                                       const vector<double> &normal, const double &denominator) {
+                                         const vector<double> &normal, const double &denominator) {
     double numerator = matrix_column * normal;
     vector<double> converted_column = matrix_column - 2.0 * numerator / denominator * normal;
     return converted_column;
