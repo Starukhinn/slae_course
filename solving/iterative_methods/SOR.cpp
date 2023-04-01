@@ -15,9 +15,11 @@ pair<vector<double>, int> SOR(const CSRMatrix &a_matrix, const vector<double> x_
                  ++number_non_0_row_element) {
                 if (number_row == a_matrix.GiveColumnsIndexes()[number_non_0_row_element]) {
                     diagonal_element = a_matrix.GiveValues()[number_non_0_row_element];
+                } else {
+                    result_column_element +=
+                        a_matrix.GiveValues()[number_non_0_row_element] *
+                        x[a_matrix.GiveColumnsIndexes()[number_non_0_row_element]];
                 }
-                result_column_element += a_matrix.GiveValues()[number_non_0_row_element] *
-                                         x[a_matrix.GiveColumnsIndexes()[number_non_0_row_element]];
             }
             x[number_row] = omega * (b[number_row] - result_column_element) / diagonal_element +
                             (1 - omega) * x[number_row];
