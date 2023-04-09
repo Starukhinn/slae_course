@@ -33,7 +33,7 @@ TEST(FirstTask, First) {
                                 "/Users/dmitrystarukhin/slae_course/GTest/KR2/1_task/kr2_1_MPI1.txt")
                                 .first;
     vector<double> delta_solve = matrix_a * answer - free_column;
-    for (int i = 0; i < 2; ++i) {
+    for (int i = 0; i < delta_solve.size(); ++i)  {
         ASSERT_NEAR(delta_solve[i], 0, 1e-13);
     }
 }
@@ -64,7 +64,7 @@ TEST(FirstTask, Second) {
                                 "/Users/dmitrystarukhin/slae_course/GTest/KR2/1_task/kr2_1_MPI2.txt")
                                 .first;
     vector<double> delta_solve = matrix_a * answer - free_column;
-    for (int i = 0; i < 2; ++i) {
+    for (int i = 0; i < delta_solve.size(); ++i)  {
         ASSERT_NEAR(delta_solve[i], 0, 1e-13);
     }
 }
@@ -94,7 +94,7 @@ TEST(FirstTask, Third) {
         MpiFast(matrix_a, x_0, free_column, 1e-13, 3, min_lambda, max_lambda);
     vector<double> delta_solve = matrix_a * answer.first - free_column;
     std::cout<< answer.second;
-    for (int i = 0; i < 2; ++i) {
+    for (int i = 0; i < delta_solve.size(); ++i)  {
         ASSERT_NEAR(delta_solve[i], 0, 1e-13);
     }
 }
@@ -120,13 +120,13 @@ TEST(FirstTask, Fourth) {
     vector<double> x_0(289, 0.0);
     vector<double> answer = SymmetricGZ(matrix_a, x_0, free_column, 1 / 1.5, 1e-13, "/Users/dmitrystarukhin/slae_course/GTest/KR2/1_task/gz_symmetric_data.txt").first;
     vector<double> delta_solve = matrix_a * answer - free_column;
-    for (int i = 0; i < 2; i++) {
+    for (int i = 0; i < delta_solve.size(); ++i)  {
         ASSERT_NEAR(delta_solve[i], 0, 1e-13);
     }
 }
 
 
-TEST(FirstTask, Fiveth) {
+TEST(FirstTask, Fifth) {
     map<Indexes, double> matrix_data;
     double a = 19.0;
     double b = 43.0;

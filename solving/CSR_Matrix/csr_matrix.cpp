@@ -21,9 +21,8 @@ vector<int> CSRMatrix::CountNonZeroRowElements(const map<Indexes, double> &matri
         if (matrix_element->second != 0) {
             ++number_non_0_elements;
         }
-        if (matrix_element != matrix.begin() and
-            (next(matrix_element) == matrix.end() or
-             next(matrix_element)->first.number_row != matrix_element->first.number_row)) {
+        if (next(matrix_element) == matrix.end() or
+            next(matrix_element)->first.number_row != matrix_element->first.number_row) {
             number_non_0_rows_elements.push_back(number_non_0_elements);
         }
     }

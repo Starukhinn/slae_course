@@ -2,7 +2,7 @@
 #include "../solving/CSR_Matrix/csr_matrix.h"
 
 
-TEST(CSRMatrix, Constructor) {
+TEST(CSRMatrix, Constructor1) {
     CSRMatrix matrix({
                       {{0, 0}, 1.0},
                       {{0, 2}, 19.1},
@@ -38,7 +38,39 @@ TEST(CSRMatrix, Constructor) {
 }
 
 
-TEST(CSRMatrix, Multiplication) {
+TEST(CSRMatrix, Constructor2) {
+    CSRMatrix matrix({
+                           {{0, 0}, 19.0},
+                           {{1, 1}, 22.0},
+                           {{2, 2}, 25.0},
+                           {{3, 3}, 28.5}}, 4, 4);
+    vector<double>  values = {19.0, 22.0, 25.0, 28.5};
+    vector<size_t> columns_indexes = {0, 1, 2, 3};
+    vector<int> number_rows_non_0_elements = {0, 1, 2, 3, 4};
+
+
+    ASSERT_FALSE(matrix.GiveValues().empty());
+    ASSERT_FALSE(matrix.GiveColumnsIndexes().empty());
+    ASSERT_FALSE(matrix.GiveNumberRowsNon0Elements().empty());
+    ASSERT_TRUE(values.size() == matrix.GiveValues().size());
+    ASSERT_TRUE(columns_indexes.size() == matrix.GiveColumnsIndexes().size());
+    ASSERT_TRUE(number_rows_non_0_elements.size() == matrix.GiveNumberRowsNon0Elements().size());
+    for(int number_element = 0; number_element < values.size(); ++ number_element){
+        ASSERT_NEAR(matrix.GiveValues()[number_element], values[number_element], 0.001);
+
+    }
+    for(int number_element = 0; number_element < columns_indexes.size(); ++ number_element){
+        ASSERT_NEAR(matrix.GiveColumnsIndexes()[number_element], columns_indexes[number_element], 0.001);
+
+    }
+    for(int number_element = 0; number_element < number_rows_non_0_elements.size(); ++ number_element){
+        ASSERT_NEAR(matrix.GiveNumberRowsNon0Elements()[number_element], number_rows_non_0_elements[number_element], 0.001);
+
+    }
+}
+
+
+TEST(CSRMatrix, Multiplication1) {
     CSRMatrix matrix({
         {{0, 0}, 1.0},
         {{0, 2}, 19.1},
@@ -114,6 +146,21 @@ TEST(CSRMatrix, Multiplication) {
     }
     for(auto number_element = 0; number_element < zero_answer.size(); ++ number_element){
         ASSERT_NEAR(zero_answer[number_element], zero_answer[number_element], 0.001);
+    }
+}
+
+
+TEST(CSRMatrix, Multiplication2){
+    CSRMatrix matrix({
+                         {{0, 0}, 19.0},
+                         {{1, 1}, 22.0},
+                         {{2, 2}, 25.0},
+                         {{3, 3}, 28.5}}, 4, 4);
+    vector<double> column_for_multiplication = {0.0, 0.0, 0.0, 0.0};
+    vector<double> check_answer = {0.0, 0.0, 0.0, 0.0};
+    vector<double> answer = matrix * column_for_multiplication;
+    for(auto number_element = 0; number_element < answer.size(); ++ number_element){
+        ASSERT_NEAR(answer[number_element], check_answer[number_element], 0.001);
     }
 }
 
