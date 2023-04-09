@@ -35,17 +35,17 @@ pair<vector<double>, int> FastMPIAlgorithm(const CSRMatrix &a_matrix, const vect
                                            const size_t &number_polynomial_roots,
                                            const vector<double> &polynomial_roots,
                                            const vector<size_t> &indexes) {
-    vector<double> solve = a_matrix * x_0 - b;
     vector<double> x = x_0;
+    vector<double> delta_solve = a_matrix * x - b;
     int number_iterations = 0;
-    while (GiveVectorLength(solve) > tolerance) {
+    while (GiveVectorLength(delta_solve) > tolerance) {
         for (size_t number_root = 0; number_root < number_polynomial_roots; ++number_root) {
-            x = x - 1 / polynomial_roots[indexes[number_root]] * solve;
-            solve = a_matrix * x_0 - b;
+            x = x - 1 / polynomial_roots[indexes[number_root]] * delta_solve;
+            delta_solve = a_matrix * x - b;
             ++number_iterations;
         }
     }
-    return {solve, number_polynomial_roots};
+    return {x, number_iterations};
 }
 
 pair<vector<double>, int> MpiFast(const CSRMatrix &a_matrix, const vector<double> &x_0,

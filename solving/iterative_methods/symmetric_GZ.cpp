@@ -45,13 +45,16 @@ void SwapVectors(vector<double>& vector1, vector<double>& vector2) {
 
 pair<vector<double>, int> SymmetricGZ(const CSRMatrix& a_matrix, const vector<double>& x_0,
                                       const vector<double>& b, const double& rho,
-                                      const double& tolerance) {
+                                      const double& tolerance, const string &file_path) {
     vector<double> y_0 = x_0;
     vector<double> y_1 = MakeFirstIterationOfSymmetricGZ(a_matrix, y_0, b);
     double mu_0 = 1;
     double mu_1 = 1 / rho;
     vector<double> delta_solve = b - a_matrix * y_1;
     size_t number_iteration = 0;
+    std::ofstream outfile;
+    outfile.open(file_path, std::ofstream::out | std::ofstream::app);
+    outfile << log(GiveVectorLength(delta_solve)) << " " << number_iteration << "\n";
     while (GiveVectorLength(delta_solve) >= tolerance) {
         vector<double> y_2 = MakeFirstIterationOfSymmetricGZ(a_matrix, y_1, b);
         y_0 = -mu_0 * y_0 + 2 * mu_1 / rho * y_2;
@@ -61,6 +64,7 @@ pair<vector<double>, int> SymmetricGZ(const CSRMatrix& a_matrix, const vector<do
         swap(mu_0, mu_1);
         delta_solve = a_matrix * y_1 - b;
         ++number_iteration;
+        outfile << log(GiveVectorLength(delta_solve)) << " " << number_iteration << "\n";
     }
     return make_pair(y_1, number_iteration);
 }

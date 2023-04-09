@@ -3,7 +3,7 @@
 vector<double> SSORIteration(const CSRMatrix &a_matrix, const vector<double> &x_0,
                              const vector<double> &b, double omega) {
     vector<double> x = x_0;
-    for (int number_row = 0; number_row < a_matrix.GiveNumberRows(); ++number_row) {
+    for (int number_row = 0; number_row < x_0.size(); ++number_row) {
         double result_column_element = 0;
         double diagonal_element;
         for (int number_non_0_row_element = a_matrix.GiveNumberRowsNon0Elements()[number_row];
@@ -19,7 +19,7 @@ vector<double> SSORIteration(const CSRMatrix &a_matrix, const vector<double> &x_
         x[number_row] = omega * (b[number_row] - result_column_element) / diagonal_element +
                         (1 - omega) * x[number_row];
     }
-    for (int number_row = a_matrix.GiveNumberRows() - 1; number_row >= 0; --number_row) {
+    for (int number_row = x.size() - 1; number_row >= 0; --number_row) {
         double result_column_element = 0;
         double diagonal_element;
         for (int number_non_0_row_element = a_matrix.GiveNumberRowsNon0Elements()[number_row];

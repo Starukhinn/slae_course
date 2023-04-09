@@ -8,7 +8,12 @@ int main() {
     outfile.open("/Users/dmitrystarukhin/slae_course/KR1/exercise3/MPI3.txt",
                  std::ofstream::out | std::ofstream::app);
     CSRMatrix matrix_a(
-        {{{0, 0}, 10.0}, {{0, 1}, 1.0}, {{1, 0}, 1.0}, {{1, 1}, 7.0}, {{2, 1}, 0.1}, {{2, 2}, 1.0}},
+        {{{0, 0}, 10.0},
+         {{0, 1}, 1.0},
+         {{1, 0}, 1.0},
+         {{1, 1}, 7.0},
+         {{2, 1}, 0.1},
+         {{2, 2}, 1.0}},
         3, 3);
     vector<double> b{20, 30, 1};
     vector<double> x{0, 0, 0};
