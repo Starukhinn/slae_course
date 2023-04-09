@@ -1,10 +1,10 @@
 #pragma once
 
-#include "../../solving/CSR_Matrix/csr_matrix.h"
-#include "../../solving/iterative_methods/MPI.h"
-#include "../../solving/iterative_methods/MPI_fast.h"
-#include "../../solving/iterative_methods/steepest_descent.h"
-#include "../../solving/iterative_methods/symmetric_GZ.h"
+#include "../../../solving/CSR_Matrix/csr_matrix.h"
+#include "../../../solving/iterative_methods/MPI.h"
+#include "../../../solving/iterative_methods/MPI_fast.h"
+#include "../../../solving/iterative_methods/steepest_descent.h"
+#include "../../../solving/iterative_methods/symmetric_GZ.h"
 #include "gtest/gtest.h"
 
 using std::map;
@@ -30,7 +30,7 @@ TEST(FirstTask, First) {
     vector<double> free_column(289, 4.0);
     vector<double> x_0(289, 0.0);
     vector<double> answer = MPI(matrix_a, x_0, free_column, 1e-13, 1 / 160.154610771072186,
-                                "/Users/dmitrystarukhin/slae_course/GTest/KR2/kr2_1.txt")
+                                "/Users/dmitrystarukhin/slae_course/GTest/KR2/1_task/kr2_1_MPI1.txt")
                                 .first;
     vector<double> delta_solve = matrix_a * answer - free_column;
     for (int i = 0; i < 2; ++i) {
@@ -61,7 +61,7 @@ TEST(FirstTask, Second) {
     double max_lambda = 2 * (b + 2 * a * std::cos(M_PI / (l + 1)));
     double tau = 2 / (min_lambda + max_lambda);
     vector<double> answer = MPI(matrix_a, x_0, free_column, 1e-13, tau,
-                                "/Users/dmitrystarukhin/slae_course/GTest/KR2/kr2_1.txt")
+                                "/Users/dmitrystarukhin/slae_course/GTest/KR2/1_task/kr2_1_MPI2.txt")
                                 .first;
     vector<double> delta_solve = matrix_a * answer - free_column;
     for (int i = 0; i < 2; ++i) {
@@ -118,7 +118,7 @@ TEST(FirstTask, Fourth) {
     CSRMatrix matrix_a(matrix_data, 289, 289);
     vector<double> free_column(289, 4.0);
     vector<double> x_0(289, 0.0);
-    vector<double> answer = SymmetricGZ(matrix_a, x_0, free_column, 1 / 1.5, 1e-13, "/Users/dmitrystarukhin/slae_course/GTest/KR2/gz_symmetric_data.txt").first;
+    vector<double> answer = SymmetricGZ(matrix_a, x_0, free_column, 1 / 1.5, 1e-13, "/Users/dmitrystarukhin/slae_course/GTest/KR2/1_task/gz_symmetric_data.txt").first;
     vector<double> delta_solve = matrix_a * answer - free_column;
     for (int i = 0; i < 2; i++) {
         ASSERT_NEAR(delta_solve[i], 0, 1e-13);
@@ -126,7 +126,7 @@ TEST(FirstTask, Fourth) {
 }
 
 
-TEST(FirstTask, Third_1) {
+TEST(FirstTask, Fiveth) {
     map<Indexes, double> matrix_data;
     double a = 19.0;
     double b = 43.0;
@@ -148,7 +148,7 @@ TEST(FirstTask, Third_1) {
     double min_lambda = 2 * (b - 2 * a * std::cos(M_PI / (l + 1)));
     double max_lambda = 2 * (b + 2 * a * std::cos(M_PI / (l + 1)));
     std::ofstream outfile;
-    outfile.open("/Users/dmitrystarukhin/slae_course/GTest/KR2/MPI_fast_data.txt", std::ofstream::out | std::ofstream::app);
+    outfile.open("/Users/dmitrystarukhin/slae_course/GTest/KR2/1_task/MPI_fast_data.txt", std::ofstream::out | std::ofstream::app);
     for(double intermediate_lambda = 150.4; intermediate_lambda < max_lambda;
              intermediate_lambda += 0.05){
         int number_iterations =

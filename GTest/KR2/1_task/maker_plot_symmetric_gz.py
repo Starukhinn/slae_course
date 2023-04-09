@@ -3,7 +3,7 @@ import numpy as np
 
 n = np.array([])
 tolerance = np.array([])
-with open("/Users/dmitrystarukhin/slae_course/GTest/KR2/gz_symmetric_data.txt", "r") as f:
+with open("/GTest/KR2/1_task/gz_symmetric_data.txt", "r") as f:
     for line in f:
         data = line.split(' ')
         n = np.append(n, int(data[1]))

@@ -3,7 +3,7 @@ import numpy as np
 
 number_iterations = np.array([])
 intermediate_lambda = np.array([])
-with open("/Users/dmitrystarukhin/slae_course/GTest/KR2/MPI_fast_data.txt", "r") as f:
+with open("/GTest/KR2/MPI_fast_data.txt", "r") as f:
     for line in f:
         data = line.split(' ')
         number_iterations = np.append(number_iterations, int(data[1]))
