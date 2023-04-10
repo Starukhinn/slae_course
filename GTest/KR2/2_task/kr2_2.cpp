@@ -39,7 +39,7 @@ TEST(FirstTask, Second) {
     double tau = 2 / (17.0 + 25.5);
     vector<double> answer =
         MPI(matrix_a, x_0, free_column, 1e-13, tau,
-            "/Users/dmitrystarukhin/slae_course/GTest/KR2/2_task/kr2_2_MPI1.txt")
+            "/Users/dmitrystarukhin/slae_course/GTest/KR2/2_task/kr2_2_MPI2.txt")
             .first;
     vector<double> delta_solve = matrix_a * answer - free_column;
     for (int i = 0; i < delta_solve.size(); ++i) {

@@ -2,6 +2,8 @@
 #include <cmath>
 #include <iostream>
 #include <vector>
+#include <fstream>
+#include <iomanip>
 
 #include "../../solving/CSR_Matrix/csr_matrix.h"
 #include "../../solving/Vector/vector_matrix.h"
