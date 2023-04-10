@@ -35,18 +35,14 @@ pair<vector<double>, int> FastMPIAlgorithm(const CSRMatrix &a_matrix, const vect
                                            const size_t &number_polynomial_roots,
                                            const vector<double> &polynomial_roots,
                                            const vector<size_t> &indexes) {
-    std::ofstream outfile;
-    outfile.open("/Users/dmitrystarukhin/slae_course/GTest/KR2/2_task/MPI_fast.txt", std::ofstream::out | std::ofstream::app);
     vector<double> x = x_0;
     vector<double> delta_solve = a_matrix * x - b;
     int number_iterations = 0;
-    outfile << delta_solve[0] << " " << delta_solve[1] << "\n";
     while (GiveVectorLength(delta_solve) > tolerance) {
         for (size_t number_root = 0; number_root < number_polynomial_roots; ++number_root) {
             x = x - 1 / polynomial_roots[indexes[number_root]] * delta_solve;
             delta_solve = a_matrix * x - b;
             ++number_iterations;
-            outfile << delta_solve[0] << " " << delta_solve[1] << "\n";
         }
     }
     return {x, number_iterations};
