@@ -1,6 +1,6 @@
 #include "symmetric_GZ.h"
 
-vector<double> MakeFirstIterationOfSymmetricGZ(const CSRMatrix& a_matrix, const vector<double>& x_0,
+vector<double> MakeOneIterationOfSymmetricGZ(const CSRMatrix& a_matrix, const vector<double>& x_0,
                                                const vector<double>& b) {
     vector<double> x = x_0;
     for (int number_row = 0; number_row < x.size(); ++number_row) {
@@ -47,16 +47,16 @@ pair<vector<double>, int> SymmetricGZ(const CSRMatrix& a_matrix, const vector<do
                                       const vector<double>& b, const double& rho,
                                       const double& tolerance, const string &file_path) {
     vector<double> y_0 = x_0;
-    vector<double> y_1 = MakeFirstIterationOfSymmetricGZ(a_matrix, y_0, b);
+    vector<double> y_1 = MakeOneIterationOfSymmetricGZ(a_matrix, y_0, b);
     double mu_0 = 1;
     double mu_1 = 1 / rho;
     vector<double> delta_solve = b - a_matrix * y_1;
-    size_t number_iteration = 0;
+    int number_iteration = 0;
     std::ofstream outfile;
     outfile.open(file_path, std::ofstream::out | std::ofstream::app);
     outfile << log(GiveVectorLength(delta_solve)) << " " << number_iteration << "\n";
     while (GiveVectorLength(delta_solve) >= tolerance) {
-        vector<double> y_2 = MakeFirstIterationOfSymmetricGZ(a_matrix, y_1, b);
+        vector<double> y_2 = MakeOneIterationOfSymmetricGZ(a_matrix, y_1, b);
         y_0 = -mu_0 * y_0 + 2 * mu_1 / rho * y_2;
         mu_0 = 2 / rho * mu_1 - mu_0;
         y_0 = y_0 / mu_0;

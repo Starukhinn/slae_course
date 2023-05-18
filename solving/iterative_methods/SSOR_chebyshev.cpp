@@ -1,7 +1,7 @@
-#include "SSOR.h"
+#include "SSOR_chebyshev.h"
 
-vector<double> SSORIteration(const CSRMatrix &a_matrix, const vector<double> &x_0,
-                             const vector<double> &b, double omega) {
+vector<double> SSORIterationChebyshev(const CSRMatrix &a_matrix, const vector<double> &x_0,
+                                      const vector<double> &b, double omega) {
     vector<double> x = x_0;
     for (int number_row = 0; number_row < x_0.size(); ++number_row) {
         double result_column_element = 0;
@@ -38,22 +38,30 @@ vector<double> SSORIteration(const CSRMatrix &a_matrix, const vector<double> &x_
     return x;
 }
 
-void SwapVectors(vector<double> &vector1, vector<double> &vector2) {
+void SwapVectorsChebyshev(vector<double> &vector1, vector<double> &vector2) {
     vector<double> auxiliary_vector = vector2;
     vector2 = vector1;
     vector1 = auxiliary_vector;
 }
 
-pair<vector<double>, int> SSOR(const CSRMatrix a_matrix, const vector<double> &x_0,
-                               const vector<double> &b, const double &omega, const double &rho,
-                               const double &tolerance) {
-    vector<double> x = x_0;
-    vector<double> delta_solve = a_matrix * x - b;
+pair<vector<double>, int> SSORChebyshev(const CSRMatrix a_matrix, const vector<double> &x_0,
+                                        const vector<double> &b, const double &omega,
+                                        const double &rho, const double &tolerance) {
+    vector<double> y_0 = x_0;
+    vector<double> y_1 = SSORIterationChebyshev(a_matrix, y_0, b, omega);
+    double mu_0 = 1;
+    double mu_1 = 1 / rho;
+    vector<double> delta_solve = a_matrix * y_1 - b;
     int number_iteration = 0;
     while (GiveVectorLength(delta_solve) >= tolerance) {
-        x = SSORIteration(a_matrix, x, b, omega);
-        delta_solve = a_matrix * x - b;
+        vector<double> y_2 = SSORIterationChebyshev(a_matrix, y_1, b, omega);
+        y_0 = 2 * mu_1 / rho * y_2 - mu_0 * y_0;
+        mu_0 = 2 / rho * mu_1 - mu_0;
+        y_0 = y_0 / mu_0;
+        SwapVectorsChebyshev(y_0, y_1);
+        swap(mu_0, mu_1);
+        delta_solve = a_matrix * y_1 - b;
         ++number_iteration;
     }
-    return {x, number_iteration};
+    return {y_1, number_iteration};
 }

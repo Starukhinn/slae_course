@@ -15,7 +15,7 @@ using std::string;
 
 void SwapVectors(vector<double>& vector1, vector<double>& vector2);
 
-vector<double> MakeFirstIterationOfSymmetricGZ(const CSRMatrix& a_matrix, const vector<double>& x_0,
+vector<double> MakeOneIterationOfSymmetricGZ(const CSRMatrix& a_matrix, const vector<double>& x_0,
                                                const vector<double>& b);
 
 pair<vector<double>, int> SymmetricGZ(const CSRMatrix& a_matrix, const vector<double>& x_0, const vector<double>& b,
